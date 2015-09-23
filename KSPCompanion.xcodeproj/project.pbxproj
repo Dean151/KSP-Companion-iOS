@@ -12,8 +12,9 @@
 		E907FE9D1BB1ED4000857D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E907FE9B1BB1ED4000857D14 /* Main.storyboard */; };
 		E907FE9F1BB1ED4000857D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E907FE9E1BB1ED4000857D14 /* Assets.xcassets */; };
 		E907FEA21BB1ED4000857D14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E907FEA01BB1ED4000857D14 /* LaunchScreen.storyboard */; };
+		E924D7261BB2E0D400443B4E /* OuterPlanets.json in Resources */ = {isa = PBXBuildFile; fileRef = E924D7251BB2E0D400443B4E /* OuterPlanets.json */; settings = {ASSET_TAGS = (); }; };
 		E92A43AA1BB20DFE009B7526 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E92A43AC1BB20DFE009B7526 /* Localizable.strings */; };
-		E9808C0B1BB200AA000FA2CC /* celestials.json in Resources */ = {isa = PBXBuildFile; fileRef = E9808BFE1BB200AA000FA2CC /* celestials.json */; settings = {ASSET_TAGS = (); }; };
+		E9808C0B1BB200AA000FA2CC /* System.json in Resources */ = {isa = PBXBuildFile; fileRef = E9808BFE1BB200AA000FA2CC /* System.json */; settings = {ASSET_TAGS = (); }; };
 		E9808C0C1BB200AA000FA2CC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808BFF1BB200AA000FA2CC /* DataManager.swift */; settings = {ASSET_TAGS = (); }; };
 		E9808C0D1BB200AA000FA2CC /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808C001BB200AA000FA2CC /* SettingsManager.swift */; settings = {ASSET_TAGS = (); }; };
 		E9808C0E1BB200AA000FA2CC /* Atmosphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808C021BB200AA000FA2CC /* Atmosphere.swift */; settings = {ASSET_TAGS = (); }; };
@@ -48,9 +49,10 @@
 		E907FE9E1BB1ED4000857D14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E907FEA11BB1ED4000857D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E907FEA31BB1ED4000857D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E924D7251BB2E0D400443B4E /* OuterPlanets.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OuterPlanets.json; sourceTree = "<group>"; };
 		E92A43AB1BB20DFE009B7526 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E92A43AD1BB20E25009B7526 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		E9808BFE1BB200AA000FA2CC /* celestials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = celestials.json; sourceTree = "<group>"; };
+		E9808BFE1BB200AA000FA2CC /* System.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = System.json; sourceTree = "<group>"; };
 		E9808BFF1BB200AA000FA2CC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E9808C001BB200AA000FA2CC /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		E9808C021BB200AA000FA2CC /* Atmosphere.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Atmosphere.swift; sourceTree = "<group>"; };
@@ -129,7 +131,8 @@
 		E9808BFD1BB200AA000FA2CC /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				E9808BFE1BB200AA000FA2CC /* celestials.json */,
+				E9808BFE1BB200AA000FA2CC /* System.json */,
+				E924D7251BB2E0D400443B4E /* OuterPlanets.json */,
 				E9808BFF1BB200AA000FA2CC /* DataManager.swift */,
 				E9808C001BB200AA000FA2CC /* SettingsManager.swift */,
 			);
@@ -150,8 +153,8 @@
 		E9808C061BB200AA000FA2CC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E9808C071BB200AA000FA2CC /* Celestials */,
 				E9A288221BB2281300714612 /* KSPSplitViewController.swift */,
+				E9808C071BB200AA000FA2CC /* Celestials */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -235,7 +238,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E92A43AA1BB20DFE009B7526 /* Localizable.strings in Resources */,
-				E9808C0B1BB200AA000FA2CC /* celestials.json in Resources */,
+				E924D7261BB2E0D400443B4E /* OuterPlanets.json in Resources */,
+				E9808C0B1BB200AA000FA2CC /* System.json in Resources */,
 				E907FEA21BB1ED4000857D14 /* LaunchScreen.storyboard in Resources */,
 				E907FE9F1BB1ED4000857D14 /* Assets.xcassets in Resources */,
 				E907FE9D1BB1ED4000857D14 /* Main.storyboard in Resources */,

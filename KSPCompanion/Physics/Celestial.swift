@@ -13,7 +13,7 @@ import Darwin
 import XLForm
 
 enum CelestialType: Int, CustomStringConvertible {
-    case Star=0, Planet, DwarfPlanet, Satellite, Other
+    case Star=0, Planet, RingPlanet, DwarfPlanet, Satellite, Other
     
     var image: UIImage? {
         switch self {
@@ -21,6 +21,8 @@ enum CelestialType: Int, CustomStringConvertible {
             return UIImage(named: "star")
         case .Planet:
             return UIImage(named: "planet")
+        case .RingPlanet:
+            return UIImage(named: "ringplanet")
         case .DwarfPlanet:
             return UIImage(named: "dwarfplanet")
         case .Satellite:
@@ -36,6 +38,8 @@ enum CelestialType: Int, CustomStringConvertible {
             return "Star"
         case .Planet:
             return "Planet"
+        case .RingPlanet:
+            return "Ring Planet"
         case .DwarfPlanet:
             return "Dwarf Planet"
         case .Satellite:
@@ -51,6 +55,8 @@ enum CelestialType: Int, CustomStringConvertible {
             return .Satellite
         case "planet":
             return .Planet
+        case "ringplanet":
+            return .RingPlanet
         case "dwarfplanet":
             return .DwarfPlanet
         default:
