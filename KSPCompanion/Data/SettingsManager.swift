@@ -12,6 +12,7 @@ class SettingsManager {
     
     // Names of the settings
     static let hideAdsString = "hideAds"
+    static let solarSystemString = "solarSystem"
     static let temperatureUnitString = "temperatureUnit"
     static let earthTimeString = "useEarthTime"
     
@@ -23,6 +24,16 @@ class SettingsManager {
         }
         set {
             settings.setBool(newValue, forKey: hideAdsString)
+        }
+    }
+    
+    static var solarSystem: SolarSystem {
+        get {
+            if let solarsystem = SolarSystem(rawValue: settings.integerForKey(solarSystemString)) {
+                return solarsystem
+            } else {
+                return SolarSystem.Kerbolian
+            }
         }
     }
     

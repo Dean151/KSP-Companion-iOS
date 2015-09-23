@@ -9,6 +9,19 @@
 import Foundation
 import SwiftyJSON
 
+enum SolarSystem: Int {
+    case Kerbolian=0, OuterPlanets
+    
+    var fileName: String {
+        switch self {
+        case .Kerbolian:
+            return "System"
+        case .OuterPlanets:
+            return "OuterPlanets"
+        }
+    }
+}
+
 class DataManager {
     
     /*
@@ -37,7 +50,7 @@ class DataManager {
         var celestials = [Celestial]()
         
         // Fetching and populating celestials from json
-        if let data = DataManager.getJsonData(file: "OuterPlanets") {
+        if let data = DataManager.getJsonData(file: SettingsManager.solarSystem.fileName) {
             var error: NSError?
             let json = JSON(data: data, options: NSJSONReadingOptions(), error: &error)
             
