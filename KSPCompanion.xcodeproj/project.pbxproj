@@ -7,23 +7,59 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3F9A37F119E94D5EAD5F7F7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F39D61BF80B5DF64BA7B68 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E907FE961BB1ED4000857D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907FE951BB1ED4000857D14 /* AppDelegate.swift */; };
-		E907FE981BB1ED4000857D14 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907FE971BB1ED4000857D14 /* MasterViewController.swift */; };
-		E907FE9A1BB1ED4000857D14 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907FE991BB1ED4000857D14 /* DetailViewController.swift */; };
 		E907FE9D1BB1ED4000857D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E907FE9B1BB1ED4000857D14 /* Main.storyboard */; };
 		E907FE9F1BB1ED4000857D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E907FE9E1BB1ED4000857D14 /* Assets.xcassets */; };
 		E907FEA21BB1ED4000857D14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E907FEA01BB1ED4000857D14 /* LaunchScreen.storyboard */; };
+		E92A43AA1BB20DFE009B7526 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E92A43AC1BB20DFE009B7526 /* Localizable.strings */; };
+		E9808C0B1BB200AA000FA2CC /* celestials.json in Resources */ = {isa = PBXBuildFile; fileRef = E9808BFE1BB200AA000FA2CC /* celestials.json */; settings = {ASSET_TAGS = (); }; };
+		E9808C0C1BB200AA000FA2CC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808BFF1BB200AA000FA2CC /* DataManager.swift */; settings = {ASSET_TAGS = (); }; };
+		E9808C0D1BB200AA000FA2CC /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808C001BB200AA000FA2CC /* SettingsManager.swift */; settings = {ASSET_TAGS = (); }; };
+		E9808C0E1BB200AA000FA2CC /* Atmosphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808C021BB200AA000FA2CC /* Atmosphere.swift */; settings = {ASSET_TAGS = (); }; };
+		E9808C0F1BB200AA000FA2CC /* Celestial.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808C031BB200AA000FA2CC /* Celestial.swift */; settings = {ASSET_TAGS = (); }; };
+		E9808C101BB200AA000FA2CC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808C041BB200AA000FA2CC /* Constants.swift */; settings = {ASSET_TAGS = (); }; };
+		E9808C111BB200AA000FA2CC /* Orbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808C051BB200AA000FA2CC /* Orbit.swift */; settings = {ASSET_TAGS = (); }; };
+		E9808C121BB200AA000FA2CC /* CelestialsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808C081BB200AA000FA2CC /* CelestialsTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E9808C131BB200AA000FA2CC /* CelestialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808C091BB200AA000FA2CC /* CelestialViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E9A288231BB2281300714612 /* KSPSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A288221BB2281300714612 /* KSPSplitViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E9808BFB1BB1FE70000FA2CC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		25F59577345E9C38C2D08C5C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		453AAB7E7C22AFE04A3A6A9B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		64F39D61BF80B5DF64BA7B68 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E907FE921BB1ED4000857D14 /* KSPCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KSPCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E907FE951BB1ED4000857D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E907FE971BB1ED4000857D14 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		E907FE991BB1ED4000857D14 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		E907FE9C1BB1ED4000857D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E907FE9E1BB1ED4000857D14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E907FEA11BB1ED4000857D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E907FEA31BB1ED4000857D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E92A43AB1BB20DFE009B7526 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E92A43AD1BB20E25009B7526 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9808BFE1BB200AA000FA2CC /* celestials.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = celestials.json; sourceTree = "<group>"; };
+		E9808BFF1BB200AA000FA2CC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		E9808C001BB200AA000FA2CC /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		E9808C021BB200AA000FA2CC /* Atmosphere.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Atmosphere.swift; sourceTree = "<group>"; };
+		E9808C031BB200AA000FA2CC /* Celestial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Celestial.swift; sourceTree = "<group>"; };
+		E9808C041BB200AA000FA2CC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E9808C051BB200AA000FA2CC /* Orbit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orbit.swift; sourceTree = "<group>"; };
+		E9808C081BB200AA000FA2CC /* CelestialsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CelestialsTableViewController.swift; sourceTree = "<group>"; };
+		E9808C091BB200AA000FA2CC /* CelestialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CelestialViewController.swift; sourceTree = "<group>"; };
+		E9A288221BB2281300714612 /* KSPSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSPSplitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +67,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3F9A37F119E94D5EAD5F7F7 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A5468D2B8F629837BC2DE9F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				25F59577345E9C38C2D08C5C /* Pods.debug.xcconfig */,
+				453AAB7E7C22AFE04A3A6A9B /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B29E747990CF4026D7E5F625 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				64F39D61BF80B5DF64BA7B68 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E907FE891BB1ED4000857D14 = {
 			isa = PBXGroup;
 			children = (
 				E907FE941BB1ED4000857D14 /* KSPCompanion */,
 				E907FE931BB1ED4000857D14 /* Products */,
+				8A5468D2B8F629837BC2DE9F /* Pods */,
+				B29E747990CF4026D7E5F625 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +112,64 @@
 		E907FE941BB1ED4000857D14 /* KSPCompanion */ = {
 			isa = PBXGroup;
 			children = (
+				E9808BFD1BB200AA000FA2CC /* Data */,
+				E9808C011BB200AA000FA2CC /* Physics */,
+				E9808C061BB200AA000FA2CC /* ViewControllers */,
+				E9808C0A1BB200AA000FA2CC /* Views */,
 				E907FE951BB1ED4000857D14 /* AppDelegate.swift */,
-				E907FE971BB1ED4000857D14 /* MasterViewController.swift */,
-				E907FE991BB1ED4000857D14 /* DetailViewController.swift */,
 				E907FE9B1BB1ED4000857D14 /* Main.storyboard */,
-				E907FE9E1BB1ED4000857D14 /* Assets.xcassets */,
 				E907FEA01BB1ED4000857D14 /* LaunchScreen.storyboard */,
+				E907FE9E1BB1ED4000857D14 /* Assets.xcassets */,
 				E907FEA31BB1ED4000857D14 /* Info.plist */,
+				E92A43AC1BB20DFE009B7526 /* Localizable.strings */,
 			);
 			path = KSPCompanion;
+			sourceTree = "<group>";
+		};
+		E9808BFD1BB200AA000FA2CC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E9808BFE1BB200AA000FA2CC /* celestials.json */,
+				E9808BFF1BB200AA000FA2CC /* DataManager.swift */,
+				E9808C001BB200AA000FA2CC /* SettingsManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		E9808C011BB200AA000FA2CC /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+				E9808C021BB200AA000FA2CC /* Atmosphere.swift */,
+				E9808C031BB200AA000FA2CC /* Celestial.swift */,
+				E9808C041BB200AA000FA2CC /* Constants.swift */,
+				E9808C051BB200AA000FA2CC /* Orbit.swift */,
+			);
+			path = Physics;
+			sourceTree = "<group>";
+		};
+		E9808C061BB200AA000FA2CC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E9808C071BB200AA000FA2CC /* Celestials */,
+				E9A288221BB2281300714612 /* KSPSplitViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E9808C071BB200AA000FA2CC /* Celestials */ = {
+			isa = PBXGroup;
+			children = (
+				E9808C081BB200AA000FA2CC /* CelestialsTableViewController.swift */,
+				E9808C091BB200AA000FA2CC /* CelestialViewController.swift */,
+			);
+			path = Celestials;
+			sourceTree = "<group>";
+		};
+		E9808C0A1BB200AA000FA2CC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +179,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E907FEA61BB1ED4000857D14 /* Build configuration list for PBXNativeTarget "KSPCompanion" */;
 			buildPhases = (
+				A732D987F71082EE96DEDDBA /* Check Pods Manifest.lock */,
 				E907FE8E1BB1ED4000857D14 /* Sources */,
 				E907FE8F1BB1ED4000857D14 /* Frameworks */,
 				E907FE901BB1ED4000857D14 /* Resources */,
+				E9808BFB1BB1FE70000FA2CC /* Embed Frameworks */,
+				BDBFF2D7C5A94F1AE0C7D533 /* Embed Pods Frameworks */,
+				10AAE0B1AE1941E1ACE29C56 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -108,6 +217,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = E907FE891BB1ED4000857D14;
 			productRefGroup = E907FE931BB1ED4000857D14 /* Products */;
@@ -124,6 +234,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E92A43AA1BB20DFE009B7526 /* Localizable.strings in Resources */,
+				E9808C0B1BB200AA000FA2CC /* celestials.json in Resources */,
 				E907FEA21BB1ED4000857D14 /* LaunchScreen.storyboard in Resources */,
 				E907FE9F1BB1ED4000857D14 /* Assets.xcassets in Resources */,
 				E907FE9D1BB1ED4000857D14 /* Main.storyboard in Resources */,
@@ -132,14 +244,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		10AAE0B1AE1941E1ACE29C56 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A732D987F71082EE96DEDDBA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BDBFF2D7C5A94F1AE0C7D533 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E907FE8E1BB1ED4000857D14 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E907FE9A1BB1ED4000857D14 /* DetailViewController.swift in Sources */,
-				E907FE981BB1ED4000857D14 /* MasterViewController.swift in Sources */,
+				E9A288231BB2281300714612 /* KSPSplitViewController.swift in Sources */,
+				E9808C0E1BB200AA000FA2CC /* Atmosphere.swift in Sources */,
+				E9808C111BB200AA000FA2CC /* Orbit.swift in Sources */,
+				E9808C0D1BB200AA000FA2CC /* SettingsManager.swift in Sources */,
+				E9808C0C1BB200AA000FA2CC /* DataManager.swift in Sources */,
+				E9808C131BB200AA000FA2CC /* CelestialViewController.swift in Sources */,
+				E9808C0F1BB200AA000FA2CC /* Celestial.swift in Sources */,
 				E907FE961BB1ED4000857D14 /* AppDelegate.swift in Sources */,
+				E9808C121BB200AA000FA2CC /* CelestialsTableViewController.swift in Sources */,
+				E9808C101BB200AA000FA2CC /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,6 +327,15 @@
 				E907FEA11BB1ED4000857D14 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E92A43AC1BB20DFE009B7526 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E92A43AB1BB20DFE009B7526 /* en */,
+				E92A43AD1BB20E25009B7526 /* fr */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -250,9 +426,11 @@
 		};
 		E907FEA71BB1ED4000857D14 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25F59577345E9C38C2D08C5C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = KSPCompanion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.Dean.KSPCompanion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -261,9 +439,11 @@
 		};
 		E907FEA81BB1ED4000857D14 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 453AAB7E7C22AFE04A3A6A9B /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = KSPCompanion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.Dean.KSPCompanion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -289,6 +469,7 @@
 				E907FEA81BB1ED4000857D14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

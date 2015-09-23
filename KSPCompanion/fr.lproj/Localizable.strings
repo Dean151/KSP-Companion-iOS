@@ -1,0 +1,92 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Thomas Durand on 07/07/2015.
+*/
+
+"CELESTIALS" = "Astres";
+"CHOOSE_A_PLANET" = "Choisissez une planète ou une lune à gauche";
+"EQUATORIAL_RADIUS" = "Rayon à l'équateur";
+"MASS" = "Masse";
+"ROTATION_PERIOD" = "Période de rotation";
+"SURFACE_GRAVITY" = "Gravité à la surface";
+"ESCAPE_VELOCITY" = "Vitesse de libération";
+"SOI" = "Sphère d'influence";
+"GEOSYNC_ORBIT" = "Orbite synchro.";
+"SEMISYNC_ORBIT" = "Orbite semi-sync.";
+"OUT_OF_SOI" = "Hors d'influence";
+
+"ORBITAL_PERIOD" = "Période orbitale";
+"ORBITAL_RADIUS" = "Rayon orbital";
+"SEMI_MAJOR_AXIS" = "Demi-grand axe";
+"APOAPSIS" = "Apoastre";
+"PERIAPSIS" = "Périastre";
+"ECCENTRICITY" = "Excentricité";
+"ARGUMENT_PERIAPSIS" = "Argument du périastre";
+"INCLINATION" = "Inclinaison";
+"LONGITUDE_ASCENDING_NODE" = "Longitude du nœud ascendant";
+"MEAN_ANOMALY" = "Anomalie moyenne";
+
+"ATMO_PRESSURE" = "Pression atmosphérique";
+"ATMO_LIMIT" = "Limite de l'atmosphère";
+"TEMPERATURE_MIN" = "Température min.";
+"TEMPERATURE_MAX" = "Température max.";
+"HAS_OXYGEN" = "Présence d'oxygène";
+"YES" = "Oui";
+"NO" = "Non";
+
+"CELESTIAL_PROPERTIES" = "Propriété du corps";
+"ORBIT_PROPERTIES" = "Propriétés orbitales";
+"ATMO_PROPERTIES" = "Propriétés atmosphériques";
+
+"TRANSFER" = "Transfert";
+"CALCULATE" = "Calculer";
+"COULD_NOT_CALCUL_NOTIF" = "Le transfert n'a pas été calculé";
+"COULD_NOT_CALCUL_NOTIF_DESC" = "L'origine et la destination doivent orbiter autour du même corps";
+"TRANSFER_CALCULATOR" = "Calcul de transferts";
+"INTERPLANETARY_TRANSFER_HEADER" = "Transfert interplanaire";
+"INTERPLANETARY_TRANSFER_FOOTER" = "Placez votre vaisseau sur une orbite de parking stable et circulaire, sans inclinaison.\nUtilisez ensuite cet outil pour calculer la manœuvre nécessaire pour le transfert vers votre destination";
+"PARKING_ALTITURE" = "Altitude de parking (m)";
+"PARKING_ALTITUDE_PLACEHOLDER" = "ex: 80000m";
+"FROM" = "Depuis";
+"TO" = "Vers";
+
+"INCLINATION_NOTIF" = "L'origine et la destination n'ont pas la même inclinaison";
+"INCLINATION_NOTIF_DESC" = "Pensez à corriger l'inclinaison au milieu de votre orbite de transfert";
+
+"TOO_LOW_NOTIF" = "L'altitude cible est dans l'atmosphère";
+"TOO_LOW_NOTIF_DESC" = "Votre altitude cible est trop basse !";
+"TOO_HIGH_NOTIF" = "Altitude cible est trop haute !";
+"TOO_HIGH_NOTIF_DESC" = "Votre altitude cible est en dehors de la sphère d'influence";
+"NOT_ENOUGH_NOTIF" = "Pas assez de satellite";
+"NOT_ENOUGH_NOTIF_DESC" = "Vous devez envoyer au moins 2 satellites pour pouvoir les distribuer";
+"SATELLITE_DISTRIBUTION" = "Distribution de satellites";
+"DISTRIBUTE_SATELLITE_HEADER" = "Distribution de satellites sur une orbite";
+"DISTRIBUTE_SATELLITE_FOOTER" = "Construisez un vaisseau avec le nombre de satellite que vous voulez distribuer.\nCet outil va calculer les manœuvres nécessaires à la distribution des satellites";
+"ORBIT_AROUND" = "Orbite autour de";
+"NUMBER_OF_SATELLITES" = "Nombre de satellites";
+"NUMBER_OF_SATELLITES_PLACEHOLDER" = "3 pour un triangle";
+"ORBIT" = "Orbite";
+"CUSTOM" = "Autre";
+"TARGETED_ALTITUDE" = "Altitude cible";
+"TARGETED_ALTITUDE_PLACEHOLDER" = "ex: 1000000m";
+
+"DISTRIBUTION" = "Distribution";
+"DISTRIBUTION_RESULT" = "Distribution de satellites";
+"TARGET_APOAPSIS" = "Apoapside cible";
+"PROGRADE_DV" = "∆v prograde";
+
+"THANKS_FOR_BUYING" = "Merci d'avoir acheté l'app ! :-)";
+"IAP_NOT_ENABLED" = "Achats in-App désactivés";
+"IAP_NOT_ENABLED_DESC" = "Activez-les dans les réglages";
+"REMOVE_ADS" = "Supprimer la publicité (%@)";
+"SETTINGS" = "Réglages";
+"DISMISS" = "Fermer";
+"THANK_YOU" = "Merci !";
+"IAP_RESTORED" = "Votre achat a été restauré.";
+
+"YEAR_SUFFIX" = "%da";
+"DAY_SUFFIX" = " %dj";
+"DAY_DETAIL" = "1 jour (6h)";
+"YEAR_DETAIL" = "1 an (426j)";
