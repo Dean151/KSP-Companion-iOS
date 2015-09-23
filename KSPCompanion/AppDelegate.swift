@@ -32,8 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().barStyle = .Black
         UITabBar.appearance().translucent = false
         
-        UITableView.appearance().backgroundColor = UIColor.blackColor()
-        
         return true
     }
 

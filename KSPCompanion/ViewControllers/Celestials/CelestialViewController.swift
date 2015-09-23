@@ -38,6 +38,7 @@ class CelestialViewController: UIViewController, UITableViewDataSource, UITableV
     func prepareCelestial() {
         if (celestial != nil) {
             self.navigationController?.topViewController!.title = celestial.name
+            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: celestial.color]
             
             celestialProperties.removeAll(keepCapacity: false)
             orbitProperties.removeAll(keepCapacity: false)
