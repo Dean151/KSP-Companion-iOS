@@ -127,7 +127,13 @@
                             <constraint firstAttribute="trailing" secondItem="yaV-8p-Xjk" secondAttribute="trailing" id="fVU-rX-c2N"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="kv9-fh-Fj2"/>
+                    <navigationItem key="navigationItem" id="kv9-fh-Fj2">
+                        <barButtonItem key="rightBarButtonItem" image="settings" id="o79-JV-KKW">
+                            <connections>
+                                <action selector="openSolarSystemSelector:" destination="pbO-gH-cfT" id="4bz-3W-eQ6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="yaV-8p-Xjk" id="3Ag-Vn-cBB"/>
                     </connections>
@@ -206,6 +212,7 @@
     <resources>
         <image name="celestials" width="22" height="22"/>
         <image name="celestialsActive" width="22" height="22"/>
+        <image name="settings" width="22" height="22"/>
         <image name="star" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>

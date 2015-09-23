@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A3F9A37F119E94D5EAD5F7F7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F39D61BF80B5DF64BA7B68 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E90185831BB3046E00F1BCAB /* SolarSystemSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90185821BB3046E00F1BCAB /* SolarSystemSelector.swift */; settings = {ASSET_TAGS = (); }; };
 		E907FE961BB1ED4000857D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907FE951BB1ED4000857D14 /* AppDelegate.swift */; };
 		E907FE9D1BB1ED4000857D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E907FE9B1BB1ED4000857D14 /* Main.storyboard */; };
 		E907FE9F1BB1ED4000857D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E907FE9E1BB1ED4000857D14 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		25F59577345E9C38C2D08C5C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		453AAB7E7C22AFE04A3A6A9B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		64F39D61BF80B5DF64BA7B68 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E90185821BB3046E00F1BCAB /* SolarSystemSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarSystemSelector.swift; sourceTree = "<group>"; };
 		E907FE921BB1ED4000857D14 /* KSPCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KSPCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E907FE951BB1ED4000857D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E907FE9C1BB1ED4000857D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			children = (
 				E9808C081BB200AA000FA2CC /* CelestialsTableViewController.swift */,
 				E9808C091BB200AA000FA2CC /* CelestialViewController.swift */,
+				E90185821BB3046E00F1BCAB /* SolarSystemSelector.swift */,
 			);
 			path = Celestials;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E90185831BB3046E00F1BCAB /* SolarSystemSelector.swift in Sources */,
 				E9A288231BB2281300714612 /* KSPSplitViewController.swift in Sources */,
 				E9808C0E1BB200AA000FA2CC /* Atmosphere.swift in Sources */,
 				E9808C111BB200AA000FA2CC /* Orbit.swift in Sources */,

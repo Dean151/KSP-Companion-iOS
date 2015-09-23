@@ -9,18 +9,12 @@
 import UIKit
 import HexColors
 
-class CelestialsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CelestialsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
     let reusableCellIdentifier = "CelestialCell"
     var celestials = [Celestial]()
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        celestials = DataManager.getCelestialsFromJson()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +27,19 @@ class CelestialsTableViewController: UIViewController, UITableViewDelegate, UITa
         self.navigationController?.topViewController!.title = NSLocalizedString("CELESTIALS", comment: "")
     }
     
+    func loadCelestials() {
+        let newData = DataManager.getCelestialsFromJson()
+        if celestials.count != newData.count {
+            celestials = newData
+            self.tableView.reloadData()
+        }
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // refreshing data
+        loadCelestials()
         
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRowAtIndexPath(indexPath, animated: animated)
@@ -48,6 +53,19 @@ class CelestialsTableViewController: UIViewController, UITableViewDelegate, UITa
             if let index = tableView.indexPathForSelectedRow {
                 controller.prepare(celestial: celestials[index.row])
             }
+        }
+    }
+    
+    @IBAction func openSolarSystemSelector(sender: UIBarButtonItem) {
+        let viewController = SolarSystemSelector()
+        viewController.parentController = self
+        let navController = UINavigationController(rootViewController: viewController)
+        
+        if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+            let popover = UIPopoverController(contentViewController: navController)
+            popover.presentPopoverFromBarButtonItem(sender, permittedArrowDirections: .Any, animated: true)
+        } else {
+            self.presentViewController(navController, animated: true, completion: nil)
         }
     }
     

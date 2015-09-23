@@ -35,6 +35,9 @@ class SettingsManager {
                 return SolarSystem.Kerbolian
             }
         }
+        set {
+            settings.setInteger(newValue.rawValue, forKey: solarSystemString)
+        }
     }
     
     static var temperatureUnit: TemperatureUnit {

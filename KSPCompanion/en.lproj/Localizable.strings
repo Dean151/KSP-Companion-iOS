@@ -5,7 +5,13 @@
   Created by Thomas Durand on 07/07/2015.
 */
 
+"SYSTEMS" = "Systems";
+"KERBAL_SYSTEM" = "Original KSP system";
+"OUTERPLANET_SYSTEM" = "Outer Planets Mod's system";
+"SYSTEM_SELECTION_DESCRIPTION" = "The solar system can change according to installed mods. Choose the one that match to your setup";
+
 "CELESTIALS" = "Celestials";
+"NO_PLANET" = "Empty selection";
 "CHOOSE_A_PLANET" = "Choose a planet or a moon on the left";
 "EQUATORIAL_RADIUS" = "Equatorial radius";
 "MASS" = "Mass";

@@ -169,9 +169,23 @@ class CelestialViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: DZNEmptyDataSetSource
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
-        let text = NSLocalizedString("CHOOSE_A_PLANET", comment: "")
+        let text = NSLocalizedString("NO_PLANET", comment: "")
         
         let attributes = [NSFontAttributeName: UIFont.boldSystemFontOfSize(18), NSForegroundColorAttributeName: UIColor.darkGrayColor()]
+        
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+    
+    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = NSLocalizedString("CHOOSE_A_PLANET", comment: "")
+        
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineBreakMode = .ByWordWrapping
+        paragraph.alignment = .Center
+        
+        let attributes = [NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
+            NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+            NSParagraphStyleAttributeName: paragraph]
         
         return NSAttributedString(string: text, attributes: attributes)
     }

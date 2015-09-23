@@ -5,7 +5,13 @@
   Created by Thomas Durand on 07/07/2015.
 */
 
+"SYSTEMS" = "Systèmes";
+"KERBAL_SYSTEM" = "Système original de KSP";
+"OUTERPLANET_SYSTEM" = "Système avec le mode Outer Planets";
+"SYSTEM_SELECTION_DESCRIPTION" = "Le système solaire change en fonction des mods installés sur Kerbal Space Program. Sélectionnez celui qui correspond à votre installation";
+
 "CELESTIALS" = "Astres";
+"NO_PLANET" = "Aucune sélection";
 "CHOOSE_A_PLANET" = "Choisissez une planète ou une lune à gauche";
 "EQUATORIAL_RADIUS" = "Rayon à l'équateur";
 "MASS" = "Masse";
