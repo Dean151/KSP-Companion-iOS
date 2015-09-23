@@ -37,7 +37,7 @@ class DataManager {
         var celestials = [Celestial]()
         
         // Fetching and populating celestials from json
-        if let data = DataManager.getJsonData(file: "celestials") {
+        if let data = DataManager.getJsonData(file: "OuterPlanets") {
             var error: NSError?
             let json = JSON(data: data, options: NSJSONReadingOptions(), error: &error)
             

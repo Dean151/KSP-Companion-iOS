@@ -3,6 +3,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 pod 'DZNEmptyDataSet'
+pod 'iRate'
 pod 'SwiftyJSON'
 pod 'TSMessages'
 pod 'XLForm'
