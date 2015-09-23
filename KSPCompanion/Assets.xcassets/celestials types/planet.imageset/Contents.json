@@ -10,8 +10,8 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "planet@3.png"
+      "filename" : "planet@3.png",
+      "scale" : "3x"
     }
   ],
   "info" : {
