@@ -89,13 +89,26 @@
 "NUMBER_OF_SATELLITES_PLACEHOLDER" = "3 for a triangle";
 "ORBIT" = "Orbit";
 "CUSTOM" = "Custom";
-"TARGETED_ALTITUDE" = "Targeted altitude (m)";
+"TARGETED_ALTITUDE" = "Targeted altitude";
 "TARGETED_ALTITUDE_PLACEHOLDER" = "e.g. 1000000m";
 
 "DISTRIBUTION" = "Distribution";
 "DISTRIBUTION_RESULT" = "Distribution result";
+"TARGET_ORBIT" = "Targeted orbit";
+"TARGET_ORBIT_FOOTER" = "Put your vessel in this circular orbit, then decouple your first satellite.";
+"TRANSIT_ORBIT" = "Transit orbit";
+"TRANSIT_ORBIT_FOOTER" = "Then burn the ∆v above, to change your periapsis or apoapsis, and wait for one period.\nOnce the period is over, burn back to your circular orbit and decouple the second satellite.\nRepeat until all of yours satellites are in orbit.";
+"ESTIMATED_DV" = "Estimated ∆v";
+"ESTIMATED_DV_FOOTER" = "This number does not include the ∆v necessary for making your first circular orbit.";
+"ALTITUDE" = "Altitude";
 "TARGET_APOAPSIS" = "Target apoapsis";
+"TARGET_PERIAPSIS" = "Targed periapsis";
+"TOTAL_DV" = "Total ∆v";
 "PROGRADE_DV" = "Prograde ∆v";
+"RETROGRADE_DV" = "Retrograde ∆v";
+
+"DISTRIBUTE_SATELLITES" = "Distribute Satellites";
+"DISTRIBUTE_SATELLITES_DESC" = "Perform a perfect satellite distribution on a circular orbit with the form on the left";
 
 "THANKS_FOR_BUYING" = "Thanks for buying the app ! :-)";
 "IAP_NOT_ENABLED" = "In-App purchases not enabled";

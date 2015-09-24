@@ -53,7 +53,7 @@
 "SAME_CELESTIAL" = "L'origine et la destination doivent être différentes et orbiter autour du même corps";
 "TRANSFER_CALCULATOR" = "Calcul de transferts";
 "INTERPLANETARY_TRANSFER_HEADER" = "Transfert interplanaire";
-"INTERPLANETARY_TRANSFER_FOOTER" = "Placez votre vaisseau sur une orbite de parking stable et circulaire, sans inclinaison.\nUtilisez ensuite cet outil pour calculer la manœuvre nécessaire pour le transfert vers votre destination";
+"INTERPLANETARY_TRANSFER_FOOTER" = "Placez votre vaisseau sur une orbite de parking stable et circulaire, sans inclinaison.\nUtilisez ensuite cet outil pour calculer la manœuvre nécessaire pour le transfert vers votre destination.";
 "PARKING_ALTITURE" = "Altitude de parking (m)";
 "PARKING_ALTITUDE_PLACEHOLDER" = "ex: 80000m";
 "FROM" = "Depuis";
@@ -81,7 +81,7 @@
 "NOT_ENOUGH_NOTIF_DESC" = "Vous devez envoyer au moins 2 satellites pour pouvoir les distribuer";
 "SATELLITE_DISTRIBUTION" = "Distribution de satellites";
 "DISTRIBUTE_SATELLITE_HEADER" = "Distribution de satellites sur une orbite";
-"DISTRIBUTE_SATELLITE_FOOTER" = "Construisez un vaisseau avec le nombre de satellite que vous voulez distribuer.\nCet outil va calculer les manœuvres nécessaires à la distribution des satellites";
+"DISTRIBUTE_SATELLITE_FOOTER" = "Construisez un vaisseau avec le nombre de satellite que vous voulez distribuer.\nCet outil va calculer les manœuvres nécessaires à la distribution des satellites.";
 "ORBIT_AROUND" = "Orbite autour de";
 "NUMBER_OF_SATELLITES" = "Nombre de satellites";
 "NUMBER_OF_SATELLITES_PLACEHOLDER" = "3 pour un triangle";
@@ -92,8 +92,21 @@
 
 "DISTRIBUTION" = "Distribution";
 "DISTRIBUTION_RESULT" = "Distribution de satellites";
-"TARGET_APOAPSIS" = "Apoapside cible";
+"TARGET_ORBIT" = "Orbite ciblée";
+"TARGET_ORBIT_FOOTER" = "Mettez votre vaisseau sur l'orbite circulaire ciblée, et découplez votre premier satellite.";
+"TRANSIT_ORBIT" = "Orbite de transfert";
+"TRANSIT_ORBIT_FOOTER" = "Brûlez ensuite le ∆v ci-dessus, pour modifier votre périapside ou apoapside, puis attendez une période.\nUne fois la période révolue, retournez sur votre orbite circulaire et découplez le satellite suivant.\nRecommencez jusqu'à ce que tous vos satellites soient en orbite.";
+"ESTIMATED_DV" = "∆v estimé";
+"ESTIMATED_DV_FOOTER" = "Cette valeur de ∆v ne comprends pas la valeur nécessaire pour effectuer la première orbite";
+"ALTITUDE" = "Altitude";
+"TARGET_APOAPSIS" = "Apoapside ciblée";
+"TARGET_PERIAPSIS" = "Périapside ciblée";
+"TOTAL_DV" = "∆v total";
 "PROGRADE_DV" = "∆v prograde";
+"RETROGRADE_DV" = "∆v rétrograde";
+
+"DISTRIBUTE_SATELLITES" = "Distribution de Satellites";
+"DISTRIBUTE_SATELLITES_DESC" = "Réalisez une distribution parfaite de satellites sur une orbite circulaire à l'aide du formulaire de gauche";
 
 "THANKS_FOR_BUYING" = "Merci d'avoir acheté l'app ! :-)";
 "IAP_NOT_ENABLED" = "Achats in-App désactivés";

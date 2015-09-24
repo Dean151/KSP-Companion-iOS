@@ -16,6 +16,8 @@
 		E90185901BB33B9300F1BCAB /* TransferPhaseAngleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E901858B1BB33B9300F1BCAB /* TransferPhaseAngleViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E90185911BB33B9300F1BCAB /* TransferResultModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E901858C1BB33B9300F1BCAB /* TransferResultModalController.swift */; settings = {ASSET_TAGS = (); }; };
 		E90185941BB348E000F1BCAB /* TransferResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90185931BB348E000F1BCAB /* TransferResultTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E90185981BB469E400F1BCAB /* DistributionFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90185961BB469E400F1BCAB /* DistributionFormViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E901859B1BB46A5400F1BCAB /* DistributionResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E901859A1BB46A5400F1BCAB /* DistributionResultTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E907FE961BB1ED4000857D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907FE951BB1ED4000857D14 /* AppDelegate.swift */; };
 		E907FE9D1BB1ED4000857D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E907FE9B1BB1ED4000857D14 /* Main.storyboard */; };
 		E907FE9F1BB1ED4000857D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E907FE9E1BB1ED4000857D14 /* Assets.xcassets */; };
@@ -59,6 +61,8 @@
 		E901858B1BB33B9300F1BCAB /* TransferPhaseAngleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferPhaseAngleViewController.swift; sourceTree = "<group>"; };
 		E901858C1BB33B9300F1BCAB /* TransferResultModalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferResultModalController.swift; sourceTree = "<group>"; };
 		E90185931BB348E000F1BCAB /* TransferResultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferResultTableViewController.swift; sourceTree = "<group>"; };
+		E90185961BB469E400F1BCAB /* DistributionFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistributionFormViewController.swift; sourceTree = "<group>"; };
+		E901859A1BB46A5400F1BCAB /* DistributionResultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistributionResultTableViewController.swift; sourceTree = "<group>"; };
 		E907FE921BB1ED4000857D14 /* KSPCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KSPCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E907FE951BB1ED4000857D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E907FE9C1BB1ED4000857D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -119,6 +123,15 @@
 				E901858A1BB33B9300F1BCAB /* TransferManoeuverViewController.swift */,
 			);
 			path = Transfer;
+			sourceTree = "<group>";
+		};
+		E90185951BB469E400F1BCAB /* Distribution */ = {
+			isa = PBXGroup;
+			children = (
+				E90185961BB469E400F1BCAB /* DistributionFormViewController.swift */,
+				E901859A1BB46A5400F1BCAB /* DistributionResultTableViewController.swift */,
+			);
+			path = Distribution;
 			sourceTree = "<group>";
 		};
 		E907FE891BB1ED4000857D14 = {
@@ -184,6 +197,7 @@
 				E9A288221BB2281300714612 /* KSPSplitViewController.swift */,
 				E9808C071BB200AA000FA2CC /* Celestials */,
 				E90185881BB33B9300F1BCAB /* Transfer */,
+				E90185951BB469E400F1BCAB /* Distribution */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -348,9 +362,11 @@
 				E9808C0F1BB200AA000FA2CC /* Celestial.swift in Sources */,
 				E907FE961BB1ED4000857D14 /* AppDelegate.swift in Sources */,
 				E9808C121BB200AA000FA2CC /* CelestialsTableViewController.swift in Sources */,
+				E90185981BB469E400F1BCAB /* DistributionFormViewController.swift in Sources */,
 				E90185901BB33B9300F1BCAB /* TransferPhaseAngleViewController.swift in Sources */,
 				E9808C101BB200AA000FA2CC /* Constants.swift in Sources */,
 				E90185861BB33B7C00F1BCAB /* TransferAnglePhaseView.swift in Sources */,
+				E901859B1BB46A5400F1BCAB /* DistributionResultTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
