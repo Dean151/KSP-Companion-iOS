@@ -91,6 +91,10 @@ class CelestialsTableViewController: UIViewController, UITableViewDelegate, UITa
         cell.imageView?.tintColor = celestials[row].color
         cell.textLabel?.highlightedTextColor = UIColor.blackColor();
         
+        if UI_USER_INTERFACE_IDIOM() == .Pad {
+            cell.accessoryType = .None
+        }
+        
         if let img = celestials[row].type.image {
             cell.imageView?.image = img.imageWithRenderingMode(.AlwaysTemplate)
         }

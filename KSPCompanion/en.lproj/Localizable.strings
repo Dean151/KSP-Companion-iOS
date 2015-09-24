@@ -49,7 +49,8 @@
 "TRANSFER" = "Transfer";
 "CALCULATE" = "Calculate";
 "COULD_NOT_CALCUL_NOTIF" = "Could not calcul transfer";
-"COULD_NOT_CALCUL_NOTIF_DESC" = "Origin and destination must be orbiting aroud the same celestial !";
+"NOT_AROUND_SAME_CELESTIAL" = "Origin and destination must be orbiting aroud the same celestial";
+"SAME_CELESTIAL" = "Origin and destination must be differents and orbiting aroud the same celestial";
 "TRANSFER_CALCULATOR" = "Transfer calculator";
 "INTERPLANETARY_TRANSFER_HEADER" = "Interplanetary transfer";
 "INTERPLANETARY_TRANSFER_FOOTER" = "Park your vessel in a stable circular orbit aroud your origin celestial, with no inclination.\nThen use this tool to calculate the necessary transfer manoeuver for your destination";
@@ -57,6 +58,19 @@
 "PARKING_ALTITUDE_PLACEHOLDER" = "e.g. 80000m";
 "FROM" = "From";
 "TO" = "To";
+
+"DO_A_CALCUL" = "Make a transfer";
+"DO_A_CALCUL_DESC" = "Use the form on the left to perform calculations for an interplanetary transfer";
+
+"PHASE_ANGLE_HEADER" = "Celestials phase angle";
+"PHASE_ANGLE_FOOTER" = "Wait for the origin celestial and the destination to have this angle.\nPress the details button for a graphic preview";
+"PHASE_ANGLE" = "Phase angle";
+
+"MANOEUVER_HEADER" = "Manoeuver details";
+"MANOEUVER_FOOTER" = "Once the celestials have the correct phase angle, achieve this manoeuver from your parking orbit to leave correctly the sphere of influence.";
+"ANGLE" = "Angle";
+"TARGETED_SPEED" = "Targeted speed";
+
 
 "INCLINATION_NOTIF" = "Origin and destination orbits have different inclination";
 "INCLINATION_NOTIF_DESC" = "Make sure you correct the inclination once you're in transfer orbit";

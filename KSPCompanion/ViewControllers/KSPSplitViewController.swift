@@ -14,7 +14,6 @@ class KSPSplitViewController: UISplitViewController, UISplitViewControllerDelega
         super.viewDidLoad()
         
         self.delegate = self
-        
         self.preferredDisplayMode = .AllVisible
     }
     

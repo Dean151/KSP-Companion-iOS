@@ -5,5 +5,5 @@ use_frameworks!
 pod 'DZNEmptyDataSet'
 pod 'iRate'
 pod 'SwiftyJSON'
-pod 'TSMessages'
+pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
 pod 'XLForm'

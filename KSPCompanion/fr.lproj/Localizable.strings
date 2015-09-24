@@ -49,7 +49,8 @@
 "TRANSFER" = "Transfert";
 "CALCULATE" = "Calculer";
 "COULD_NOT_CALCUL_NOTIF" = "Le transfert n'a pas été calculé";
-"COULD_NOT_CALCUL_NOTIF_DESC" = "L'origine et la destination doivent orbiter autour du même corps";
+"NOT_AROUND_SAME_CELESTIAL" = "L'origine et la destination doivent orbiter autour du même corps";
+"SAME_CELESTIAL" = "L'origine et la destination doivent être différentes et orbiter autour du même corps";
 "TRANSFER_CALCULATOR" = "Calcul de transferts";
 "INTERPLANETARY_TRANSFER_HEADER" = "Transfert interplanaire";
 "INTERPLANETARY_TRANSFER_FOOTER" = "Placez votre vaisseau sur une orbite de parking stable et circulaire, sans inclinaison.\nUtilisez ensuite cet outil pour calculer la manœuvre nécessaire pour le transfert vers votre destination";
@@ -57,6 +58,18 @@
 "PARKING_ALTITUDE_PLACEHOLDER" = "ex: 80000m";
 "FROM" = "Depuis";
 "TO" = "Vers";
+
+"DO_A_CALCUL" = "Faire un transfert";
+"DO_A_CALCUL_DESC" = "Utilisez le formulaire sur la gauche pour faire un calcul de transfert interplanétaire";
+
+"PHASE_ANGLE_HEADER" = "Angle de phase des astres";
+"PHASE_ANGLE" = "Angle de phase";
+"PHASE_ANGLE_FOOTER" = "Attendez que les astres de départ et d'arriée facent cet angle.\nPressez le bouton pour un aperçu graphique";
+
+"MANOEUVER_HEADER" = "Détails de la manœuvre";
+"MANOEUVER_FOOTER" = "Une fois que les objets font le bon angle, réalisez cette manœuvre depuis votre orbite de parking pour quitter correctement la sphère d'influence.";
+"ANGLE" = "Angle";
+"TARGETED_SPEED" = "Vitesse cible";
 
 "INCLINATION_NOTIF" = "L'origine et la destination n'ont pas la même inclinaison";
 "INCLINATION_NOTIF_DESC" = "Pensez à corriger l'inclinaison au milieu de votre orbite de transfert";
