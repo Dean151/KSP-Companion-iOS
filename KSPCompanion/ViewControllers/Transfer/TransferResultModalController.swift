@@ -11,7 +11,6 @@ import UIKit
 class TransferResultModalController: UIViewController {
     
     var subview: UIView?
-    
     var results: (parent: Celestial, from: Celestial, to: Celestial, phaseAngle: Double, ejectionAngle: Double, ejectionSpeed: Double, deltaV: Double)?
     
     override func viewDidLoad() {

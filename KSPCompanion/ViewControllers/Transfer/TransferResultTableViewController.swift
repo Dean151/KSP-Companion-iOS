@@ -13,9 +13,14 @@ import TSMessages
 class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetSource {
     
     var results: (parent: Celestial, from: Celestial, to: Celestial, phaseAngle: Double, ejectionAngle: Double, ejectionSpeed: Double, deltaV: Double)?
-    
+    var inclinationAlertHavePoped = false
     func prepare(results: (parent: Celestial, from: Celestial, to: Celestial, phaseAngle: Double, ejectionAngle: Double, ejectionSpeed: Double, deltaV: Double)) {
         self.results = results
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.emptyDataSetSource = self
         
         if let r = self.results {
             if self.navigationController != nil {
@@ -26,9 +31,17 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.tableView.emptyDataSetSource = self
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let r = results {
+            if r.from.orbit!.inclination != r.to.orbit!.inclination || r.from.orbit!.ascendingNodeLongitude != r.to.orbit!.ascendingNodeLongitude {
+                if !inclinationAlertHavePoped {
+                    TSMessage.showNotificationWithTitle(NSLocalizedString("INCLINATION_NOTIF", comment: ""), subtitle: NSLocalizedString("INCLINATION_NOTIF_DESC", comment: ""), type: .Warning)
+                    inclinationAlertHavePoped = true
+                }
+            }
+        }
     }
     
     // MARK: TableView
