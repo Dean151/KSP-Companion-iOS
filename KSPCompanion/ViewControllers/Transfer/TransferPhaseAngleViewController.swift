@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class TransferPhaseAngleViewController: TransferResultModalController {
     
@@ -14,8 +15,7 @@ class TransferPhaseAngleViewController: TransferResultModalController {
         super.viewDidLoad()
         
         if let results = self.results {
-            // FIXME: View don't show properly on iPad
-            let interplanetaryView = TransferAnglePhaseView(frame: self.view.bounds)
+            let interplanetaryView = TransferAnglePhaseView()
             
             interplanetaryView.fromSemiMajorAxis = CGFloat(results.from.orbit!.a)
             interplanetaryView.toSemiMajorAxis = CGFloat(results.to.orbit!.a)
@@ -24,9 +24,13 @@ class TransferPhaseAngleViewController: TransferResultModalController {
             interplanetaryView.toColor = results.to.color
             interplanetaryView.calculatedAnglePhase = CGFloat(results.phaseAngle)
             
+            self.subview = interplanetaryView
             self.view.addSubview(interplanetaryView)
+            
+            // Constraints
+            interplanetaryView.snp_makeConstraints(closure: { (make) -> Void in
+                make.edges.equalTo(self.view).inset(UIEdgeInsetsMake(0, 0, 0, 0))
+            })
         }
-        
-        // FIXME: Should detect and agree with orientation changes
     }
 }

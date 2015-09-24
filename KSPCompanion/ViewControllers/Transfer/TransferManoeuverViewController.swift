@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class TransferManoeuverViewController: TransferResultModalController {
     
@@ -14,8 +15,7 @@ class TransferManoeuverViewController: TransferResultModalController {
         super.viewDidLoad()
         
         if let results = self.results {
-            // FIXME: View don't show properly on iPad
-            let interplanetaryView = TransferManoeuverView(frame: self.view.bounds)
+            let interplanetaryView = TransferManoeuverView()
             
             interplanetaryView.fromName = results.from.name
             interplanetaryView.fromColor = results.from.color
@@ -23,9 +23,13 @@ class TransferManoeuverViewController: TransferResultModalController {
             interplanetaryView.toPrograde = results.to.orbit!.a > results.from.orbit!.a
             interplanetaryView.deltaV = results.deltaV
             
+            self.subview = interplanetaryView
             self.view.addSubview(interplanetaryView)
+            
+            // Constraints
+            interplanetaryView.snp_makeConstraints(closure: { (make) -> Void in
+                make.edges.equalTo(self.view).inset(UIEdgeInsetsMake(0, 0, 0, 0))
+            })
         }
-        
-        // FIXME: Should detect and agree with orientation changes
     }
 }

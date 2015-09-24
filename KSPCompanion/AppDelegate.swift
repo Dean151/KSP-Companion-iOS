@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import iRate
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    override init() {
+        // Giving manually this data allow to make quick access to iTunes data
+        iRate.sharedInstance().appStoreID = 1004723358
+        iRate.sharedInstance().applicationName = "KSP Companion"
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
