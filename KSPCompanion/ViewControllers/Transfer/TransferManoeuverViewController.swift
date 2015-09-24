@@ -10,17 +10,22 @@ import UIKit
 
 class TransferManoeuverViewController: TransferResultModalController {
     
-    @IBOutlet weak var interplanetaryView: TransferManoeuverView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let results = self.results {
-            self.interplanetaryView.fromName = results.from.name
-            self.interplanetaryView.fromColor = results.from.color
-            self.interplanetaryView.angle = CGFloat(results.ejectionAngle)
-            self.interplanetaryView.toPrograde = results.to.orbit!.a > results.from.orbit!.a
-            self.interplanetaryView.deltaV = results.deltaV
+            // FIXME: View don't show properly on iPad
+            let interplanetaryView = TransferManoeuverView(frame: self.view.bounds)
+            
+            interplanetaryView.fromName = results.from.name
+            interplanetaryView.fromColor = results.from.color
+            interplanetaryView.angle = CGFloat(results.ejectionAngle)
+            interplanetaryView.toPrograde = results.to.orbit!.a > results.from.orbit!.a
+            interplanetaryView.deltaV = results.deltaV
+            
+            self.view.addSubview(interplanetaryView)
         }
+        
+        // FIXME: Should detect and agree with orientation changes
     }
 }

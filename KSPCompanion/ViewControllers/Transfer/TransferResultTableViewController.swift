@@ -105,6 +105,28 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
         return cell
     }
     
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        var modalViewController: TransferResultModalController?
+        
+        switch indexPath.section {
+        case 0:
+            modalViewController = TransferPhaseAngleViewController()
+        case 1:
+            modalViewController = TransferManoeuverViewController()
+        default:
+            break
+        }
+        
+        if let mvc = modalViewController, results = self.results {
+            mvc.results = results
+            
+            let navController = UINavigationController(rootViewController: mvc)
+            navController.modalPresentationStyle = .FormSheet
+            
+            self.presentViewController(navController, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: DZNEmptyDataSetSource
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {

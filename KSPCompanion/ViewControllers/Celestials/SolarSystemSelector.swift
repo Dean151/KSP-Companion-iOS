@@ -31,8 +31,8 @@ class SolarSystemSelector: UITableViewController {
         self.preferredContentSize = CGSizeMake(320, 130 + 44*CGFloat(SolarSystem.count))
         
         // Adding button to dismiss view
-        let anotherButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: Selector("dismiss:"))
-        self.navigationItem.rightBarButtonItem = anotherButton;
+        let dismissButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: Selector("dismiss:"))
+        self.navigationItem.rightBarButtonItem = dismissButton;
     }
     
     override func viewWillDisappear(animated: Bool) {

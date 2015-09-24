@@ -14,6 +14,11 @@ class TransferResultModalController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor.blackColor()
+        
+        let dismissButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("dismiss:"))
+        self.navigationItem.rightBarButtonItem = dismissButton;
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -24,7 +29,7 @@ class TransferResultModalController: UIViewController {
         self.results = results
     }
     
-    @IBAction func done(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: {})
+    func dismiss(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
