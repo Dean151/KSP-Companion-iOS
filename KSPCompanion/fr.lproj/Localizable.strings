@@ -12,7 +12,7 @@
 
 "CELESTIALS" = "Astres";
 "NO_PLANET" = "Aucune sélection";
-"CHOOSE_A_PLANET" = "Choisissez une planète ou une lune à gauche";
+"CHOOSE_A_PLANET" = "Choisissez un astre à gauche";
 "EQUATORIAL_RADIUS" = "Rayon à l'équateur";
 "MASS" = "Masse";
 "ROTATION_PERIOD" = "Période de rotation";
@@ -42,7 +42,7 @@
 "YES" = "Oui";
 "NO" = "Non";
 
-"CELESTIAL_PROPERTIES" = "Propriété du corps";
+"CELESTIAL_PROPERTIES" = "Propriété de l'astre";
 "ORBIT_PROPERTIES" = "Propriétés orbitales";
 "ATMO_PROPERTIES" = "Propriétés atmosphériques";
 
@@ -64,13 +64,12 @@
 
 "PHASE_ANGLE_HEADER" = "Angle de phase des astres";
 "PHASE_ANGLE" = "Angle de phase";
-"PHASE_ANGLE_FOOTER" = "Attendez que les astres de départ et d'arriée facent cet angle.\nPressez le bouton pour un aperçu graphique";
-
+"PHASE_ANGLE_FOOTER" = "Attendez que les astres de départ et d'arrivée facent cet angle.\nPressez le bouton pour un aperçu graphique";
+"MANOEUVER" = "Manœuvre";
 "MANOEUVER_HEADER" = "Détails de la manœuvre";
 "MANOEUVER_FOOTER" = "Une fois que les objets font le bon angle, réalisez cette manœuvre depuis votre orbite de parking pour quitter correctement la sphère d'influence.";
 "ANGLE" = "Angle";
 "TARGETED_SPEED" = "Vitesse cible";
-
 "INCLINATION_NOTIF" = "L'origine et la destination n'ont pas la même inclinaison";
 "INCLINATION_NOTIF_DESC" = "Pensez à corriger l'inclinaison au milieu de votre orbite de transfert";
 

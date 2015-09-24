@@ -14,6 +14,10 @@ class TransferPhaseAngleViewController: TransferResultModalController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if self.navigationController != nil {
+            self.navigationController!.topViewController!.title = NSLocalizedString("PHASE_ANGLE", comment: "")
+        }
+        
         if let results = self.results {
             let interplanetaryView = TransferAnglePhaseView()
             

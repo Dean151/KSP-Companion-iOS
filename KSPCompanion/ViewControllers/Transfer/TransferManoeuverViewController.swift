@@ -14,6 +14,10 @@ class TransferManoeuverViewController: TransferResultModalController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if self.navigationController != nil {
+            self.navigationController!.topViewController!.title = NSLocalizedString("MANOEUVER", comment: "")
+        }
+        
         if let results = self.results {
             let interplanetaryView = TransferManoeuverView()
             

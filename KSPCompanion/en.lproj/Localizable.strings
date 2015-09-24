@@ -12,7 +12,7 @@
 
 "CELESTIALS" = "Celestials";
 "NO_PLANET" = "Empty selection";
-"CHOOSE_A_PLANET" = "Choose a planet or a moon on the left";
+"CHOOSE_A_PLANET" = "Choose a celestial on the left";
 "EQUATORIAL_RADIUS" = "Equatorial radius";
 "MASS" = "Mass";
 "ROTATION_PERIOD" = "Rotation period";
@@ -65,7 +65,7 @@
 "PHASE_ANGLE_HEADER" = "Celestials phase angle";
 "PHASE_ANGLE_FOOTER" = "Wait for the origin celestial and the destination to have this angle.\nPress the details button for a graphic preview";
 "PHASE_ANGLE" = "Phase angle";
-
+"MANOEUVER" = "Manoeuver";
 "MANOEUVER_HEADER" = "Manoeuver details";
 "MANOEUVER_FOOTER" = "Once the celestials have the correct phase angle, achieve this manoeuver from your parking orbit to leave correctly the sphere of influence.";
 "ANGLE" = "Angle";
