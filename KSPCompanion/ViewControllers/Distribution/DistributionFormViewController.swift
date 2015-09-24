@@ -13,7 +13,7 @@ import TSMessages
 class DistributionFormViewController: XLFormViewController {
     var celestials = [Celestial]()
     let orbitOptions = ["Sync.", "Semisync.", NSLocalizedString("CUSTOM", comment: "")]
-    var results: (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int)?
+    var results: (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int, deltaV: Double)?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -77,22 +77,21 @@ class DistributionFormViewController: XLFormViewController {
                             
                             let apoapsis = transferAltitude > targetAltitude ? transferAltitude : targetAltitude
                             let periapsis = transferAltitude < targetAltitude ? transferAltitude : targetAltitude
-                            let transitOrbit = Orbit(orbitAround: cel, apoapsis: apoapsis+cel.radius, periapsis: periapsis+cel.radius)
+                            let transferOrbit = Orbit(orbitAround: cel, apoapsis: apoapsis+cel.radius, periapsis: periapsis+cel.radius)
                             let targetOrbit = Orbit(orbitAround: cel, apoapsis: targetAltitude+cel.radius, periapsis: targetAltitude+cel.radius)
+                            let deltaV = abs(targetOrbit.apoapsisVelocity - transferOrbit.apoapsisVelocity )
                             
-                            self.results = (targetOrbit, transitOrbit, nbsat)
+                            self.results = (targetOrbit, transferOrbit, nbsat, deltaV)
                             
                             performSegueWithIdentifier("calculateSegue", sender: self)
                         }
                     }
-                } else {
-                    print("No typeOrbit")
                 }
-            } else {
-                print("No celestial")
             }
-        } else {
-            print("No satellite number")
+        }
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
     

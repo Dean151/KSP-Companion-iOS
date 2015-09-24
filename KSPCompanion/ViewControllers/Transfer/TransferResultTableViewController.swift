@@ -20,7 +20,9 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tableView.emptyDataSetSource = self
+        self.tableView.allowsSelection = false
         
         if let r = self.results {
             if self.navigationController != nil {

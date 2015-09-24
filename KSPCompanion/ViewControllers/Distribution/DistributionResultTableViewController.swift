@@ -10,17 +10,10 @@ import UIKit
 import DZNEmptyDataSet
 
 class DistributionResultTableViewController: UITableViewController, DZNEmptyDataSetSource {
-    var results: (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int)?
-    var deltaV: Double!
+    var results: (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int, deltaV: Double)?
     
-    func prepare(results: (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int)) {
+    func prepare(results: (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int, deltaV: Double)) {
         self.results = results
-        
-        deltaV = abs( results.targetOrbit.apoapsisVelocity - results.transferOrbit.apoapsisVelocity )
-        
-        if self.navigationController != nil {
-            self.navigationController!.topViewController!.title = NSLocalizedString("DISTRIBUTION_RESULT", comment: "")
-        }
         
         tableView.reloadData()
     }
@@ -29,6 +22,11 @@ class DistributionResultTableViewController: UITableViewController, DZNEmptyData
         super.viewDidLoad()
         
         self.tableView.emptyDataSetSource = self
+        self.tableView.allowsSelection = false
+        
+        if self.navigationController != nil {
+            self.navigationController!.topViewController!.title = NSLocalizedString("DISTRIBUTION_RESULT", comment: "")
+        }
     }
     
     // MARK: TableView
@@ -114,12 +112,12 @@ class DistributionResultTableViewController: UITableViewController, DZNEmptyData
                 } else {
                     cell.textLabel!.text = NSLocalizedString("PROGRADE_DV", comment: "")
                 }
-                cell.detailTextLabel!.text = "\(deltaV.format(1)) m/s"
+                cell.detailTextLabel!.text = "\(results!.deltaV.format(1)) m/s"
             default:
                 break
             }
         case 2:
-            let globalDeltaV = 2 * (Double(self.results!.nSat)-1) * deltaV
+            let globalDeltaV = 2 * (Double(results!.nSat)-1) * results!.deltaV
             
             cell.textLabel!.text = NSLocalizedString("TOTAL_DV", comment: "")
             cell.detailTextLabel!.text = "\(globalDeltaV.format(1)) m/s"
