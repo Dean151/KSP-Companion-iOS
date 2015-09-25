@@ -8,7 +8,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="64h-ps-uDP">
             <objects>
-                <tabBarController id="nhH-4T-nvm" sceneMemberID="viewController">
+                <tabBarController id="nhH-4T-nvm" customClass="KSPTabBarController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Kxc-Qk-TJ7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-2522" y="2673"/>
         </scene>
-        <!--Celestials-->
+        <!--CELESTIALS-->
         <scene sceneID="daZ-4e-aQJ">
             <objects>
-                <splitViewController extendedLayoutIncludesOpaqueBars="YES" id="qkM-sc-xpX" customClass="KSPSplitViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="celestials" title="CELESTIALS" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qkM-sc-xpX" customClass="KSPSplitViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Celestials" image="celestials" selectedImage="celestialsActive" id="OX4-FF-3Rd"/>
                     <connections>
                         <segue destination="RMx-3f-FxP" kind="relationship" relationship="masterViewController" id="tac-dM-ZwR"/>
@@ -115,10 +115,10 @@
             </objects>
             <point key="canvasLocation" x="679" y="949"/>
         </scene>
-        <!--Transfer-->
+        <!--TRANSFER-->
         <scene sceneID="rH2-he-jMk">
             <objects>
-                <splitViewController extendedLayoutIncludesOpaqueBars="YES" id="Z8H-94-Jnw" customClass="KSPSplitViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="transfer" title="TRANSFER" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z8H-94-Jnw" customClass="KSPSplitViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Transfer" image="transfer" selectedImage="transferActive" id="zbQ-fB-YDm"/>
                     <connections>
                         <segue destination="Cap-Ys-Bd1" kind="relationship" relationship="masterViewController" id="8JC-C7-mYI"/>
@@ -316,7 +316,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DistributionResultCell" textLabel="pRt-49-egZ" detailTextLabel="6Eb-CP-QpX" style="IBUITableViewCellStyleValue1" id="tIc-YO-HJ0">
                                 <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
@@ -330,7 +330,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Eb-CP-QpX">
@@ -375,10 +375,10 @@
             </objects>
             <point key="canvasLocation" x="-49" y="2573"/>
         </scene>
-        <!--Distribution-->
+        <!--DISTRIBUTION-->
         <scene sceneID="B4K-OF-vh1">
             <objects>
-                <splitViewController extendedLayoutIncludesOpaqueBars="YES" id="31t-YU-8Ip" customClass="KSPSplitViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="distribution" title="DISTRIBUTION" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="31t-YU-8Ip" customClass="KSPSplitViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Distribution" image="distribution" selectedImage="distributionActive" id="69p-hn-9fy"/>
                     <connections>
                         <segue destination="Foc-oh-mPQ" kind="relationship" relationship="masterViewController" id="B9o-6v-OZl"/>
@@ -397,7 +397,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransfertResultCell" textLabel="AHf-nv-Dy6" detailTextLabel="1KY-mo-UpR" style="IBUITableViewCellStyleValue1" id="FN2-pY-DtD">
                                 <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
@@ -411,7 +411,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1KY-mo-UpR">
@@ -478,10 +478,10 @@
             </objects>
             <point key="canvasLocation" x="-78" y="4309"/>
         </scene>
-        <!--Settings-->
+        <!--SETTINGS-->
         <scene sceneID="4OP-Za-yzT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KDI-gY-YHj" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="settings" title="SETTINGS" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KDI-gY-YHj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" selectedImage="settingsActive" id="8Ux-HD-ANh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XX6-yM-CBu">
@@ -511,8 +511,8 @@
         <image name="transferActive" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="E97-Mf-9Ce"/>
         <segue reference="GgA-p1-e5E"/>
         <segue reference="7fh-Kg-knq"/>
+        <segue reference="E97-Mf-9Ce"/>
     </inferredMetricsTieBreakers>
 </document>

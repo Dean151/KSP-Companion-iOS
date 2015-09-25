@@ -26,6 +26,7 @@
 		E907FEA21BB1ED4000857D14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E907FEA01BB1ED4000857D14 /* LaunchScreen.storyboard */; };
 		E924D7261BB2E0D400443B4E /* OuterPlanets.json in Resources */ = {isa = PBXBuildFile; fileRef = E924D7251BB2E0D400443B4E /* OuterPlanets.json */; settings = {ASSET_TAGS = (); }; };
 		E92A43AA1BB20DFE009B7526 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E92A43AC1BB20DFE009B7526 /* Localizable.strings */; };
+		E9335CF11BB5C41000D6F1A2 /* KSPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9335CF01BB5C41000D6F1A2 /* KSPTabBarController.swift */; settings = {ASSET_TAGS = (); }; };
 		E9808C0B1BB200AA000FA2CC /* System.json in Resources */ = {isa = PBXBuildFile; fileRef = E9808BFE1BB200AA000FA2CC /* System.json */; settings = {ASSET_TAGS = (); }; };
 		E9808C0C1BB200AA000FA2CC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808BFF1BB200AA000FA2CC /* DataManager.swift */; settings = {ASSET_TAGS = (); }; };
 		E9808C0D1BB200AA000FA2CC /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808C001BB200AA000FA2CC /* SettingsManager.swift */; settings = {ASSET_TAGS = (); }; };
@@ -76,6 +77,7 @@
 		E924D7251BB2E0D400443B4E /* OuterPlanets.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OuterPlanets.json; sourceTree = "<group>"; };
 		E92A43AB1BB20DFE009B7526 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E92A43AD1BB20E25009B7526 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9335CF01BB5C41000D6F1A2 /* KSPTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSPTabBarController.swift; sourceTree = "<group>"; };
 		E9808BFE1BB200AA000FA2CC /* System.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = System.json; sourceTree = "<group>"; };
 		E9808BFF1BB200AA000FA2CC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E9808C001BB200AA000FA2CC /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		E9808C061BB200AA000FA2CC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E9335CF01BB5C41000D6F1A2 /* KSPTabBarController.swift */,
 				E9A288221BB2281300714612 /* KSPSplitViewController.swift */,
 				E9808C071BB200AA000FA2CC /* Celestials */,
 				E90185881BB33B9300F1BCAB /* Transfer */,
@@ -371,6 +374,7 @@
 				E9808C111BB200AA000FA2CC /* Orbit.swift in Sources */,
 				E901858F1BB33B9300F1BCAB /* TransferManoeuverViewController.swift in Sources */,
 				E9808C0D1BB200AA000FA2CC /* SettingsManager.swift in Sources */,
+				E9335CF11BB5C41000D6F1A2 /* KSPTabBarController.swift in Sources */,
 				E9808C0C1BB200AA000FA2CC /* DataManager.swift in Sources */,
 				E9808C131BB200AA000FA2CC /* CelestialViewController.swift in Sources */,
 				E901858E1BB33B9300F1BCAB /* TransferFormViewController.swift in Sources */,

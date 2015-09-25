@@ -18,13 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Giving manually this data allow to make quick access to iTunes data
         iRate.sharedInstance().appStoreID = 1004723358
         iRate.sharedInstance().applicationName = "KSP Companion"
+        iRate.sharedInstance().verboseLogging = false
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
         
-        if self.window != nil {
-            self.window!.tintColor = UIColor(red: 16/255, green: 149/255, blue: 0, alpha: 1)
+        if let window = self.window {
+            window.tintColor = UIColor(red: 16/255, green: 149/255, blue: 0, alpha: 1)
         }
         
         // White status bar
