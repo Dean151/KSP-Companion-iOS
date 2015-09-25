@@ -15,10 +15,13 @@ class DistributionFormViewController: XLFormViewController {
     let orbitOptions = ["Sync.", "Semisync.", NSLocalizedString("CUSTOM", comment: "")]
     var results: (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int, deltaV: Double)?
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        
-        celestials = DataManager.getCelestialsFromJson()
+    
+    func loadCelestials() {
+        let newData = DataManager.getCelestialsFromJson()
+        if celestials.count != newData.count {
+            celestials = newData
+            self.setupForm()
+        }
     }
     
     override func viewDidLoad() {
@@ -28,11 +31,18 @@ class DistributionFormViewController: XLFormViewController {
             self.navigationController!.topViewController!.title = NSLocalizedString("DISTRIBUTION", comment: "")
         }
         
-        self.setupForm()
+        loadCelestials()
         
         if (UI_USER_INTERFACE_IDIOM() == .Phone) {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("CALCULATE", comment: ""), style: .Plain, target: self, action: "submit:")
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // refreshing data
+        loadCelestials()
     }
     
     func submit(sender: UIBarButtonItem!) {
