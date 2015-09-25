@@ -24,8 +24,12 @@ class SettingsViewController: XLFormViewController {
         }
         
         setupForm()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        if !SettingsManager.hideAds {
+        if !SettingsManager.hideAds && !iapFetched {
             setupIAP()
         }
     }
