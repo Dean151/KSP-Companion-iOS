@@ -29,6 +29,11 @@ class DistributionResultTableViewController: UITableViewController, DZNEmptyData
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
+    
     // MARK: TableView
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

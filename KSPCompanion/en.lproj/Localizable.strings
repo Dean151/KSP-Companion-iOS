@@ -5,6 +5,8 @@
   Created by Thomas Durand on 07/07/2015.
 */
 
+"ADS" = "Ads";
+"ADS_FOOTER" = "I don't like ads either, but sending an app on the AppStore is not free !\nIf you like this app, you can remove them forever with an In-App Purchase; it helps !";
 "ALTITUDE" = "Altitude";
 "ANGLE" = "Angle";
 "APOAPSIS" = "Apoapsis";
@@ -20,6 +22,7 @@
 "CUSTOM" = "Custom";
 "DAY_DETAIL" = "1 day (6h)";
 "DAY_SUFFIX" = " %dd";
+"DISCLAIMER" = "Kerbal Space Program, the celestials names and data are the property of Squad.\nAll trademark and copyright for these data belong to Squad.";
 "DISMISS" = "Dismiss";
 "DISTRIBUTE_SATELLITE_FOOTER" = "Design a vessel with the number of satellites you want to distribute.\nThis tool will allow you to calculate the manoeuvers to distribute your satellites.";
 "DISTRIBUTE_SATELLITE_HEADER" = "Distribute satellites on an orbit";
@@ -37,15 +40,19 @@
 "FROM" = "From";
 "GEOSYNC_ORBIT" = "Geosync. orbit";
 "HAS_OXYGEN" = "Has oxygen";
+"IAP_FAIL" = "Purchase has failed";
+"IAP_FAILURE_DESC" = "Please try again if you want to remove ads. You're awesome !";
 "IAP_NOT_ENABLED" = "In-App purchases not enabled";
 "IAP_NOT_ENABLED_DESC" = "Please enable In-App Purchase in Settings";
-"IAP_RESTORED" = "Your purchase were restored.";
+"IAP_SUCCESS" = "You will now have an ad-free experience ! You're awesome !";
 "INCLINATION" = "Inclination";
 "INCLINATION_NOTIF" = "Origin and destination orbits have different inclination";
 "INCLINATION_NOTIF_DESC" = "Make sure you correct the inclination once you're in transfer orbit";
+"INFORMATIONS" = "Informations";
 "INTERPLANETARY_TRANSFER_FOOTER" = "Park your vessel in a stable circular orbit aroud your origin celestial, with no inclination.\nThen use this tool to calculate the necessary transfer manoeuver for your destination";
 "INTERPLANETARY_TRANSFER_HEADER" = "Interplanetary transfer";
 "KERBAL_SYSTEM" = "Original KSP system";
+"KERBIN_TIME_UNITS" = "Kerbal time units";
 "LONGITUDE_ASCENDING_NODE" = "Longitude of ascending node";
 "MANOEUVER" = "Manoeuver";
 "MANOEUVER_FOOTER" = "Once the celestials have the correct phase angle, achieve this manoeuver from your parking orbit to leave correctly the sphere of influence.";
@@ -73,7 +80,9 @@
 "PHASE_ANGLE_FOOTER" = "Wait for the origin celestial and the destination to have this angle.\nPress the details button for a graphic preview";
 "PHASE_ANGLE_HEADER" = "Celestials phase angle";
 "PROGRADE_DV" = "Prograde ∆v";
-"REMOVE_ADS" = "Remove ads (%@)";
+"REMOVE_ADS" = "Remove ads";
+"REMOVE_ADS_WITH_PRICE" = "Remove ads (%@)";
+"RESTORE_ADS" = "Restore In-App purchases";
 "RETROGRADE_DV" = "Retrograde ∆v";
 "ROTATION_PERIOD" = "Rotation period";
 "SAME_CELESTIAL" = "Origin and destination must be differents and orbiting aroud the same celestial";
@@ -81,6 +90,7 @@
 "SEMI_MAJOR_AXIS" = "Semi-major axis";
 "SEMISYNC_ORBIT" = "Semi-sync. orbit";
 "SETTINGS" = "Settings";
+"SETTINGS_FOOTER" = "On Kerbin, days last 6h and years 426 days";
 "SOI" = "Sphere of influence";
 "SURFACE_GRAVITY" = "Surface gravity";
 "SYSTEM_SELECTION_DESCRIPTION" = "The solar system can change according to installed mods. Choose the one that match to your setup";
@@ -94,6 +104,7 @@
 "TARGETED_SPEED" = "Targeted speed";
 "TEMPERATURE_MAX" = "Temperature max";
 "TEMPERATURE_MIN" = "Temperature min";
+"TEMPERATURE_UNIT" = "Temperature unit";
 "THANKS_FOR_BUYING" = "Thanks for buying the app ! :-)";
 "THANK_YOU" = "Thank You !";
 "TO" = "To";

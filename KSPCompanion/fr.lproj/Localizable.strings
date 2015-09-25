@@ -5,6 +5,8 @@
   Created by Thomas Durand on 07/07/2015.
 */
 
+"ADS" = "Publicité";
+"ADS_FOOTER" = "Je n'aime pas les publicités non plus, mais envoyer une application sur l'AppStore n'est pas gratuit !\nSi vous aimez cet application, vous pouvez les retirer pour toujours avec un achat In-App ; ça m'aide !";
 "ALTITUDE" = "Altitude";
 "ANGLE" = "Angle";
 "APOAPSIS" = "Apoastre";
@@ -20,6 +22,7 @@
 "CUSTOM" = "Autre";
 "DAY_DETAIL" = "1 jour (6h)";
 "DAY_SUFFIX" = " %dj";
+"DISCLAIMER" = "Kerbal Space Program, le nom et les données des astres sont la propriété de Squad.\nToutes les trademark et copyright sur ces données appartiennent à Squad.";
 "DISMISS" = "Fermer";
 "DISTRIBUTE_SATELLITE_FOOTER" = "Construisez un vaisseau avec le nombre de satellite que vous voulez distribuer.\nCet outil va calculer les manœuvres nécessaires à la distribution des satellites.";
 "DISTRIBUTE_SATELLITE_HEADER" = "Distribution de satellites sur une orbite";
@@ -37,15 +40,19 @@
 "FROM" = "Depuis";
 "GEOSYNC_ORBIT" = "Orbite synchro.";
 "HAS_OXYGEN" = "Présence d'oxygène";
+"IAP_FAIL" = "L'achat a échoué";
+"IAP_FAILURE_DESC" = "Essayez à nouveau si vous voulez supprimer les apps. Vous êtes génial !";
 "IAP_NOT_ENABLED" = "Achats in-App désactivés";
 "IAP_NOT_ENABLED_DESC" = "Activez-les dans les réglages";
-"IAP_RESTORED" = "Votre achat a été restauré.";
+"IAP_SUCCESS" = "Vous aurez désormais une app sans pub ! Vous êtes génial !";
 "INCLINATION" = "Inclinaison";
 "INCLINATION_NOTIF" = "L'origine et la destination n'ont pas la même inclinaison";
 "INCLINATION_NOTIF_DESC" = "Pensez à corriger l'inclinaison au milieu de votre orbite de transfert";
+"INFORMATIONS" = "Informations";
 "INTERPLANETARY_TRANSFER_FOOTER" = "Placez votre vaisseau sur une orbite de parking stable et circulaire, sans inclinaison.\nUtilisez ensuite cet outil pour calculer la manœuvre nécessaire pour le transfert vers votre destination.";
 "INTERPLANETARY_TRANSFER_HEADER" = "Transfert interplanaire";
 "KERBAL_SYSTEM" = "Système original de KSP";
+"KERBIN_TIME_UNITS" = "Unités de temps Kerbiennes";
 "LONGITUDE_ASCENDING_NODE" = "Longitude du nœud ascendant";
 "MASS" = "Masse";
 "MANOEUVER" = "Manœuvre";
@@ -73,7 +80,9 @@
 "PHASE_ANGLE_FOOTER" = "Attendez que les astres de départ et d'arrivée facent cet angle.\nPressez le bouton pour un aperçu graphique";
 "PHASE_ANGLE_HEADER" = "Angle de phase des astres";
 "PROGRADE_DV" = "∆v prograde";
-"REMOVE_ADS" = "Supprimer la publicité (%@)";
+"REMOVE_ADS" = "Supprimer la publicité";
+"REMOVE_ADS_WITH_PRICE" = "Supprimer la publicité (%@)";
+"RESTORE_ADS" = "Restaurer les achats In-App";
 "RETROGRADE_DV" = "∆v rétrograde";
 "ROTATION_PERIOD" = "Période de rotation";
 "SAME_CELESTIAL" = "L'origine et la destination doivent être différentes et orbiter autour du même corps";
@@ -81,6 +90,7 @@
 "SEMI_MAJOR_AXIS" = "Demi-grand axe";
 "SEMISYNC_ORBIT" = "Orbite semi-sync.";
 "SETTINGS" = "Réglages";
+"SETTINGS_FOOTER" = "Sur Kerbin, les jours durent 6h et les années 426 jours";
 "SOI" = "Sphère d'influence";
 "SURFACE_GRAVITY" = "Gravité à la surface";
 "SYSTEM_SELECTION_DESCRIPTION" = "Le système solaire change en fonction des mods installés sur Kerbal Space Program. Sélectionnez celui qui correspond à votre installation";
@@ -94,6 +104,7 @@
 "TARGETED_SPEED" = "Vitesse cible";
 "TEMPERATURE_MAX" = "Température max.";
 "TEMPERATURE_MIN" = "Température min.";
+"TEMPERATURE_UNIT" = "Unité de temperature";
 "THANKS_FOR_BUYING" = "Merci d'avoir acheté l'app ! :-)";
 "THANK_YOU" = "Merci !";
 "TO" = "Vers";

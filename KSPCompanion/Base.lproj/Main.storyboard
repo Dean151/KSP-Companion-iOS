@@ -19,6 +19,7 @@
                         <segue destination="qkM-sc-xpX" kind="relationship" relationship="viewControllers" id="Ymq-Te-3ZH"/>
                         <segue destination="Z8H-94-Jnw" kind="relationship" relationship="viewControllers" id="D6a-Sd-EFK"/>
                         <segue destination="31t-YU-8Ip" kind="relationship" relationship="viewControllers" id="yVg-yO-Zko"/>
+                        <segue destination="KDI-gY-YHj" kind="relationship" relationship="viewControllers" id="CBA-lE-CAy"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VO2-Hp-LTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -457,6 +458,46 @@
             </objects>
             <point key="canvasLocation" x="-49" y="3405"/>
         </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="xkv-h7-6ls">
+            <objects>
+                <viewController id="1OY-93-Qxw" customClass="SettingsViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oHc-UO-Lub"/>
+                        <viewControllerLayoutGuide type="bottom" id="IQt-hP-h87"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rPe-Dy-wMQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="pFg-BC-30B"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vp2-m4-Yvo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-78" y="4309"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="4OP-Za-yzT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KDI-gY-YHj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" selectedImage="settingsActive" id="8Ux-HD-ANh"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XX6-yM-CBu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1OY-93-Qxw" kind="relationship" relationship="rootViewController" id="1o2-eO-hbC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ezc-EV-49F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-890" y="4309"/>
+        </scene>
     </scenes>
     <resources>
         <image name="celestials" width="22" height="22"/>
@@ -464,6 +505,7 @@
         <image name="distribution" width="22" height="22"/>
         <image name="distributionActive" width="22" height="22"/>
         <image name="settings" width="22" height="22"/>
+        <image name="settingsActive" width="22" height="22"/>
         <image name="star" width="22" height="22"/>
         <image name="transfer" width="22" height="22"/>
         <image name="transferActive" width="22" height="22"/>

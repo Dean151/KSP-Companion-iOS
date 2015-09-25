@@ -35,6 +35,11 @@ class CelestialViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.reloadData()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
+    
     func prepareCelestial() {
         if (celestial != nil) {
             self.navigationController?.topViewController!.title = celestial.name
