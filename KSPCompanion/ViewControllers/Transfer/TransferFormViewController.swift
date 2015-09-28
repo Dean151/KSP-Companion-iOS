@@ -49,31 +49,25 @@ class TransferFormViewController: XLFormViewController {
     func submit(sender: AnyObject) {
         let results = self.form.formValues()
         
-        if let from = results["from"] as? Celestial, dest = results["to"] as? Celestial {
-            if from != dest {
-                if let alt = results["altitude"] as? Double {
-                    if alt > 0 {
-                        if let calcul = from.transfertTo(dest, withAltitude: alt) {
-                            self.results = calcul
-                            
-                            performSegueWithIdentifier("calculateSegue", sender: self)
-                        }
-                        else {
-                            TSMessage.showNotificationWithTitle(NSLocalizedString("COULD_NOT_CALCUL_NOTIF", comment: ""), subtitle: NSLocalizedString("NOT_AROUND_SAME_CELESTIAL", comment: ""), type: .Error)
-                        }
-                    }
-                } else {
-                    print("Parking orbit could not be parsed as Double")
-                }
-            } else {
-                TSMessage.showNotificationWithTitle(NSLocalizedString("COULD_NOT_CALCUL_NOTIF", comment: ""), subtitle: NSLocalizedString("SAME_CELESTIAL", comment: ""), type: .Error)
-            }
-        } else {
-            print("Upcast to Celestial impossible")
-        }
-        
         if let indexPath = tableView.indexPathForSelectedRow {
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+        
+        guard let from = results["from"] as? Celestial, dest = results["to"] as? Celestial else { return }
+        if from != dest {
+            guard let alt = results["altitude"] as? Double else { return }
+            if alt > 0 {
+                if let calcul = from.transfertTo(dest, withAltitude: alt) {
+                    self.results = calcul
+                    
+                    performSegueWithIdentifier("calculateSegue", sender: self)
+                }
+                else {
+                    TSMessage.showNotificationWithTitle(NSLocalizedString("COULD_NOT_CALCUL_NOTIF", comment: ""), subtitle: NSLocalizedString("NOT_AROUND_SAME_CELESTIAL", comment: ""), type: .Error)
+                }
+            }
+        } else {
+            TSMessage.showNotificationWithTitle(NSLocalizedString("COULD_NOT_CALCUL_NOTIF", comment: ""), subtitle: NSLocalizedString("SAME_CELESTIAL", comment: ""), type: .Error)
         }
     }
     

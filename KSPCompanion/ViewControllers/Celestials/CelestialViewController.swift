@@ -41,68 +41,68 @@ class CelestialViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func prepareCelestial() {
-        if (celestial != nil) {
-            self.navigationController?.topViewController!.title = celestial.name
-            self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: celestial.color]
+        guard let celestial = self.celestial else { return }
+        
+        self.navigationController?.topViewController!.title = celestial.name
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: celestial.color]
+        
+        celestialProperties.removeAll(keepCapacity: false)
+        orbitProperties.removeAll(keepCapacity: false)
+        atmosphereProperties.removeAll(keepCapacity: false)
+        
+        // Celestial properties
+        celestialProperties.append([NSLocalizedString("EQUATORIAL_RADIUS", comment: ""), "\(Units.lengthUnit(celestial.radius, allowSubUnits: true))"])
+        celestialProperties.append([NSLocalizedString("MASS", comment: ""), "\(celestial.mass) kg"])
+        celestialProperties.append([NSLocalizedString("ROTATION_PERIOD", comment: ""), "\(Units.timeUnit(celestial.rotationPeriod))"])
+        celestialProperties.append([NSLocalizedString("SURFACE_GRAVITY", comment: ""), "\(celestial.surfaceGravity.format(2)) m/s²"])
+        celestialProperties.append([NSLocalizedString("ESCAPE_VELOCITY", comment: ""), "\(celestial.surfaceEscapeVelocity.format(1)) m/s"])
+        celestialProperties.append([NSLocalizedString("SOI", comment: ""), "\(Units.lengthUnit(celestial.sphereOfInfluence, allowSubUnits: true))"])
+        
+        if celestial.canGeoSync {
+            celestialProperties.append([NSLocalizedString("GEOSYNC_ORBIT", comment: ""), "\(Units.lengthUnit(celestial.synchronousOrbitAltitude, allowSubUnits: true))"])
+        } else {
+            celestialProperties.append([NSLocalizedString("GEOSYNC_ORBIT", comment: ""), NSLocalizedString("OUT_OF_SOI", comment: "")])
+        }
+        
+        if celestial.canSemiGeoSync {
+            celestialProperties.append([NSLocalizedString("SEMISYNC_ORBIT", comment: ""), "\(Units.lengthUnit(celestial.semiSynchronousOrbitAltitude, allowSubUnits: true))"])
+        } else {
+            celestialProperties.append([NSLocalizedString("SEMISYNC_ORBIT", comment: ""), NSLocalizedString("OUT_OF_SOI", comment: "")])
+        }
+        
+        
+        // Orbits properties
+        if celestial.orbit != nil {
+            orbitProperties.append([NSLocalizedString("ORBITAL_PERIOD", comment: ""), "\(Units.timeUnit(celestial.orbit!.orbitalPeriod))"])
             
-            celestialProperties.removeAll(keepCapacity: false)
-            orbitProperties.removeAll(keepCapacity: false)
-            atmosphereProperties.removeAll(keepCapacity: false)
-            
-            // Celestial properties
-            celestialProperties.append([NSLocalizedString("EQUATORIAL_RADIUS", comment: ""), "\(Units.lengthUnit(celestial.radius, allowSubUnits: true))"])
-            celestialProperties.append([NSLocalizedString("MASS", comment: ""), "\(celestial.mass) kg"])
-            celestialProperties.append([NSLocalizedString("ROTATION_PERIOD", comment: ""), "\(Units.timeUnit(celestial.rotationPeriod))"])
-            celestialProperties.append([NSLocalizedString("SURFACE_GRAVITY", comment: ""), "\(celestial.surfaceGravity.format(2)) m/s²"])
-            celestialProperties.append([NSLocalizedString("ESCAPE_VELOCITY", comment: ""), "\(celestial.surfaceEscapeVelocity.format(1)) m/s"])
-            celestialProperties.append([NSLocalizedString("SOI", comment: ""), "\(Units.lengthUnit(celestial.sphereOfInfluence, allowSubUnits: true))"])
-            
-            if celestial.canGeoSync {
-                celestialProperties.append([NSLocalizedString("GEOSYNC_ORBIT", comment: ""), "\(Units.lengthUnit(celestial.synchronousOrbitAltitude, allowSubUnits: true))"])
+            if celestial.orbit!.isCircular {
+                orbitProperties.append([NSLocalizedString("ORBITAL_RADIUS", comment: ""), "\(Units.lengthUnit(celestial.orbit!.a, allowSubUnits: true))"])
             } else {
-                celestialProperties.append([NSLocalizedString("GEOSYNC_ORBIT", comment: ""), NSLocalizedString("OUT_OF_SOI", comment: "")])
+                orbitProperties.append([NSLocalizedString("SEMI_MAJOR_AXIS", comment: ""), "\(Units.lengthUnit(celestial.orbit!.a, allowSubUnits: true))"])
+                orbitProperties.append([NSLocalizedString("APOAPSIS", comment: ""), "\(Units.lengthUnit(celestial.orbit!.apoapsis, allowSubUnits: true))"])
+                orbitProperties.append([NSLocalizedString("PERIAPSIS", comment: ""), "\(Units.lengthUnit(celestial.orbit!.periapsis, allowSubUnits: true))"])
             }
             
-            if celestial.canSemiGeoSync {
-                celestialProperties.append([NSLocalizedString("SEMISYNC_ORBIT", comment: ""), "\(Units.lengthUnit(celestial.semiSynchronousOrbitAltitude, allowSubUnits: true))"])
-            } else {
-                celestialProperties.append([NSLocalizedString("SEMISYNC_ORBIT", comment: ""), NSLocalizedString("OUT_OF_SOI", comment: "")])
+            orbitProperties.append([NSLocalizedString("ECCENTRICITY", comment: ""), "\(celestial.orbit!.eccentricity.format(2))"])
+            if !celestial.orbit!.isCircular {
+                orbitProperties.append([NSLocalizedString("ARGUMENT_PERIAPSIS", comment: ""), "\(celestial.orbit!.periapsisArgument.format(1))°"])
             }
             
-            
-            // Orbits properties
-            if celestial.orbit != nil {
-                orbitProperties.append([NSLocalizedString("ORBITAL_PERIOD", comment: ""), "\(Units.timeUnit(celestial.orbit!.orbitalPeriod))"])
-                
-                if celestial.orbit!.isCircular {
-                    orbitProperties.append([NSLocalizedString("ORBITAL_RADIUS", comment: ""), "\(Units.lengthUnit(celestial.orbit!.a, allowSubUnits: true))"])
-                } else {
-                    orbitProperties.append([NSLocalizedString("SEMI_MAJOR_AXIS", comment: ""), "\(Units.lengthUnit(celestial.orbit!.a, allowSubUnits: true))"])
-                    orbitProperties.append([NSLocalizedString("APOAPSIS", comment: ""), "\(Units.lengthUnit(celestial.orbit!.apoapsis, allowSubUnits: true))"])
-                    orbitProperties.append([NSLocalizedString("PERIAPSIS", comment: ""), "\(Units.lengthUnit(celestial.orbit!.periapsis, allowSubUnits: true))"])
-                }
-                
-                orbitProperties.append([NSLocalizedString("ECCENTRICITY", comment: ""), "\(celestial.orbit!.eccentricity.format(2))"])
-                if !celestial.orbit!.isCircular {
-                    orbitProperties.append([NSLocalizedString("ARGUMENT_PERIAPSIS", comment: ""), "\(celestial.orbit!.periapsisArgument.format(1))°"])
-                }
-                
-                orbitProperties.append([NSLocalizedString("INCLINATION", comment: ""), "\(celestial.orbit!.inclination)°"])
-                if celestial.orbit!.inclination != 0 {
-                    orbitProperties.append([NSLocalizedString("LONGITUDE_ASCENDING_NODE", comment: ""), "\(celestial.orbit!.ascendingNodeLongitude.format(1))°"])
-                }
-                
-                orbitProperties.append([NSLocalizedString("MEAN_ANOMALY", comment: ""), "\(celestial.orbit!.meanAnomaly.format(2)) rad"])
+            orbitProperties.append([NSLocalizedString("INCLINATION", comment: ""), "\(celestial.orbit!.inclination)°"])
+            if celestial.orbit!.inclination != 0 {
+                orbitProperties.append([NSLocalizedString("LONGITUDE_ASCENDING_NODE", comment: ""), "\(celestial.orbit!.ascendingNodeLongitude.format(1))°"])
             }
             
-            // Atmosphere properties
-            if celestial.atmosphere != nil {
-                atmosphereProperties.append([NSLocalizedString("ATMO_PRESSURE", comment: ""), "\(Units.pressureUnit(celestial.atmosphere!.surfacePressure))"])
-                atmosphereProperties.append([NSLocalizedString("ATMO_LIMIT", comment: ""), "\(Units.lengthUnit(celestial.atmosphere!.limitAltitude, allowSubUnits: true))"])
-                atmosphereProperties.append([NSLocalizedString("TEMPERATURE_MIN", comment: ""), "\( Units.temperatureUnit(celsius: celestial.atmosphere!.temperatureMin) )"])
-                atmosphereProperties.append([NSLocalizedString("TEMPERATURE_MAX", comment: ""), "\( Units.temperatureUnit(celsius: celestial.atmosphere!.temperatureMax) )"])
-                atmosphereProperties.append([NSLocalizedString("HAS_OXYGEN", comment: ""), celestial.atmosphere!.hasOxygen ? NSLocalizedString("YES", comment: "") : NSLocalizedString("NO", comment: "")])
-            }
+            orbitProperties.append([NSLocalizedString("MEAN_ANOMALY", comment: ""), "\(celestial.orbit!.meanAnomaly.format(2)) rad"])
+        }
+        
+        // Atmosphere properties
+        if celestial.atmosphere != nil {
+            atmosphereProperties.append([NSLocalizedString("ATMO_PRESSURE", comment: ""), "\(Units.pressureUnit(celestial.atmosphere!.surfacePressure))"])
+            atmosphereProperties.append([NSLocalizedString("ATMO_LIMIT", comment: ""), "\(Units.lengthUnit(celestial.atmosphere!.limitAltitude, allowSubUnits: true))"])
+            atmosphereProperties.append([NSLocalizedString("TEMPERATURE_MIN", comment: ""), "\( Units.temperatureUnit(celsius: celestial.atmosphere!.temperatureMin) )"])
+            atmosphereProperties.append([NSLocalizedString("TEMPERATURE_MAX", comment: ""), "\( Units.temperatureUnit(celsius: celestial.atmosphere!.temperatureMax) )"])
+            atmosphereProperties.append([NSLocalizedString("HAS_OXYGEN", comment: ""), celestial.atmosphere!.hasOxygen ? NSLocalizedString("YES", comment: "") : NSLocalizedString("NO", comment: "")])
         }
     }
     

@@ -47,58 +47,53 @@ class DistributionFormViewController: XLFormViewController {
     
     func submit(sender: UIBarButtonItem!) {
         let results = self.form.formValues()
-        if let nbsat = results["number"] as? Int {
-            if let cel = results["celestial"] as? Celestial {
-                if let typeOrbit = results["orbitType"] as? String {
-                    var targetAltitude: Double = 0
-                    
-                    if typeOrbit == orbitOptions[0] {
-                        targetAltitude = cel.synchronousOrbitAltitude
-                    } else if typeOrbit == orbitOptions[1] {
-                        targetAltitude = cel.semiSynchronousOrbitAltitude
-                    } else {
-                        if let alt = results["altitude"] as? Double {
-                            targetAltitude = alt
-                        }
-                    }
-                
-                    if targetAltitude > 0 {
-                        // Check for atmosphere
-                        if let atmo = cel.atmosphere {
-                            if targetAltitude < atmo.limitAltitude {
-                                TSMessage.showNotificationWithTitle(NSLocalizedString("TOO_LOW_NOTIF", comment: ""), subtitle: NSLocalizedString("TOO_LOW_NOTIF_DESC", comment: ""), type: .Error)
-                                return
-                            }
-                        }
-                        
-                        // Check for sphere of influence
-                        if targetAltitude > cel.sphereOfInfluence {
-                            TSMessage.showNotificationWithTitle(NSLocalizedString("TOO_HIGH_NOTIF", comment: ""), subtitle: NSLocalizedString("TOO_HIGH_NOTIF_DESC", comment: ""), type: .Error)
-                            return
-                        }
-                        
-                        // Check for satellite numbers
-                        if nbsat < 2 {
-                            TSMessage.showNotificationWithTitle(NSLocalizedString("NOT_ENOUGH_NOTIF", comment: ""), subtitle: NSLocalizedString("NOT_ENOUGH_NOTIF_DESC", comment: ""), type: .Error)
-                            return
-                        }
-                        
-                        if let transferAltitude = cel.distributeSatellitesAtAltitude(targetAltitude, numberOfSatellites: nbsat) {
-                            
-                            let apoapsis = transferAltitude > targetAltitude ? transferAltitude : targetAltitude
-                            let periapsis = transferAltitude < targetAltitude ? transferAltitude : targetAltitude
-                            let transferOrbit = Orbit(orbitAround: cel, apoapsis: apoapsis+cel.radius, periapsis: periapsis+cel.radius)
-                            let targetOrbit = Orbit(orbitAround: cel, apoapsis: targetAltitude+cel.radius, periapsis: targetAltitude+cel.radius)
-                            let deltaV = abs(targetOrbit.apoapsisVelocity - transferOrbit.apoapsisVelocity )
-                            
-                            self.results = (targetOrbit, transferOrbit, nbsat, deltaV)
-                            
-                            performSegueWithIdentifier("calculateSegue", sender: self)
-                        }
-                    }
-                }
+        guard let nbsat = results["number"] as? Int, cel = results["celestial"] as? Celestial, typeOrbit = results["orbitType"] as? String else { return }
+        var targetAltitude: Double = 0
+        
+        if typeOrbit == orbitOptions[0] {
+            targetAltitude = cel.synchronousOrbitAltitude
+        } else if typeOrbit == orbitOptions[1] {
+            targetAltitude = cel.semiSynchronousOrbitAltitude
+        } else {
+            if let alt = results["altitude"] as? Double {
+                targetAltitude = alt
             }
         }
+        
+        if targetAltitude > 0 {
+            // Check for atmosphere
+            if let atmo = cel.atmosphere {
+                if targetAltitude < atmo.limitAltitude {
+                    TSMessage.showNotificationWithTitle(NSLocalizedString("TOO_LOW_NOTIF", comment: ""), subtitle: NSLocalizedString("TOO_LOW_NOTIF_DESC", comment: ""), type: .Error)
+                    return
+                }
+            }
+            
+            // Check for sphere of influence
+            if targetAltitude > cel.sphereOfInfluence {
+                TSMessage.showNotificationWithTitle(NSLocalizedString("TOO_HIGH_NOTIF", comment: ""), subtitle: NSLocalizedString("TOO_HIGH_NOTIF_DESC", comment: ""), type: .Error)
+                return
+            }
+            
+            // Check for satellite numbers
+            if nbsat < 2 {
+                TSMessage.showNotificationWithTitle(NSLocalizedString("NOT_ENOUGH_NOTIF", comment: ""), subtitle: NSLocalizedString("NOT_ENOUGH_NOTIF_DESC", comment: ""), type: .Error)
+                return
+            }
+            
+            if let transferAltitude = cel.distributeSatellitesAtAltitude(targetAltitude, numberOfSatellites: nbsat) {
+                let apoapsis = transferAltitude > targetAltitude ? transferAltitude : targetAltitude
+                let periapsis = transferAltitude < targetAltitude ? transferAltitude : targetAltitude
+                let transferOrbit = Orbit(orbitAround: cel, apoapsis: apoapsis+cel.radius, periapsis: periapsis+cel.radius)
+                let targetOrbit = Orbit(orbitAround: cel, apoapsis: targetAltitude+cel.radius, periapsis: targetAltitude+cel.radius)
+                let deltaV = abs(targetOrbit.apoapsisVelocity - transferOrbit.apoapsisVelocity )
+                
+                self.results = (targetOrbit, transferOrbit, nbsat, deltaV)
+                
+                performSegueWithIdentifier("calculateSegue", sender: self)
+            }
+        }
+        
         
         if let indexPath = tableView.indexPathForSelectedRow {
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
