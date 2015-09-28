@@ -24,6 +24,7 @@
 		E907FE9D1BB1ED4000857D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E907FE9B1BB1ED4000857D14 /* Main.storyboard */; };
 		E907FE9F1BB1ED4000857D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E907FE9E1BB1ED4000857D14 /* Assets.xcassets */; };
 		E907FEA21BB1ED4000857D14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E907FEA01BB1ED4000857D14 /* LaunchScreen.storyboard */; };
+		E922162E1BB9AA9F00C10DCB /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E922162D1BB9AA9F00C10DCB /* BannerViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E924D7261BB2E0D400443B4E /* OuterPlanets.json in Resources */ = {isa = PBXBuildFile; fileRef = E924D7251BB2E0D400443B4E /* OuterPlanets.json */; settings = {ASSET_TAGS = (); }; };
 		E92A43AA1BB20DFE009B7526 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E92A43AC1BB20DFE009B7526 /* Localizable.strings */; };
 		E9335CF11BB5C41000D6F1A2 /* KSPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9335CF01BB5C41000D6F1A2 /* KSPTabBarController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -74,6 +75,7 @@
 		E907FE9E1BB1ED4000857D14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E907FEA11BB1ED4000857D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E907FEA31BB1ED4000857D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E922162D1BB9AA9F00C10DCB /* BannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
 		E924D7251BB2E0D400443B4E /* OuterPlanets.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OuterPlanets.json; sourceTree = "<group>"; };
 		E92A43AB1BB20DFE009B7526 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E92A43AD1BB20E25009B7526 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 		E9808C061BB200AA000FA2CC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E922162D1BB9AA9F00C10DCB /* BannerViewController.swift */,
 				E9335CF01BB5C41000D6F1A2 /* KSPTabBarController.swift */,
 				E9A288221BB2281300714612 /* KSPSplitViewController.swift */,
 				E9808C071BB200AA000FA2CC /* Celestials */,
@@ -387,6 +390,7 @@
 				E9808C101BB200AA000FA2CC /* Constants.swift in Sources */,
 				E90185861BB33B7C00F1BCAB /* TransferAnglePhaseView.swift in Sources */,
 				E901859B1BB46A5400F1BCAB /* DistributionResultTableViewController.swift in Sources */,
+				E922162E1BB9AA9F00C10DCB /* BannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
