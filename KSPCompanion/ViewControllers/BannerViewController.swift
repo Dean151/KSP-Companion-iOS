@@ -8,9 +8,11 @@
 
 import UIKit
 import iAd
+import IAPController
 
 let BannerViewActionWillBegin = "BannerViewActionWillBegin"
 let BannerViewActionDidFinish = "BannerViewActionDidFinish"
+let BannerShouldBeHiddenByIAP = "BannerShouldBeHiddenByIAP"
 
 class BannerViewController: UIViewController, ADBannerViewDelegate {
     var contentController: UIViewController!
@@ -51,7 +53,7 @@ class BannerViewController: UIViewController, ADBannerViewDelegate {
         
         bannerFrame.size = bannerView.sizeThatFits(contentFrame.size)
         
-        if bannerView.bannerLoaded {
+        if bannerView.bannerLoaded && !SettingsManager.hideAds {
             contentFrame.size.height -= bannerFrame.size.height
             bannerFrame.origin.y = contentFrame.size.height - (self.parentViewController as! UITabBarController).tabBar.frame.size.height
         } else {
@@ -60,9 +62,11 @@ class BannerViewController: UIViewController, ADBannerViewDelegate {
         
         contentController.view.frame = contentFrame
         
-        if self.isViewLoaded() && self.view.window != nil {
+        if self.isViewLoaded() && !SettingsManager.hideAds && self.view.window != nil {
             self.view.addSubview(bannerView)
             bannerView.frame = bannerFrame
+        } else {
+            bannerView.removeFromSuperview()
         }
     }
     
@@ -107,6 +111,11 @@ class BannerViewManager: NSObject, ADBannerViewDelegate {
         
         super.init()
         bannerView.delegate = self
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateLayouts", name: BannerShouldBeHiddenByIAP, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func addBannerViewController(controller: BannerViewController) {
@@ -119,16 +128,18 @@ class BannerViewManager: NSObject, ADBannerViewDelegate {
         }
     }
     
-    func bannerViewDidLoadAd(banner: ADBannerView!) {
+    func updateLayouts() {
         self.bannerViewControllers.forEach { bvc in
             bvc.updateLayout()
         }
     }
     
+    func bannerViewDidLoadAd(banner: ADBannerView!) {
+        updateLayouts()
+    }
+    
     func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
-        self.bannerViewControllers.forEach { bvc in
-            bvc.updateLayout()
-        }
+        updateLayouts()
     }
     
     func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {

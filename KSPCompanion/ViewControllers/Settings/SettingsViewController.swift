@@ -146,6 +146,8 @@ class SettingsViewController: XLFormViewController {
         setupForm()
         SettingsManager.hideAds = true
         
+        NSNotificationCenter.defaultCenter().postNotificationName(BannerShouldBeHiddenByIAP, object: nil)
+        
         let alert = UIAlertView(title: NSLocalizedString("THANK_YOU", comment: ""), message: NSLocalizedString("IAP_SUCCESS", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("DISMISS", comment: ""))
         alert.show()
     }

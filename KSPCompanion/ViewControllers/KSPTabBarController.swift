@@ -18,11 +18,10 @@ class KSPTabBarController: UITabBarController {
         self.viewControllers!.forEach { vc in
             vc.title = NSLocalizedString(vc.title!, comment: "")
             let bvc = BannerViewController(contentController: vc)
+            bvc.tabBarItem = vc.tabBarItem
             newViewControllers.append(bvc)
         }
         
-        if !SettingsManager.hideAds {
-            self.setViewControllers(newViewControllers, animated: true)
-        }
+        self.setViewControllers(newViewControllers, animated: true)
     }
 }
