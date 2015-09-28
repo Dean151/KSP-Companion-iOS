@@ -22,6 +22,13 @@ class CelestialsTableViewController: UITableViewController {
         self.navigationController?.topViewController!.title = NSLocalizedString("CELESTIALS", comment: "")
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings"), style: .Plain, target: self, action: "openSolarSystemSelector:")
+        
+        // 3DTouch
+        if #available(iOS 9.0, *) {
+            if traitCollection.forceTouchCapability == .Available {
+                registerForPreviewingWithDelegate(self, sourceView: view)
+            }
+        }
     }
     
     func loadCelestials() {
@@ -97,5 +104,34 @@ class CelestialsTableViewController: UITableViewController {
         }
         
         return cell
+    }
+}
+
+// Peek and Pop
+@available(iOS 9.0, *)
+extension CelestialsTableViewController: UIViewControllerPreviewingDelegate {
+    
+    // Peek
+    func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRowAtPoint(location),
+            cell = tableView.cellForRowAtIndexPath(indexPath) else { return nil }
+        
+        guard let detailViewController = storyboard?.instantiateViewControllerWithIdentifier("CelestialViewController") as? CelestialViewController else { return nil }
+        
+        // Parametring the view controller
+        detailViewController.prepare(celestial: celestials[indexPath.row])
+        
+        // Set the default size for the preview
+        detailViewController.preferredContentSize = CGSize(width: 0.0, height: 0.0)
+        
+        // Allow bluring the right place
+        previewingContext.sourceRect = cell.frame
+        
+        return detailViewController
+    }
+    
+    // Pop
+    func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
+        showViewController(viewControllerToCommit, sender: self)
     }
 }

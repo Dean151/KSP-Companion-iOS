@@ -48,6 +48,10 @@ class SettingsViewController: XLFormViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "didFailedToPurchaseProduct:", name: IAPControllerFailedNotification, object: nil)
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     // MARK: XLForm
     
     override func formRowDescriptorValueHasChanged(formRow: XLFormRowDescriptor!, oldValue: AnyObject!, newValue: AnyObject!) {

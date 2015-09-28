@@ -64,7 +64,7 @@
         <!--Celestial details-->
         <scene sceneID="r7l-gg-dq7">
             <objects>
-                <navigationController title="Celestial details" id="vC3-pB-5Vb" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CelestialViewController" title="Celestial details" id="vC3-pB-5Vb" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DjV-YW-jjY">
