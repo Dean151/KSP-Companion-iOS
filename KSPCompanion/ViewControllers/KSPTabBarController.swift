@@ -22,6 +22,6 @@ class KSPTabBarController: UITabBarController {
             newViewControllers.append(bvc)
         }
         
-        self.setViewControllers(newViewControllers, animated: true)
+        self.setViewControllers(newViewControllers, animated: false)
     }
 }

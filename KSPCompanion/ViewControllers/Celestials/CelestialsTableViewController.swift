@@ -20,6 +20,8 @@ class CelestialsTableViewController: UITableViewController {
         tableView.backgroundColor = UIColor(hexString: "#2E2E2E")
         
         self.navigationController?.topViewController!.title = NSLocalizedString("CELESTIALS", comment: "")
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings"), style: .Plain, target: self, action: "openSolarSystemSelector:")
     }
     
     func loadCelestials() {
@@ -51,7 +53,7 @@ class CelestialsTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func openSolarSystemSelector(sender: UIBarButtonItem) {
+    func openSolarSystemSelector(sender: UIBarButtonItem) {
         let viewController = SolarSystemSelector()
         viewController.parentController = self
         let navController = UINavigationController(rootViewController: viewController)
