@@ -9,9 +9,7 @@
 import UIKit
 import HexColors
 
-class CelestialsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverControllerDelegate {
-    
-    @IBOutlet weak var tableView: UITableView!
+class CelestialsTableViewController: UITableViewController {
     
     let reusableCellIdentifier = "CelestialCell"
     var celestials = [Celestial]()
@@ -20,9 +18,6 @@ class CelestialsTableViewController: UIViewController, UITableViewDelegate, UITa
         super.viewDidLoad()
         
         tableView.backgroundColor = UIColor(hexString: "#2E2E2E")
-        
-        tableView.delegate = self
-        tableView.dataSource = self
         
         self.navigationController?.topViewController!.title = NSLocalizedString("CELESTIALS", comment: "")
     }
@@ -71,15 +66,15 @@ class CelestialsTableViewController: UIViewController, UITableViewDelegate, UITa
     
     // MARK: TableView DataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return celestials.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(reusableCellIdentifier, forIndexPath: indexPath) 
         
         let row = indexPath.row

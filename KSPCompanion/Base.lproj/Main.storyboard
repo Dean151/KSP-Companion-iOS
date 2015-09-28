@@ -54,7 +54,7 @@
                         <animations/>
                     </navigationBar>
                     <connections>
-                        <segue destination="pbO-gH-cfT" kind="relationship" relationship="rootViewController" id="bCx-eX-kaJ"/>
+                        <segue destination="RaB-9k-IBU" kind="relationship" relationship="rootViewController" id="xPo-C4-QRA"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fS-aE-onr" sceneMemberID="firstResponder"/>
@@ -137,72 +137,52 @@
             <point key="canvasLocation" x="-858" y="1277"/>
         </scene>
         <!--Celestials Table View Controller-->
-        <scene sceneID="Tm2-aR-9sg">
+        <scene sceneID="jxO-G9-GoA">
             <objects>
-                <viewController id="pbO-gH-cfT" customClass="CelestialsTableViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="IuV-rg-kiP"/>
-                        <viewControllerLayoutGuide type="bottom" id="qte-Pg-Olw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8uH-KI-Cve">
+                <tableViewController id="RaB-9k-IBU" customClass="CelestialsTableViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3Ju-GK-lBP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yaV-8p-Xjk">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CelestialCell" textLabel="90I-Bm-wZc" imageView="crV-Ua-t43" style="IBUITableViewCellStyleDefault" id="F8I-jY-JJ6">
-                                        <rect key="frame" x="0.0" y="86" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F8I-jY-JJ6" id="m6K-pQ-Bai">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="90I-Bm-wZc">
-                                                    <rect key="frame" x="52" y="0.0" width="513" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="star" id="crV-Ua-t43">
-                                                    <rect key="frame" x="15" y="10" width="22" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <animations/>
-                                                </imageView>
-                                            </subviews>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                        <connections>
-                                            <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="viewCelestialDetails" id="7fh-Kg-knq"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
                         <animations/>
-                        <constraints>
-                            <constraint firstItem="yaV-8p-Xjk" firstAttribute="leading" secondItem="8uH-KI-Cve" secondAttribute="leading" id="7YA-8m-Y9f"/>
-                            <constraint firstItem="yaV-8p-Xjk" firstAttribute="top" secondItem="8uH-KI-Cve" secondAttribute="top" id="BO1-Xn-3hX"/>
-                            <constraint firstAttribute="bottom" secondItem="yaV-8p-Xjk" secondAttribute="bottom" id="Ngj-5j-Yud"/>
-                            <constraint firstAttribute="trailing" secondItem="yaV-8p-Xjk" secondAttribute="trailing" id="fVU-rX-c2N"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="kv9-fh-Fj2">
-                        <barButtonItem key="rightBarButtonItem" image="settings" id="o79-JV-KKW">
-                            <connections>
-                                <action selector="openSolarSystemSelector:" destination="pbO-gH-cfT" id="4bz-3W-eQ6"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="tableView" destination="yaV-8p-Xjk" id="3Ag-Vn-cBB"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8WE-5t-eDL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CelestialCell" textLabel="hAk-OK-5dU" imageView="FRV-F7-2qU" style="IBUITableViewCellStyleDefault" id="ss5-Io-0ML">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ss5-Io-0ML" id="vzY-hV-Oct">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hAk-OK-5dU">
+                                            <rect key="frame" x="52" y="0.0" width="513" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="star" id="FRV-F7-2qU">
+                                            <rect key="frame" x="15" y="10" width="22" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                        </imageView>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="viewCelestialDetails" id="wVa-fo-pfP"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="RaB-9k-IBU" id="rnJ-1e-i1f"/>
+                            <outlet property="delegate" destination="RaB-9k-IBU" id="fsn-L1-Oek"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Eqz-Uw-6e6"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RhW-EH-buS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="679" y="-630"/>
         </scene>
@@ -524,7 +504,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GgA-p1-e5E"/>
-        <segue reference="7fh-Kg-knq"/>
+        <segue reference="wVa-fo-pfP"/>
         <segue reference="E97-Mf-9Ce"/>
     </inferredMetricsTieBreakers>
 </document>
