@@ -156,4 +156,8 @@ class DistributionResultTableViewController: UITableViewController, DZNEmptyData
         
         return NSAttributedString(string: text, attributes: attributes)
     }
+    
+    func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "DZNdistribution")
+    }
 }
