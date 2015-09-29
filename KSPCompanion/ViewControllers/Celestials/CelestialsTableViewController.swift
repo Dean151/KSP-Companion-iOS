@@ -40,14 +40,12 @@ class CelestialsTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
+        
         super.viewWillAppear(animated)
         
         // refreshing data
         loadCelestials()
-        
-        if let indexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRowAtIndexPath(indexPath, animated: animated)
-        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -87,23 +85,29 @@ class CelestialsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(reusableCellIdentifier, forIndexPath: indexPath) 
         
         let row = indexPath.row
-        cell.textLabel?.text = celestials[row].name
+        let celestial = celestials[row]
+        
+        configureCell(cell, celestial: celestial)
+        
+        return cell
+    }
+    
+    func configureCell(cell: UITableViewCell, celestial: Celestial) {
+        cell.textLabel?.text = celestial.name
         
         // Setting colors
         cell.backgroundColor = UIColor.clearColor()
-        cell.textLabel?.textColor = celestials[row].color
-        cell.imageView?.tintColor = celestials[row].color
+        cell.textLabel?.textColor = celestial.color
+        cell.imageView?.tintColor = celestial.color
         cell.textLabel?.highlightedTextColor = UIColor.blackColor();
         
-        if UI_USER_INTERFACE_IDIOM() == .Pad {
-            cell.accessoryType = .None
-        }
+        cell.accessoryType = self.splitViewController!.collapsed ? .DisclosureIndicator : .None;
         
-        if let img = celestials[row].type.image {
+        if let img = celestial.type.image {
             cell.imageView?.image = img.imageWithRenderingMode(.AlwaysTemplate)
+        } else {
+            cell.imageView?.image = nil
         }
-        
-        return cell
     }
 }
 
@@ -116,7 +120,9 @@ extension CelestialsTableViewController: UIViewControllerPreviewingDelegate {
         guard let indexPath = tableView.indexPathForRowAtPoint(location),
             cell = tableView.cellForRowAtIndexPath(indexPath) else { return nil }
         
-        guard let detailViewController = storyboard?.instantiateViewControllerWithIdentifier("CelestialViewController") as? CelestialViewController else { return nil }
+        // Instanciating the view
+        guard let navViewController = storyboard?.instantiateViewControllerWithIdentifier("CelestialNavController") as? UINavigationController else { return nil }
+        guard let detailViewController = navViewController.presentedViewController as? CelestialViewController else { return nil }
         
         // Parametring the view controller
         detailViewController.prepare(celestial: celestials[indexPath.row])
