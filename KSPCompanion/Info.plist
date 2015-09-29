@@ -29,18 +29,24 @@
 			<string>Transfer</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>fr.Dean.KSPCompanion.transfer</string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>s_transfer</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Distribution</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>fr.Dean.KSPCompanion.distribution</string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>s_distribution</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Celestials</string>
 			<key>UIApplicationShortcutItemType</key>
 			<string>fr.Dean.KSPCompanion.celestials</string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>s_celestials</string>
 		</dict>
 	</array>
 	<key>UILaunchStoryboardName</key>

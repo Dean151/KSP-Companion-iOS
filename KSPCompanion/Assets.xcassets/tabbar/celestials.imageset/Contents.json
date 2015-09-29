@@ -2,17 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "celestials@1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "celestials@2.png"
+      "filename" : "celestials@2.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "celestials@3.png"
+      "filename" : "celestials@3.png",
+      "scale" : "3x"
     }
   ],
   "info" : {
