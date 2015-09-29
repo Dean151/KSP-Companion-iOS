@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  KSPCompanion
+
+  Created by Thomas Durand on 29/09/2015.
+  Copyright © 2015 Thomas Durand. All rights reserved.
+*/
+
+"Transfer" = "Transfer";
+"Distribution" = "Distribution";
+"Celestials" = "Celestials";
