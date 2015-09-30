@@ -47,6 +47,11 @@ class DistributionFormViewController: FormViewController {
     
     func submit(sender: AnyObject!) {
         let results = self.form.values()
+        
+        if let indexPath = tableView!.indexPathForSelectedRow {
+            tableView!.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+        
         guard let nbsat = results["number"] as? Int, cel = results["celestial"] as? Celestial, typeOrbit = results["orbittype"] as? String else { return }
         var targetAltitude: Double = 0
         
@@ -92,11 +97,6 @@ class DistributionFormViewController: FormViewController {
                 
                 performSegueWithIdentifier("calculateSegue", sender: self)
             }
-        }
-        
-        
-        if let indexPath = tableView!.indexPathForSelectedRow {
-            self.tableView!.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
     
