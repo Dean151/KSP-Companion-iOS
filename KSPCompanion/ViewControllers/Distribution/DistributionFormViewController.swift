@@ -149,8 +149,9 @@ class DistributionFormViewController: FormViewController {
             }
         
         if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-            form +++= ButtonRow("calculate") { (row: ButtonRow) in
-                row.title = NSLocalizedString("CALCULATE", comment: "")
+            form +++= ButtonRow("calculate") {
+                $0.title = NSLocalizedString("CALCULATE", comment: "")
+                $0.cell.tintColor = UIColor.appGreenColor
             }.onCellSelection { (cell, row) in
                 self.submit(row)
             }

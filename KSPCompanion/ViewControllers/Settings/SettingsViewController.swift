@@ -81,6 +81,7 @@ class SettingsViewController: FormViewController {
            
             <<<  ButtonRow("remove") {
                 $0.title = NSLocalizedString("REMOVE_ADS", comment: "")
+                $0.cell.tintColor = UIColor.appGreenColor
                 $0.hidden = Condition.Function([], { form in
                     return SettingsManager.hideAds
                 })
@@ -100,6 +101,7 @@ class SettingsViewController: FormViewController {
     
             <<< ButtonRow("restore") {
                 $0.title = NSLocalizedString("RESTORE_ADS", comment: "")
+                $0.cell.tintColor = UIColor.appGreenColor
                 $0.hidden = Condition.Function([], { form in
                     return SettingsManager.hideAds
                 })
@@ -115,6 +117,7 @@ class SettingsViewController: FormViewController {
         
             <<< ButtonRow("thanks") {
                 $0.title = NSLocalizedString("THANKS_FOR_BUYING", comment: "")
+                $0.cell.tintColor = UIColor.appGreenColor
                 $0.disabled = true
                 $0.hidden = Condition.Function([], { form in
                     return !SettingsManager.hideAds

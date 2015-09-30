@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         if let window = self.window {
-            window.tintColor = UIColor(red: 16/255, green: 149/255, blue: 0, alpha: 1)
+            window.tintColor = UIColor.appGreenColor
         }
         
         // White status bar
@@ -125,5 +125,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+}
+
+extension UIColor {
+    static var appGreenColor: UIColor {
+        return UIColor(red: 16/255, green: 149/255, blue: 0, alpha: 1)
     }
 }
