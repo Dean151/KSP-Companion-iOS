@@ -24,6 +24,8 @@ class DistributionResultTableViewController: UITableViewController, DZNEmptyData
         self.tableView.emptyDataSetSource = self
         self.tableView.allowsSelection = false
         
+        self.tableView.tableFooterView = UIView()
+        
         if self.navigationController != nil {
             self.navigationController!.topViewController!.title = NSLocalizedString("DISTRIBUTION_RESULT", comment: "")
         }

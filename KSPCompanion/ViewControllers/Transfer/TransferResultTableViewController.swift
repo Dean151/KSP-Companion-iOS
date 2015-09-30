@@ -24,6 +24,8 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
         self.tableView.emptyDataSetSource = self
         self.tableView.allowsSelection = false
         
+        self.tableView.tableFooterView = UIView()
+        
         if let r = self.results {
             if self.navigationController != nil {
                 self.navigationController!.topViewController!.title = "\(r.from.name) → \(r.to.name)"

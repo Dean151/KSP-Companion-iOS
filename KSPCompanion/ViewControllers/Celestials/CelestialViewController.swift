@@ -9,7 +9,7 @@
 import UIKit
 import DZNEmptyDataSet
 
-class CelestialViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetSource {
+class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
     let reusableCellIdentifier = "CelestialDetailCell"
     
     var celestialProperties = [[String]]()
@@ -17,7 +17,6 @@ class CelestialViewController: UIViewController, UITableViewDataSource, UITableV
     var atmosphereProperties = [[String]]()
     
     var celestial: Celestial!
-    @IBOutlet weak var tableView: UITableView!
     
     func prepare(celestial celestial: Celestial) {
         self.celestial = celestial
@@ -26,18 +25,24 @@ class CelestialViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.emptyDataSetSource = self
+        tableView.emptyDataSetSource = self
+        tableView.allowsSelection = false
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        self.tableView.tableFooterView = UIView()
         
-        prepareCelestial()
-        tableView.reloadData()
+        if celestial != nil {
+            prepareCelestial()
+            tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.reloadData()
+        
+        if celestial != nil {
+            prepareCelestial()
+            tableView.reloadData()
+        }
     }
     
     func prepareCelestial() {
@@ -108,7 +113,7 @@ class CelestialViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     // MARK: TableView
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if celestial == nil {
             return 0
         }
@@ -116,7 +121,7 @@ class CelestialViewController: UIViewController, UITableViewDataSource, UITableV
         return (celestial.orbit != nil && celestial.atmosphere != nil) ? 3 : (celestial.orbit != nil) ? 2 : 1
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
             return NSLocalizedString("CELESTIAL_PROPERTIES", comment: "")
@@ -129,7 +134,11 @@ class CelestialViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if celestial == nil {
+            return 0
+        }
+        
         switch section {
         case 0:
             return celestialProperties.count
@@ -142,7 +151,7 @@ class CelestialViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(reusableCellIdentifier, forIndexPath: indexPath) 
         
         let row = indexPath.row
