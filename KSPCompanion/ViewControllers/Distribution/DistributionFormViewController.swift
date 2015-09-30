@@ -134,7 +134,12 @@ class DistributionFormViewController: FormViewController {
             }
             <<< IntRow("altitude") {
                 $0.title = NSLocalizedString("TARGETED_ALTITUDE", comment: "")
-                $0.hidden = .Predicate(NSPredicate(format: "$orbittype != '%@'", self.orbitOptions[2])) // FIXME : this is not working
+                $0.hidden = .Function(["orbittype"], { form in
+                    if let r1 : SegmentedRow<String> = form.rowByTag("orbittype") {
+                        return r1.value != self.orbitOptions[2]
+                    }
+                    return true
+                })
                 $0.placeholder = NSLocalizedString("TARGETED_ALTITUDE_PLACEHOLDER", comment: "")
                 $0.placeholderColor = UIColor.grayColor()
             }
