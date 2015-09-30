@@ -15,11 +15,23 @@ class KSPSplitViewController: UISplitViewController, UISplitViewControllerDelega
         
         self.delegate = self
         self.preferredDisplayMode = .AllVisible
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sizeChanged:", name: UIDeviceOrientationDidChangeNotification, object: nil)
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        self.sizeChanged(self)
     }
     
     func splitViewController(splitViewController: UISplitViewController,
         collapseSecondaryViewController secondaryViewController: UIViewController,
         ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
         return true
+    }
+    
+    func sizeChanged(sender: AnyObject) {
+        guard let navVC = self.viewControllers.first as? UINavigationController else { return }
+        guard let detailVC = navVC.topViewController as? CelestialsTableViewController else { return }
+        detailVC.tableView.reloadData()
     }
 }
