@@ -107,9 +107,8 @@ class TransferFormViewController: FormViewController {
         if (UI_USER_INTERFACE_IDIOM() == .Pad) {
             form +++= ButtonRow("calculate") { (row: ButtonRow) in
                 row.title = NSLocalizedString("CALCULATE", comment: "")
-                row.callbackCellOnSelection = {
+                }.onCellSelection { (cell, row) in
                     self.submit(row)
-                }
             }
         }
     }

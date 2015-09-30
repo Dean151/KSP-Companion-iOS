@@ -116,22 +116,26 @@ class DistributionFormViewController: FormViewController {
         
         form +++
             Section(header: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("DISTRIBUTE_SATELLITE_HEADER", comment: "")), footer: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("DISTRIBUTE_SATELLITE_FOOTER", comment: "")))
+            
             <<< PushRow<Celestial>("celestial") {
                 $0.title = NSLocalizedString("ORBIT_AROUND", comment: "")
                 $0.options = self.celestials
                 $0.value = self.celestials[4] // Kerbin
             }
+            
             <<< IntRow("number") {
                 $0.title = NSLocalizedString("NUMBER_OF_SATELLITES", comment: "")
                 $0.value = 3
                 $0.placeholder = NSLocalizedString("NUMBER_OF_SATELLITES_PLACEHOLDER", comment: "")
                 $0.placeholderColor = UIColor.grayColor()
             }
+            
             <<< SegmentedRow<String>("orbittype") {
                 $0.title = NSLocalizedString("ORBIT", comment: "")
                 $0.options = self.orbitOptions
                 $0.value = self.orbitOptions[0]
             }
+            
             <<< IntRow("altitude") {
                 $0.title = NSLocalizedString("TARGETED_ALTITUDE", comment: "")
                 $0.hidden = .Function(["orbittype"], { form in
@@ -147,9 +151,8 @@ class DistributionFormViewController: FormViewController {
         if (UI_USER_INTERFACE_IDIOM() == .Pad) {
             form +++= ButtonRow("calculate") { (row: ButtonRow) in
                 row.title = NSLocalizedString("CALCULATE", comment: "")
-                row.callbackCellOnSelection = {
-                    self.submit(row)
-                }
+            }.onCellSelection { (cell, row) in
+                self.submit(row)
             }
         }
     }
