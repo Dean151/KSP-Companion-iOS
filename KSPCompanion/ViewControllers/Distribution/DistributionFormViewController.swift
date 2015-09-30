@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import XLForm
+import Eureka
 import TSMessages
 
-class DistributionFormViewController: XLFormViewController {
+class DistributionFormViewController: FormViewController {
     var celestials = [Celestial]()
     let orbitOptions = ["Sync.", "Semisync.", NSLocalizedString("CUSTOM", comment: "")]
     var results: (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int, deltaV: Double)?
@@ -45,9 +45,9 @@ class DistributionFormViewController: XLFormViewController {
         loadCelestials()
     }
     
-    func submit(sender: UIBarButtonItem!) {
-        let results = self.form.formValues()
-        guard let nbsat = results["number"] as? Int, cel = results["celestial"] as? Celestial, typeOrbit = results["orbitType"] as? String else { return }
+    func submit(sender: AnyObject!) {
+        let results = self.form.values()
+        guard let nbsat = results["number"] as? Int, cel = results["celestial"] as? Celestial, typeOrbit = results["orbittype"] as? String else { return }
         var targetAltitude: Double = 0
         
         if typeOrbit == orbitOptions[0] {
@@ -55,8 +55,8 @@ class DistributionFormViewController: XLFormViewController {
         } else if typeOrbit == orbitOptions[1] {
             targetAltitude = cel.semiSynchronousOrbitAltitude
         } else {
-            if let alt = results["altitude"] as? Double {
-                targetAltitude = alt
+            if let alt = results["altitude"] as? Int {
+                targetAltitude = Double(alt)
             }
         }
         
@@ -95,8 +95,8 @@ class DistributionFormViewController: XLFormViewController {
         }
         
         
-        if let indexPath = tableView.indexPathForSelectedRow {
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if let indexPath = tableView!.indexPathForSelectedRow {
+            self.tableView!.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
     
@@ -112,55 +112,40 @@ class DistributionFormViewController: XLFormViewController {
     }
     
     func setupForm() {
-        let form = XLFormDescriptor()
+        form.removeAll()
         
-        var section = XLFormSectionDescriptor.formSectionWithTitle(NSLocalizedString("DISTRIBUTE_SATELLITE_HEADER", comment: ""))
-        section.footerTitle = NSLocalizedString("DISTRIBUTE_SATELLITE_FOOTER", comment: "")
-        
-        var row: XLFormRowDescriptor!
-        
-        // Celestial selector
-        row = XLFormRowDescriptor(tag: "celestial", rowType: XLFormRowDescriptorTypeSelectorPush, title: NSLocalizedString("ORBIT_AROUND", comment: ""))
-        row.required = true
-        row.selectorOptions = self.celestials
-        row.value = celestials[4] // Kerbin
-        section.addFormRow(row)
-        
-        // Number of satellites
-        row = XLFormRowDescriptor(tag: "number", rowType: XLFormRowDescriptorTypeInteger, title: NSLocalizedString("NUMBER_OF_SATELLITES", comment: ""))
-        row.required = true
-        row.cellConfigAtConfigure["textField.placeholder"] = NSLocalizedString("NUMBER_OF_SATELLITES_PLACEHOLDER", comment: "")
-        row.cellConfig["textField.textAlignment"] = NSTextAlignment.Right.rawValue
-        row.cellConfig["textField.textColor"] = UIColor.grayColor()
-        row.value = 3
-        section.addFormRow(row)
-        
-        // Type of orbit
-        let orbitType = XLFormRowDescriptor(tag: "orbitType", rowType: XLFormRowDescriptorTypeSelectorSegmentedControl, title: NSLocalizedString("ORBIT", comment: ""))
-        row.required = true
-        orbitType.selectorOptions = orbitOptions
-        orbitType.value = orbitOptions[0]
-        section.addFormRow(orbitType)
-        
-        // Targeted altitude
-        row = XLFormRowDescriptor(tag: "altitude", rowType: XLFormRowDescriptorTypeInteger, title: NSLocalizedString("TARGETED_ALTITUDE", comment: ""))
-        row.cellConfigAtConfigure["textField.placeholder"] = NSLocalizedString("TARGETED_ALTITUDE_PLACEHOLDER", comment: "")
-        row.cellConfig["textField.textAlignment"] = NSTextAlignment.Right.rawValue
-        row.cellConfig["textField.textColor"] = UIColor.grayColor()
-        row.hidden = String.localizedStringWithFormat("$orbitType.value!='%@'", orbitOptions[2])
-        section.addFormRow(row)
-        
-        form.addFormSection(section)
+        form +++
+            Section(header: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("DISTRIBUTE_SATELLITE_HEADER", comment: "")), footer: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("DISTRIBUTE_SATELLITE_FOOTER", comment: "")))
+            <<< PushRow<Celestial>("celestial") {
+                $0.title = NSLocalizedString("ORBIT_AROUND", comment: "")
+                $0.options = self.celestials
+                $0.value = self.celestials[4] // Kerbin
+            }
+            <<< IntRow("number") {
+                $0.title = NSLocalizedString("NUMBER_OF_SATELLITES", comment: "")
+                $0.value = 3
+                $0.placeholder = NSLocalizedString("NUMBER_OF_SATELLITES_PLACEHOLDER", comment: "")
+                $0.placeholderColor = UIColor.grayColor()
+            }
+            <<< SegmentedRow<String>("orbittype") {
+                $0.title = NSLocalizedString("ORBIT", comment: "")
+                $0.options = self.orbitOptions
+                $0.value = self.orbitOptions[0]
+            }
+            <<< IntRow("altitude") {
+                $0.title = NSLocalizedString("TARGETED_ALTITUDE", comment: "")
+                $0.hidden = .Predicate(NSPredicate(format: "$orbittype != '%@'", self.orbitOptions[2])) // FIXME : this is not working
+                $0.placeholder = NSLocalizedString("TARGETED_ALTITUDE_PLACEHOLDER", comment: "")
+                $0.placeholderColor = UIColor.grayColor()
+            }
         
         if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-            section = XLFormSectionDescriptor.formSection()
-            row = XLFormRowDescriptor(tag: "calculate", rowType: XLFormRowDescriptorTypeButton, title: NSLocalizedString("CALCULATE", comment: ""))
-            row.action.formSelector = "submit:"
-            section.addFormRow(row)
-            
-            form.addFormSection(section)
+            form +++= ButtonRow("calculate") { (row: ButtonRow) in
+                row.title = NSLocalizedString("CALCULATE", comment: "")
+                row.callbackCellOnSelection = {
+                    self.submit(row)
+                }
+            }
         }
-        
-        self.form = form
     }
 }

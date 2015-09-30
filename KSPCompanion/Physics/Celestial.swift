@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 import Darwin
 
-import XLForm
-
 enum CelestialType: Int, CustomStringConvertible {
     case Star=0, Planet, RingPlanet, DwarfPlanet, Satellite, Other
     
@@ -65,7 +63,7 @@ enum CelestialType: Int, CustomStringConvertible {
     }
 }
 
-class Celestial: NSObject, XLFormOptionObject {
+class Celestial: Equatable, CustomStringConvertible {
     var name: String
     var color: UIColor
     var type: CelestialType
@@ -89,17 +87,8 @@ class Celestial: NSObject, XLFormOptionObject {
         self.atmosphere = atmosphere
     }
     
-    override var description: String {
-        return "Celestial \(self.name) (\(self.type))"
-    }
-    
-    // XLForm protocol
-    func formValue() -> AnyObject {
-        return self
-    }
-    
-    func formDisplayText() -> String {
-        return self.name
+    var description: String {
+        return "\(self.name)"
     }
     
     convenience init(name: String, type: CelestialType, mass: Double, radius: Double, rotationPeriod: Double, orbit: Orbit?) {
