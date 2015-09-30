@@ -9,4 +9,3 @@ pod 'IAPController', :git => "https://github.com/materik/IAPController.git", :ta
 pod 'SnapKit'
 pod 'SwiftyJSON'
 pod 'TSMessages', :git => 'https://github.com/KrauseFx/TSMessages.git'
-pod 'XLForm', :git => 'https://github.com/xmartlabs/XLForm.git', :commit => 'f2d4146'

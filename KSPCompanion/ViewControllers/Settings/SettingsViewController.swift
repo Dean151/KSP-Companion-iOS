@@ -8,9 +8,9 @@
 
 import UIKit
 import IAPController
-import XLForm
+import Eureka
 
-class SettingsViewController: XLFormViewController {
+class SettingsViewController: FormViewController {
     let tempOptions = ["°C", "°F", "K"]
     
     var iapcontroller = IAPController.sharedInstance
@@ -35,8 +35,8 @@ class SettingsViewController: XLFormViewController {
     }
     
     func deselectButtons() {
-        if let index = tableView.indexPathForSelectedRow {
-            tableView.deselectRowAtIndexPath(index, animated: true)
+        if let index = tableView!.indexPathForSelectedRow {
+            tableView!.deselectRowAtIndexPath(index, animated: true)
         }
     }
     
@@ -52,102 +52,102 @@ class SettingsViewController: XLFormViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    // MARK: XLForm
-    
-    override func formRowDescriptorValueHasChanged(formRow: XLFormRowDescriptor!, oldValue: AnyObject!, newValue: AnyObject!) {
-        switch formRow.tag! {
-        case "temperature":
-            if let tempString = newValue as? String {
-                if let temp = TemperatureUnit(rawValue: tempOptions.indexOf(tempString)!) {
-                    SettingsManager.temperatureUnit = temp
-                }
-            }
-        case "time":
-            if let kerbinTime = newValue as? Bool {
-                SettingsManager.useKerbinTime = kerbinTime
-            }
-        default:
-            break
-        }
-        
-    }
-    
     func setupForm() {
-        let form = XLFormDescriptor()
+        form.removeAll()
         
-        var section = XLFormSectionDescriptor()
-        section.title = NSLocalizedString("SETTINGS", comment: "")
-        section.footerTitle = NSLocalizedString("SETTINGS_FOOTER", comment: "")
+        form +++
+            Section(header: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("SETTINGS", comment: "")), footer: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("SETTINGS_FOOTER", comment: "")))
+            
+            <<< SegmentedRow<String>("temperature") {
+                $0.title = NSLocalizedString("TEMPERATURE_UNIT", comment: "")
+                $0.options = self.tempOptions
+                $0.value = self.tempOptions[SettingsManager.temperatureUnit.rawValue]
+            }.onChange { row in
+                guard let tempString = row.value else { return }
+                guard let temp = TemperatureUnit(rawValue: self.tempOptions.indexOf(tempString)!) else { return }
+                SettingsManager.temperatureUnit = temp
+            }
+            
+            <<< SwitchRow("time") {
+                $0.title = NSLocalizedString("KERBIN_TIME_UNITS", comment: "")
+                $0.value = SettingsManager.useKerbinTime
+            }.onChange { row in
+                    guard let kerbinTime = row.value else { return }
+                    SettingsManager.useKerbinTime = kerbinTime
+            }
+            
         
-        var row = XLFormRowDescriptor(tag: "temperature", rowType: XLFormRowDescriptorTypeSelectorSegmentedControl, title: NSLocalizedString("TEMPERATURE_UNIT", comment: ""))
-        row.selectorOptions = tempOptions
-        row.value = tempOptions[SettingsManager.temperatureUnit.rawValue]
-        section.addFormRow(row)
-        
-        row = XLFormRowDescriptor(tag: "time", rowType: XLFormRowDescriptorTypeBooleanSwitch, title: NSLocalizedString("KERBIN_TIME_UNITS", comment: ""))
-        row.value = SettingsManager.useKerbinTime
-        section.addFormRow(row)
-        
-        form.addFormSection(section)
-        
-        section = XLFormSectionDescriptor()
-        section.title = NSLocalizedString("ADS", comment: "")
-        section.footerTitle = NSLocalizedString("ADS_FOOTER", comment: "")
-        
-        if !SettingsManager.hideAds {
-            row = XLFormRowDescriptor(tag: "remove", rowType: XLFormRowDescriptorTypeButton, title: NSLocalizedString("REMOVE_ADS", comment: ""))
-            if iapFetched {
-                row.title = String.localizedStringWithFormat(NSLocalizedString("REMOVE_ADS_WITH_PRICE", comment: ""), iapcontroller.products!.first!.priceFormatted!);
-                row.action.formBlock = { Void in
+            +++ Section(header: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("ADS", comment: "")), footer: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("ADS_FOOTER", comment: "")))
+           
+            <<<  ButtonRow("remove") {
+                $0.title = NSLocalizedString("REMOVE_ADS", comment: "")
+                $0.hidden = Condition.Function([], { form in
+                    return SettingsManager.hideAds
+                })
+                $0.disabled = Condition.Function([], { form in
+                    return !self.iapFetched
+                })
+            }.onCellSelection { (cell, row) in
+                if self.iapFetched {
                     self.iapcontroller.products!.first!.buy()
                     self.deselectButtons()
                 }
-            } else {
-                row.disabled = true
+            }.cellUpdate { (cell, row) in
+                if self.iapFetched {
+                    row.title = String.localizedStringWithFormat(NSLocalizedString("REMOVE_ADS_WITH_PRICE", comment: ""), self.iapcontroller.products!.first!.priceFormatted!);
+                }
             }
-            section.addFormRow(row)
-            
-            row = XLFormRowDescriptor(tag: "restore", rowType: XLFormRowDescriptorTypeButton, title: NSLocalizedString("RESTORE_ADS", comment: ""))
-            if iapFetched {
-                row.action.formBlock = { Void in
+    
+            <<< ButtonRow("restore") {
+                $0.title = NSLocalizedString("RESTORE_ADS", comment: "")
+                $0.hidden = Condition.Function([], { form in
+                    return SettingsManager.hideAds
+                })
+                $0.disabled = Condition.Function([], { form in
+                    return !self.iapFetched
+                })
+            }.onCellSelection { (cell, row) in
+                if self.iapFetched {
                     self.iapcontroller.restore()
                     self.deselectButtons()
                 }
-            } else {
-                row.disabled = true
             }
-            section.addFormRow(row)
-        } else {
-            row = XLFormRowDescriptor(tag: "thanks", rowType: XLFormRowDescriptorTypeButton, title: NSLocalizedString("THANKS_FOR_BUYING", comment: ""))
-            row.disabled = true
-            section.addFormRow(row)
+        
+            <<< ButtonRow("thanks") {
+                $0.title = NSLocalizedString("THANKS_FOR_BUYING", comment: "")
+                $0.disabled = true
+                $0.hidden = Condition.Function([], { form in
+                    return !SettingsManager.hideAds
+                })
+            }
+        
+            
+            +++ Section(HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("INFORMATIONS", comment: "")))
+        
+            <<< TextAreaRow("disclaimer") {
+                $0.placeholder = NSLocalizedString("DISCLAIMER", comment: "")
+                $0.disabled = true
+            }
+    }
+    
+    func updateForm() {
+        self.form.allRows.forEach{ row in
+            row.evaluateDisabled()
+            row.evaluateHidden()
+            row.updateCell()
         }
-        
-        form.addFormSection(section)
-        
-        section = XLFormSectionDescriptor()
-        section.title = NSLocalizedString("INFORMATIONS", comment: "")
-        
-        row = XLFormRowDescriptor(tag: "disclaimer", rowType: XLFormRowDescriptorTypeTextView)
-        row.value = NSLocalizedString("DISCLAIMER", comment: "")
-        row.disabled = true
-        section.addFormRow(row)
-        
-        form.addFormSection(section)
-        
-        self.form = form
     }
     
     // MARK: Purchases
     
     func didFetchedProducts(sender: AnyObject) {
         iapFetched = true
-        setupForm()
+        self.updateForm()
     }
     
     func didPurchasedProduct(sender: AnyObject) {
         iapFetched = false
-        setupForm()
+        self.updateForm()
         SettingsManager.hideAds = true
         
         NSNotificationCenter.defaultCenter().postNotificationName(BannerShouldBeHiddenByIAP, object: nil)
