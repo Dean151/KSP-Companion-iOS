@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import XLForm
+import Eureka
 import TSMessages
 
-class TransferFormViewController: XLFormViewController {
+class TransferFormViewController: FormViewController {
     
     var celestials = [Celestial]()
     
@@ -34,7 +34,7 @@ class TransferFormViewController: XLFormViewController {
         
         loadCelestials()
         
-        if (UI_USER_INTERFACE_IDIOM() == .Phone) {
+        if (UI_USER_INTERFACE_IDIOM() != .Pad) {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("CALCULATE", comment: ""), style: .Plain, target: self, action: "submit:")
         }
     }
@@ -47,17 +47,17 @@ class TransferFormViewController: XLFormViewController {
     }
     
     func submit(sender: AnyObject) {
-        let results = self.form.formValues()
+        let results = form.values()
         
-        if let indexPath = tableView.indexPathForSelectedRow {
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if let indexPath = tableView!.indexPathForSelectedRow {
+            tableView!.deselectRowAtIndexPath(indexPath, animated: true)
         }
         
-        guard let from = results["from"] as? Celestial, dest = results["to"] as? Celestial else { return }
+        guard let from = results["from"] as? Celestial, dest = results["to"] as? Celestial else { print("not celestial"); return }
         if from != dest {
-            guard let alt = results["altitude"] as? Double else { return }
+            guard let alt = results["altitude"] as? Int else { print("not int"); return }
             if alt > 0 {
-                if let calcul = from.transfertTo(dest, withAltitude: alt) {
+                if let calcul = from.transfertTo(dest, withAltitude: Double(alt)) {
                     self.results = calcul
                     
                     performSegueWithIdentifier("calculateSegue", sender: self)
@@ -83,48 +83,35 @@ class TransferFormViewController: XLFormViewController {
     }
     
     func setupForm() {
-        let form = XLFormDescriptor()
+        form.removeAll()
         
-        var section = XLFormSectionDescriptor.formSectionWithTitle(NSLocalizedString("INTERPLANETARY_TRANSFER_HEADER", comment: ""))
-        section.footerTitle = NSLocalizedString("INTERPLANETARY_TRANSFER_FOOTER", comment: "")
-        
-        var row: XLFormRowDescriptor!
-        
-        // altitude selector
-        row = XLFormRowDescriptor(tag: "altitude", rowType: XLFormRowDescriptorTypeInteger, title: NSLocalizedString("PARKING_ALTITURE", comment: ""))
-        row.required = true
-        row.value = 100000
-        row.cellConfigAtConfigure["textField.placeholder"] = NSLocalizedString("PARKING_ALTITUDE_PLACEHOLDER", comment: "")
-        row.cellConfig["textField.textAlignment"] = NSTextAlignment.Right.rawValue
-        row.cellConfig["textField.textColor"] = UIColor.grayColor()
-        section.addFormRow(row)
-        
-        // From selector
-        row = XLFormRowDescriptor(tag: "from", rowType: XLFormRowDescriptorTypeSelectorPush, title: NSLocalizedString("FROM", comment: ""))
-        row.required = true
-        row.selectorOptions = self.celestials
-        row.value = celestials[3] // Kerbin
-        section.addFormRow(row)
-        
-        // To selector
-        row = XLFormRowDescriptor(tag: "to", rowType: XLFormRowDescriptorTypeSelectorPush, title: NSLocalizedString("TO", comment: ""))
-        row.required = true
-        row.selectorOptions = self.celestials
-        row.value = celestials[6] // Duna
-        section.addFormRow(row)
-        
-        form.addFormSection(section)
+        form +++
+            Section(header: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("INTERPLANETARY_TRANSFER_HEADER", comment: "")), footer: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("INTERPLANETARY_TRANSFER_FOOTER", comment: "")))
+            <<< IntRow("altitude") {
+                $0.title = NSLocalizedString("PARKING_ALTITURE", comment: "")
+                $0.value = 100000
+                $0.placeholder = NSLocalizedString("PARKING_ALTITUDE_PLACEHOLDER", comment: "")
+                $0.placeholderColor = UIColor.grayColor()
+            }
+            <<< PushRow<Celestial>("from") {
+                $0.title = NSLocalizedString("FROM", comment: "")
+                $0.options = self.celestials
+                $0.value = self.celestials[3] // Kerbin
+            }
+            <<< PushRow<Celestial>("to") {
+                $0.title = NSLocalizedString("TO", comment: "")
+                $0.options = self.celestials
+                $0.value = self.celestials[6] // Duna
+            }
         
         if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-            section = XLFormSectionDescriptor.formSection()
-            row = XLFormRowDescriptor(tag: "calculate", rowType: XLFormRowDescriptorTypeButton, title: NSLocalizedString("CALCULATE", comment: ""))
-            row.action.formSelector = "submit:"
-            section.addFormRow(row)
-        
-            form.addFormSection(section)
+            form +++= ButtonRow("calculate") { (row: ButtonRow) in
+                row.title = NSLocalizedString("CALCULATE", comment: "")
+                row.callbackCellOnSelection = {
+                    self.submit(row)
+                }
+            }
         }
-        
-        self.form = form
     }
 }
 
