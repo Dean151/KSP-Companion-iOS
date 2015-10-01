@@ -36,42 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         iRate.sharedInstance().applicationName = "KSP Companion"
         iRate.sharedInstance().verboseLogging = false
     }
-    
-    @available(iOS 9.0, *)
-    func handleShortCutItem(shortcutItem: UIApplicationShortcutItem) -> Bool {
-        var handled = false
-        
-        guard let shortcutType = shortcutItem.type as String? else { print("bad shortcut type"); return false }
-        guard let window = self.window else { print("no window"); return false }
-        
-        switch shortcutType {
-        case ShortcutIdentifier.celestials.type:
-            (window.rootViewController as! UITabBarController).selectedIndex = 0
-            handled = true
-        case ShortcutIdentifier.tranfer.type:
-            (window.rootViewController as! UITabBarController).selectedIndex = 1
-            handled = true
-        case ShortcutIdentifier.distribute.type:
-            (window.rootViewController as! UITabBarController).selectedIndex = 2
-            handled = true
-        default:
-            break
-        }
-        
-        return handled
-    }
-    
-    /*
-    Called when the user activates your application by selecting a shortcut on the home screen, except when
-    application(_:,willFinishLaunchingWithOptions:) or application(_:didFinishLaunchingWithOptions) returns `false`.
-    You should handle the shortcut in those callbacks and return `false` if possible. In that case, this
-    callback is used if your application is already launched in the background.
-    */
-    @available(iOS 9.0, *)
-    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
-        let handledShortCutItem = handleShortCutItem(shortcutItem)
-        completionHandler(handledShortCutItem)
-    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -90,19 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().barStyle = .Black
         UITabBar.appearance().translucent = false
         
-         var shouldPerformAdditionalDelegateHandling = true
-        
-        if #available(iOS 9.0, *) {
-            if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
-                
-                handleShortCutItem(shortcutItem)
-                
-                // This will block "performActionForShortcutItem:completionHandler" from being called.
-                shouldPerformAdditionalDelegateHandling = false
-            }
-        }
-        
-        return shouldPerformAdditionalDelegateHandling
+        return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
