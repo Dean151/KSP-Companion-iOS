@@ -41,8 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func handleShortCutItem(shortcutItem: UIApplicationShortcutItem) -> Bool {
         var handled = false
         
-        guard let shortcutType = shortcutItem.type as String? else { return false }
-        guard let window = self.window else { return false }
+        guard let shortcutType = shortcutItem.type as String? else { print("bad shortcut type"); return false }
+        guard let window = self.window else { print("no window"); return false }
         
         switch shortcutType {
         case ShortcutIdentifier.celestials.type:

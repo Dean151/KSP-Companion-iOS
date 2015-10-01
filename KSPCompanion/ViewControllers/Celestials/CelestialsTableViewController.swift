@@ -121,8 +121,8 @@ extension CelestialsTableViewController: UIViewControllerPreviewingDelegate {
             cell = tableView.cellForRowAtIndexPath(indexPath) else { return nil }
         
         // Instanciating the view
-        guard let navViewController = storyboard?.instantiateViewControllerWithIdentifier("CelestialNavController") as? UINavigationController else { return nil }
-        guard let detailViewController = navViewController.presentedViewController as? CelestialViewController else { return nil }
+        guard let navViewController = storyboard?.instantiateViewControllerWithIdentifier("CelestialNavController") as? UINavigationController else { print("no celestialnavcontroller"); return nil }
+        guard let detailViewController = navViewController.topViewController as? CelestialViewController else { print("no celestialdetailcontroler"); return nil }
         
         // Parametring the view controller
         detailViewController.prepare(celestial: celestials[indexPath.row])
