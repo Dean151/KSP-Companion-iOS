@@ -3,7 +3,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 pod 'DZNEmptyDataSet'
-pod 'Eureka', '~> 1.0'
+pod 'Eureka', :git => "https://github.com/xmartlabs/Eureka.git"
 pod 'iRate'
 pod 'IAPController', :git => "https://github.com/materik/IAPController.git", :tag => "0.2.0"
 pod 'SnapKit'

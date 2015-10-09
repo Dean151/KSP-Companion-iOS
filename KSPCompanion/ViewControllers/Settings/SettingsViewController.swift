@@ -128,7 +128,7 @@ class SettingsViewController: FormViewController {
             +++ Section(HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("INFORMATIONS", comment: "")))
         
             <<< TextAreaRow("disclaimer") {
-                $0.placeholder = NSLocalizedString("DISCLAIMER", comment: "")
+                $0.value = NSLocalizedString("DISCLAIMER", comment: "")
                 $0.disabled = true
             }
     }
