@@ -2,6 +2,8 @@
 platform :ios, '8.0'
 use_frameworks!
 
+pod 'Fabric'
+pod 'Crashlytics'
 pod 'DZNEmptyDataSet'
 pod 'Eureka', :git => "https://github.com/xmartlabs/Eureka.git"
 pod 'iRate'

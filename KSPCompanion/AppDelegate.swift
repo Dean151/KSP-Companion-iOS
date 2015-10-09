@@ -8,6 +8,8 @@
 
 import UIKit
 import iRate
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -53,6 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // TabBar style
         UITabBar.appearance().barStyle = .Black
         UITabBar.appearance().translucent = false
+        
+        Fabric.with([Crashlytics.self()])
         
         return true
     }

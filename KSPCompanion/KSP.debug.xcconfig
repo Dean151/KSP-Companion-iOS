@@ -1,0 +1,11 @@
+//
+//  KSP.debug.xcconfig
+//  KSPCompanion
+//
+//  Created by Thomas Durand on 09/10/2015.
+//  Copyright © 2015 Thomas Durand. All rights reserved.
+//
+
+#include "Keys.xcconfig"
+#include "Pods/Target Support Files/Pods/Pods.debug.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited)

@@ -38,6 +38,8 @@
 		E9808C121BB200AA000FA2CC /* CelestialsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808C081BB200AA000FA2CC /* CelestialsTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E9808C131BB200AA000FA2CC /* CelestialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808C091BB200AA000FA2CC /* CelestialViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		E9A288231BB2281300714612 /* KSPSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A288221BB2281300714612 /* KSPSplitViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E9C36BA11BC7E75700373BD0 /* KSP.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E9C36BA01BC7E75700373BD0 /* KSP.release.xcconfig */; settings = {ASSET_TAGS = (); }; };
+		E9C36BA31BC7E7A300373BD0 /* KSP.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = E9C36BA21BC7E7A300373BD0 /* KSP.debug.xcconfig */; settings = {ASSET_TAGS = (); }; };
 		E9E718951BBB2B4D00ACAC8A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9E718971BBB2B4D00ACAC8A /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +93,9 @@
 		E9808C081BB200AA000FA2CC /* CelestialsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CelestialsTableViewController.swift; sourceTree = "<group>"; };
 		E9808C091BB200AA000FA2CC /* CelestialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CelestialViewController.swift; sourceTree = "<group>"; };
 		E9A288221BB2281300714612 /* KSPSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSPSplitViewController.swift; sourceTree = "<group>"; };
+		E9C36B9F1BC7E17000373BD0 /* Keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Keys.xcconfig; sourceTree = "<group>"; };
+		E9C36BA01BC7E75700373BD0 /* KSP.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = KSP.release.xcconfig; sourceTree = "<group>"; };
+		E9C36BA21BC7E7A300373BD0 /* KSP.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = KSP.debug.xcconfig; sourceTree = "<group>"; };
 		E9E718961BBB2B4D00ACAC8A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E9E718981BBB2B6D00ACAC8A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,10 +187,13 @@
 				E907FE9B1BB1ED4000857D14 /* Main.storyboard */,
 				E907FEA01BB1ED4000857D14 /* LaunchScreen.storyboard */,
 				E907FE9E1BB1ED4000857D14 /* Assets.xcassets */,
+				E9C36B9F1BC7E17000373BD0 /* Keys.xcconfig */,
+				E9C36BA21BC7E7A300373BD0 /* KSP.debug.xcconfig */,
+				E9C36BA01BC7E75700373BD0 /* KSP.release.xcconfig */,
 				E907FEA31BB1ED4000857D14 /* Info.plist */,
 				E9E718971BBB2B4D00ACAC8A /* InfoPlist.strings */,
-				E901859F1BB4C2AC00F1BCAB /* IAPControllerProductIds.plist */,
 				E92A43AC1BB20DFE009B7526 /* Localizable.strings */,
+				E901859F1BB4C2AC00F1BCAB /* IAPControllerProductIds.plist */,
 			);
 			path = KSPCompanion;
 			sourceTree = "<group>";
@@ -259,6 +267,7 @@
 				E9808BFB1BB1FE70000FA2CC /* Embed Frameworks */,
 				BDBFF2D7C5A94F1AE0C7D533 /* Embed Pods Frameworks */,
 				10AAE0B1AE1941E1ACE29C56 /* Copy Pods Resources */,
+				E9C36B9E1BC7DCD400373BD0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -310,10 +319,12 @@
 				E92A43AA1BB20DFE009B7526 /* Localizable.strings in Resources */,
 				E9E718951BBB2B4D00ACAC8A /* InfoPlist.strings in Resources */,
 				E90185A01BB4C2AC00F1BCAB /* IAPControllerProductIds.plist in Resources */,
+				E9C36BA11BC7E75700373BD0 /* KSP.release.xcconfig in Resources */,
 				E924D7261BB2E0D400443B4E /* OuterPlanets.json in Resources */,
 				E9808C0B1BB200AA000FA2CC /* System.json in Resources */,
 				E907FEA21BB1ED4000857D14 /* LaunchScreen.storyboard in Resources */,
 				E907FE9F1BB1ED4000857D14 /* Assets.xcassets in Resources */,
+				E9C36BA31BC7E7A300373BD0 /* KSP.debug.xcconfig in Resources */,
 				E907FE9D1BB1ED4000857D14 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,6 +376,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E9C36B9E1BC7DCD400373BD0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" ${FABRIC_API_KEY} ${FABRIC_BUILD_SECRET}";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -524,7 +548,7 @@
 		};
 		E907FEA71BB1ED4000857D14 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25F59577345E9C38C2D08C5C /* Pods.debug.xcconfig */;
+			baseConfigurationReference = E9C36BA21BC7E7A300373BD0 /* KSP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
@@ -538,9 +562,10 @@
 		};
 		E907FEA81BB1ED4000857D14 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 453AAB7E7C22AFE04A3A6A9B /* Pods.release.xcconfig */;
+			baseConfigurationReference = E9C36BA01BC7E75700373BD0 /* KSP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				INFOPLIST_FILE = KSPCompanion/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

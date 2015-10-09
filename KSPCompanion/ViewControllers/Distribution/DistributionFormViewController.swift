@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 import Eureka
 import TSMessages
 
@@ -94,6 +95,8 @@ class DistributionFormViewController: FormViewController {
                 let deltaV = abs(targetOrbit.apoapsisVelocity - transferOrbit.apoapsisVelocity )
                 
                 self.results = (targetOrbit, transferOrbit, nbsat, deltaV)
+                
+                Answers.logCustomEventWithName("DistributionCalculation", customAttributes: ["around": cel.name, "satNb": nbsat, "alt": targetAltitude])
                 
                 performSegueWithIdentifier("calculateSegue", sender: self)
             }

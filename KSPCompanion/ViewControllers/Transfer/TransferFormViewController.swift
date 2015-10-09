@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 import Eureka
 import TSMessages
 
@@ -59,7 +60,7 @@ class TransferFormViewController: FormViewController {
             if alt > 0 {
                 if let calcul = from.transfertTo(dest, withAltitude: Double(alt)) {
                     self.results = calcul
-                    
+                    Answers.logCustomEventWithName("TransferCalculation", customAttributes: ["from": from.name, "to": dest.name, "parking": alt])
                     performSegueWithIdentifier("calculateSegue", sender: self)
                 }
                 else {
