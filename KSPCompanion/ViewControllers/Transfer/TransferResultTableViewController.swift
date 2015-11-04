@@ -25,20 +25,16 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
         self.tableView.allowsSelection = false
         
         self.tableView.tableFooterView = UIView()
-        
-        if let r = self.results {
-            if self.navigationController != nil {
-                self.navigationController!.topViewController!.title = "\(r.from.name) → \(r.to.name)"
-            }
-            
-            self.tableView.reloadData()
-        }
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         if let r = results {
+            if self.navigationController != nil {
+                self.navigationController!.topViewController!.title = "\(r.from.name) → \(r.to.name)"
+            }
+            
             if r.from.orbit!.inclination != r.to.orbit!.inclination || r.from.orbit!.ascendingNodeLongitude != r.to.orbit!.ascendingNodeLongitude {
                 if !inclinationAlertHavePoped {
                     TSMessage.showNotificationWithTitle(NSLocalizedString("INCLINATION_NOTIF", comment: ""), subtitle: NSLocalizedString("INCLINATION_NOTIF_DESC", comment: ""), type: .Warning)

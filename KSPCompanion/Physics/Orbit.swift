@@ -19,7 +19,7 @@ class Orbit {
     var ascendingNodeLongitude: Double
     var meanAnomaly: Double
     
-    init(orbitAround: Celestial, apoapsis: Double, periapsis: Double, periapsisArgument: Double, meanAnomaly: Double, inclination: Double, ascendingNodeLongitude: Double) {
+    init(orbitAround: Celestial, apoapsis: Double, periapsis: Double, periapsisArgument: Double, meanAnomaly: Double, atTime: Int?, inclination: Double, ascendingNodeLongitude: Double) {
         self.orbitAroundCelestial = orbitAround
         
         self.periapsis = periapsis
@@ -31,13 +31,17 @@ class Orbit {
         self.meanAnomaly = meanAnomaly
     }
     
+    convenience init(orbitAround: Celestial, apoapsis: Double, periapsis: Double, periapsisArgument: Double, meanAnomaly: Double, inclination: Double, ascendingNodeLongitude: Double) {
+        self.init(orbitAround: orbitAround, apoapsis: apoapsis, periapsis: periapsis, periapsisArgument: periapsisArgument, meanAnomaly: meanAnomaly, atTime: nil, inclination: inclination, ascendingNodeLongitude: ascendingNodeLongitude)
+    }
+    
     convenience init(apoapsis: Double, periapsis: Double) {
         let cel = Celestial(name: "...", type: .Star, mass: 1, radius: 1, rotationPeriod: 1)
-        self.init(orbitAround: cel, apoapsis: apoapsis, periapsis: periapsis, periapsisArgument: 0, meanAnomaly: 0, inclination: 0, ascendingNodeLongitude: 0)
+        self.init(orbitAround: cel, apoapsis: apoapsis, periapsis: periapsis, periapsisArgument: 0, meanAnomaly: 0, atTime: nil, inclination: 0, ascendingNodeLongitude: 0)
     }
     
     convenience init(orbitAround: Celestial, apoapsis: Double, periapsis: Double) {
-        self.init(orbitAround: orbitAround, apoapsis: apoapsis, periapsis: periapsis, periapsisArgument: 0, meanAnomaly: 0, inclination: 0, ascendingNodeLongitude: 0)
+        self.init(orbitAround: orbitAround, apoapsis: apoapsis, periapsis: periapsis, periapsisArgument: 0, meanAnomaly: 0, atTime: nil, inclination: 0, ascendingNodeLongitude: 0)
     }
     
     var apoapsisAltitude: Double {

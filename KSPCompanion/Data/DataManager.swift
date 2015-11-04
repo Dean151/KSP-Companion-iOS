@@ -74,7 +74,7 @@ class DataManager {
     }
     
     /*
-        Browsing in the tree
+        Browsing in the tree to fetch all celestials
     */
     static func getCelestials(json: JSON) -> [Celestial] {
         return getCelestials(json, parent: nil, out: [Celestial]())
@@ -95,12 +95,12 @@ class DataManager {
     }
     
     /*
-        Getting specific celestial
+        Getting specific celestial (leaf)
     */
     static func getCelestial(subjson: JSON, parent: Celestial?) -> Celestial {
         var celestial: Celestial
-        var orbit: Orbit? = nil
-        var atmosphere: Atmosphere? = nil
+        var orbit: Orbit?
+        var atmosphere: Atmosphere?
         
         if let orbitJson = subjson["orbit"].dictionary {
             orbit = Orbit(
@@ -109,6 +109,7 @@ class DataManager {
                 periapsis: orbitJson["periapsis"]!.doubleValue,
                 periapsisArgument: orbitJson["periapsisArgument"]!.doubleValue,
                 meanAnomaly: orbitJson["meanAnomaly"]!.doubleValue,
+                atTime: orbitJson["atTime"]?.int,
                 inclination: orbitJson["inclination"]!.doubleValue,
                 ascendingNodeLongitude: orbitJson["ascendingNodeLongitude"]!.doubleValue)
         }

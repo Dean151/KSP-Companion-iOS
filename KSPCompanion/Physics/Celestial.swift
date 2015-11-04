@@ -58,7 +58,7 @@ enum CelestialType: Int, CustomStringConvertible {
         case "dwarfplanet":
             return .DwarfPlanet
         default:
-            return .Star
+            return .Other
         }
     }
 }
@@ -85,6 +85,12 @@ class Celestial: Equatable, CustomStringConvertible {
         self.rotationPeriod = rotationPeriod
         self.orbit = orbit
         self.atmosphere = atmosphere
+    }
+    
+    convenience init(name: String, type: CelestialType, radius: Double, geeASL: Double, rotationPeriod: Double, orbit: Orbit?, atmosphere: Atmosphere?) {
+        
+        let calculatedMass = geeASL * pow(radius, 2) / gravitationalConstant
+        self.init(name: name, type: type, mass: calculatedMass, radius: radius, rotationPeriod: rotationPeriod, orbit: orbit, atmosphere: atmosphere)
     }
     
     var description: String {
