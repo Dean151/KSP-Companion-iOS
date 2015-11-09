@@ -84,11 +84,12 @@ class DataManager {
         var celestials = out
         
         for (_, subjson): (String, JSON) in json {
-            let celestial = getCelestial(subjson, parent: parent)
-            celestials.append(celestial)
+            if let celestial = getCelestial(subjson, parent: parent) {
+                celestials.append(celestial)
             
-            let subsubjson = subjson["celestials"]
-            celestials = getCelestials(subsubjson, parent: celestial, out: celestials)
+                let subsubjson = subjson["celestials"]
+                celestials = getCelestials(subsubjson, parent: celestial, out: celestials)
+            }
         }
         
         return celestials
@@ -97,21 +98,33 @@ class DataManager {
     /*
         Getting specific celestial (leaf)
     */
-    static func getCelestial(subjson: JSON, parent: Celestial?) -> Celestial {
-        var celestial: Celestial
+    static func getCelestial(subjson: JSON, parent: Celestial?) -> Celestial? {
+        var celestial: Celestial?
         var orbit: Orbit?
         var atmosphere: Atmosphere?
         
         if let orbitJson = subjson["orbit"].dictionary {
-            orbit = Orbit(
-                orbitAround: parent!,
-                apoapsis: orbitJson["apoapsis"]!.doubleValue,
-                periapsis: orbitJson["periapsis"]!.doubleValue,
-                periapsisArgument: orbitJson["periapsisArgument"]!.doubleValue,
-                meanAnomaly: orbitJson["meanAnomaly"]!.doubleValue,
-                atTime: orbitJson["atTime"]?.int,
-                inclination: orbitJson["inclination"]!.doubleValue,
-                ascendingNodeLongitude: orbitJson["ascendingNodeLongitude"]!.doubleValue)
+            if let _ = orbitJson["semiMajorAxis"]?.double {
+                orbit = Orbit(
+                    orbitAround: parent!,
+                    semiMajorAxis: orbitJson["semiMajorAxis"]!.doubleValue,
+                    eccentricity: orbitJson["eccentricity"]!.doubleValue,
+                    periapsisArgument: orbitJson["periapsisArgument"]!.doubleValue,
+                    meanAnomaly: orbitJson["meanAnomaly"]!.doubleValue,
+                    atTime: orbitJson["epoch"]?.int,
+                    inclination: orbitJson["inclination"]!.doubleValue,
+                    ascendingNodeLongitude: orbitJson["ascendingNodeLongitude"]!.doubleValue)
+            } else {
+                orbit = Orbit(
+                    orbitAround: parent!,
+                    apoapsis: orbitJson["apoapsis"]!.doubleValue,
+                    periapsis: orbitJson["periapsis"]!.doubleValue,
+                    periapsisArgument: orbitJson["periapsisArgument"]!.doubleValue,
+                    meanAnomaly: orbitJson["meanAnomaly"]!.doubleValue,
+                    atTime: orbitJson["epoch"]?.int,
+                    inclination: orbitJson["inclination"]!.doubleValue,
+                    ascendingNodeLongitude: orbitJson["ascendingNodeLongitude"]!.doubleValue)
+            }
         }
         if let atmosphereJson = subjson["atmosphere"].dictionary {
             atmosphere = Atmosphere(
@@ -123,19 +136,35 @@ class DataManager {
                 hasOxygen: atmosphereJson["haveOxygen"]!.boolValue)
         }
         
-        celestial = Celestial(
-            name: subjson["name"].stringValue,
-            type: CelestialType.fromString(subjson["type"].stringValue),
-            mass: subjson["mass"].doubleValue,
-            radius: subjson["radius"].doubleValue,
-            rotationPeriod: subjson["rotationPeriod"].doubleValue,
-            orbit: orbit,
-            atmosphere: atmosphere)
-        
-        if let color = subjson["color"].string {
-            celestial.assignColor(color)
+        // Mass geeOnSurface
+        if let mass = subjson["mass"].double {
+            celestial = Celestial(
+                name: subjson["name"].stringValue,
+                type: CelestialType.fromString(subjson["type"].stringValue),
+                mass: mass,
+                radius: subjson["radius"].doubleValue,
+                rotationPeriod: subjson["rotationPeriod"].doubleValue,
+                orbit: orbit,
+                atmosphere: atmosphere)
         }
         
-        return celestial
+        if let gee = subjson["geeASL"].double {
+            celestial = Celestial(
+                name: subjson["name"].stringValue,
+                type: CelestialType.fromString(subjson["type"].stringValue),
+                radius: subjson["radius"].doubleValue,
+                geeASL: gee,
+                rotationPeriod: subjson["rotationPeriod"].doubleValue,
+                orbit: orbit,
+                atmosphere: atmosphere)
+        }
+        
+        guard let cel = celestial else { return nil }
+        
+        if let color = subjson["color"].string {
+            cel.assignColor(color)
+        }
+        
+        return cel
     }
 }

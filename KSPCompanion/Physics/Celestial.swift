@@ -49,6 +49,8 @@ enum CelestialType: Int, CustomStringConvertible {
     
     static func fromString(type: String) -> CelestialType {
         switch type {
+        case "star":
+            return .Star
         case "satellite":
             return .Satellite
         case "planet":

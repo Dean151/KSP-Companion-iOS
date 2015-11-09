@@ -28,7 +28,19 @@ class Orbit {
         
         self.inclination = inclination
         self.ascendingNodeLongitude = ascendingNodeLongitude
-        self.meanAnomaly = meanAnomaly
+        
+        if let atTime = atTime {
+            // Should calculate the anomaly
+            self.meanAnomaly = meanAnomaly
+        } else {
+            self.meanAnomaly = meanAnomaly
+        }
+    }
+    
+    convenience init(orbitAround: Celestial, semiMajorAxis: Double, eccentricity: Double, periapsisArgument: Double, meanAnomaly: Double, atTime: Int?, inclination: Double, ascendingNodeLongitude: Double) {
+        let apoapsis = semiMajorAxis * (1+eccentricity)
+        let periapsis = semiMajorAxis * (1-eccentricity)
+        self.init(orbitAround: orbitAround, apoapsis: apoapsis, periapsis: periapsis, periapsisArgument: periapsisArgument, meanAnomaly: meanAnomaly, atTime: atTime, inclination: inclination, ascendingNodeLongitude: ascendingNodeLongitude)
     }
     
     convenience init(orbitAround: Celestial, apoapsis: Double, periapsis: Double, periapsisArgument: Double, meanAnomaly: Double, inclination: Double, ascendingNodeLongitude: Double) {
