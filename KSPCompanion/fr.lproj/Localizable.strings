@@ -53,6 +53,7 @@
 "INTERPLANETARY_TRANSFER_HEADER" = "Transfert interplanaire";
 "KERBAL_SYSTEM" = "Système original de KSP";
 "KERBIN_TIME_UNITS" = "Unités de temps Kerbiennes";
+"KERBOL_PLUS_SYSTEM" = "Système avec Kerbol Plus Mod";
 "LONGITUDE_ASCENDING_NODE" = "Longitude du nœud ascendant";
 "MASS" = "Masse";
 "MANOEUVER" = "Manœuvre";
@@ -72,7 +73,7 @@
 "ORBITAL_PERIOD" = "Période orbitale";
 "ORBITAL_RADIUS" = "Rayon orbital";
 "OUT_OF_SOI" = "Hors d'influence";
-"OUTERPLANET_SYSTEM" = "Système avec le mode Outer Planets";
+"OUTERPLANET_SYSTEM" = "Système avec Outer Planets Mod";
 "PARKING_ALTITURE" = "Altitude de parking (m)";
 "PARKING_ALTITUDE_PLACEHOLDER" = "ex: 80000m";
 "PERIAPSIS" = "Périastre";

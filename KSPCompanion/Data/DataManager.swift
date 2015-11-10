@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 enum SolarSystem: Int, CustomStringConvertible {
-    case Kerbolian=0, OuterPlanets
+    case Kerbolian=0, OuterPlanets, KerbolPlus
     
     var fileName: String {
         switch self {
@@ -18,6 +18,8 @@ enum SolarSystem: Int, CustomStringConvertible {
             return "System"
         case .OuterPlanets:
             return "OuterPlanets"
+        case .KerbolPlus:
+            return "KerbolPlus"
         }
     }
     
@@ -27,11 +29,13 @@ enum SolarSystem: Int, CustomStringConvertible {
             return NSLocalizedString("KERBAL_SYSTEM", comment: "")
         case .OuterPlanets:
             return NSLocalizedString("OUTERPLANET_SYSTEM", comment: "")
+        case .KerbolPlus:
+            return NSLocalizedString("KERBOL_PLUS_SYSTEM", comment: "")
         }
     }
     
     static var count: Int {
-        return 2
+        return 3
     }
 }
 

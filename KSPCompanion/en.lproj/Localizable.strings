@@ -53,6 +53,7 @@
 "INTERPLANETARY_TRANSFER_HEADER" = "Interplanetary transfer";
 "KERBAL_SYSTEM" = "Original KSP system";
 "KERBIN_TIME_UNITS" = "Kerbal time units";
+"KERBOL_PLUS_SYSTEM" = "Kerbol Plus Mod's system";
 "LONGITUDE_ASCENDING_NODE" = "Longitude of ascending node";
 "MANOEUVER" = "Manoeuver";
 "MANOEUVER_FOOTER" = "Once the celestials have the correct phase angle, achieve this manoeuver from your parking orbit to leave correctly the sphere of influence.";

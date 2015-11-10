@@ -28,6 +28,7 @@
 		E924D7261BB2E0D400443B4E /* OuterPlanets.json in Resources */ = {isa = PBXBuildFile; fileRef = E924D7251BB2E0D400443B4E /* OuterPlanets.json */; };
 		E92A43AA1BB20DFE009B7526 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E92A43AC1BB20DFE009B7526 /* Localizable.strings */; };
 		E9335CF11BB5C41000D6F1A2 /* KSPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9335CF01BB5C41000D6F1A2 /* KSPTabBarController.swift */; };
+		E9629BE71BF15C5A005E5391 /* KerbolPlus.json in Resources */ = {isa = PBXBuildFile; fileRef = E9629BE61BF15C5A005E5391 /* KerbolPlus.json */; };
 		E9808C0B1BB200AA000FA2CC /* System.json in Resources */ = {isa = PBXBuildFile; fileRef = E9808BFE1BB200AA000FA2CC /* System.json */; };
 		E9808C0C1BB200AA000FA2CC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808BFF1BB200AA000FA2CC /* DataManager.swift */; };
 		E9808C0D1BB200AA000FA2CC /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808C001BB200AA000FA2CC /* SettingsManager.swift */; };
@@ -81,6 +82,7 @@
 		E92A43AB1BB20DFE009B7526 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E92A43AD1BB20E25009B7526 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9335CF01BB5C41000D6F1A2 /* KSPTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSPTabBarController.swift; sourceTree = "<group>"; };
+		E9629BE61BF15C5A005E5391 /* KerbolPlus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = KerbolPlus.json; sourceTree = "<group>"; };
 		E9808BFE1BB200AA000FA2CC /* System.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = System.json; sourceTree = "<group>"; };
 		E9808BFF1BB200AA000FA2CC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E9808C001BB200AA000FA2CC /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
@@ -91,9 +93,9 @@
 		E9808C081BB200AA000FA2CC /* CelestialsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CelestialsTableViewController.swift; sourceTree = "<group>"; };
 		E9808C091BB200AA000FA2CC /* CelestialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CelestialViewController.swift; sourceTree = "<group>"; };
 		E9A288221BB2281300714612 /* KSPSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSPSplitViewController.swift; sourceTree = "<group>"; };
-		E9C36B9F1BC7E17000373BD0 /* Keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Keys.xcconfig; sourceTree = "<group>"; };
-		E9C36BA01BC7E75700373BD0 /* KSP.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = KSP.release.xcconfig; sourceTree = "<group>"; };
-		E9C36BA21BC7E7A300373BD0 /* KSP.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = KSP.debug.xcconfig; sourceTree = "<group>"; };
+		E9C36B9F1BC7E17000373BD0 /* Keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Keys.xcconfig; path = KSPCompanion/Keys.xcconfig; sourceTree = "<group>"; };
+		E9C36BA01BC7E75700373BD0 /* KSP.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = KSP.release.xcconfig; path = KSPCompanion/KSP.release.xcconfig; sourceTree = "<group>"; };
+		E9C36BA21BC7E7A300373BD0 /* KSP.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = KSP.debug.xcconfig; path = KSPCompanion/KSP.debug.xcconfig; sourceTree = "<group>"; };
 		E9E718961BBB2B4D00ACAC8A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E9E718981BBB2B6D00ACAC8A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +161,9 @@
 		E907FE891BB1ED4000857D14 = {
 			isa = PBXGroup;
 			children = (
+				E9C36B9F1BC7E17000373BD0 /* Keys.xcconfig */,
+				E9C36BA21BC7E7A300373BD0 /* KSP.debug.xcconfig */,
+				E9C36BA01BC7E75700373BD0 /* KSP.release.xcconfig */,
 				E907FE941BB1ED4000857D14 /* KSPCompanion */,
 				E907FE931BB1ED4000857D14 /* Products */,
 				8A5468D2B8F629837BC2DE9F /* Pods */,
@@ -185,9 +190,6 @@
 				E907FE9B1BB1ED4000857D14 /* Main.storyboard */,
 				E907FEA01BB1ED4000857D14 /* LaunchScreen.storyboard */,
 				E907FE9E1BB1ED4000857D14 /* Assets.xcassets */,
-				E9C36B9F1BC7E17000373BD0 /* Keys.xcconfig */,
-				E9C36BA21BC7E7A300373BD0 /* KSP.debug.xcconfig */,
-				E9C36BA01BC7E75700373BD0 /* KSP.release.xcconfig */,
 				E907FEA31BB1ED4000857D14 /* Info.plist */,
 				E9E718971BBB2B4D00ACAC8A /* InfoPlist.strings */,
 				E92A43AC1BB20DFE009B7526 /* Localizable.strings */,
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				E9808BFE1BB200AA000FA2CC /* System.json */,
+				E9629BE61BF15C5A005E5391 /* KerbolPlus.json */,
 				E924D7251BB2E0D400443B4E /* OuterPlanets.json */,
 				E9808BFF1BB200AA000FA2CC /* DataManager.swift */,
 				E9808C001BB200AA000FA2CC /* SettingsManager.swift */,
@@ -319,6 +322,7 @@
 				E9E718951BBB2B4D00ACAC8A /* InfoPlist.strings in Resources */,
 				E90185A01BB4C2AC00F1BCAB /* IAPControllerProductIds.plist in Resources */,
 				E924D7261BB2E0D400443B4E /* OuterPlanets.json in Resources */,
+				E9629BE71BF15C5A005E5391 /* KerbolPlus.json in Resources */,
 				E9808C0B1BB200AA000FA2CC /* System.json in Resources */,
 				E907FEA21BB1ED4000857D14 /* LaunchScreen.storyboard in Resources */,
 				E907FE9F1BB1ED4000857D14 /* Assets.xcassets in Resources */,

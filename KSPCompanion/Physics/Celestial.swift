@@ -11,7 +11,7 @@ import UIKit
 import Darwin
 
 enum CelestialType: Int, CustomStringConvertible {
-    case Star=0, Planet, RingPlanet, DwarfPlanet, Satellite, Other
+    case Star=0, Planet, RingPlanet, DwarfPlanet, Satellite, Comet, Other
     
     var image: UIImage? {
         switch self {
@@ -25,6 +25,8 @@ enum CelestialType: Int, CustomStringConvertible {
             return UIImage(named: "dwarfplanet")
         case .Satellite:
             return UIImage(named: "satellite")
+        case .Comet:
+            return UIImage(named: "comet")
         default:
             return nil
         }
@@ -42,6 +44,8 @@ enum CelestialType: Int, CustomStringConvertible {
             return "Dwarf Planet"
         case .Satellite:
             return "Natural satellite"
+        case .Comet:
+            return "Comet"
         default:
             return "Other"
         }
@@ -59,6 +63,8 @@ enum CelestialType: Int, CustomStringConvertible {
             return .RingPlanet
         case "dwarfplanet":
             return .DwarfPlanet
+        case "comet":
+            return .Comet
         default:
             return .Other
         }

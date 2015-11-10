@@ -1,0 +1,728 @@
+[
+	{
+	    "name": "Kerbol",
+        "color": "255,235,107",
+        "type": "star",
+	    "mass": 1.7565670E28,
+	    "radius": 2.616E8,
+	    "rotationPeriod": 432E3,
+	    "celestials": [
+	      {
+	        "name": "Moho",
+	        "color": "163,140,126",
+            "type": "planet",
+	        "mass": 2.5263617E21,
+	        "radius": 250E3,
+	        "rotationPeriod": 1210E3,
+	        "orbit": {
+	          "apoapsis": 6315765980,
+	          "periapsis": 4210510628,
+	          "inclination": 7,
+	          "ascendingNodeLongitude": 70,
+	          "periapsisArgument": 15,
+	          "meanAnomaly": 3.14
+	        }
+	      },
+	      {
+	        "name": "Eve",
+	        "color": "161,129,204",
+            "type": "planet",
+	        "mass": 1.2244127E23,
+	        "radius": 700E3,
+	        "rotationPeriod": 80500,
+	        "orbit": {
+	          "apoapsis": 9931011387,
+	          "periapsis": 9734357701,
+	          "inclination": 2.1,
+	          "ascendingNodeLongitude": 15,
+	          "periapsisArgument": 0,
+	          "meanAnomaly": 3.14
+	        },
+	        "atmosphere": {
+	        	"surfacePressure": 506.625,
+	        	"scaleHeight": 7300,
+	        	"atmosphereLimit": 90000,
+	        	"temperatureMin": 86.85,
+	        	"temperatureMax": 155.85,
+	        	"haveOxygen": false
+	        },
+	        "celestials": [
+	          {
+	            "name": "Gilly",
+	            "color": "134,119,103",
+              "type": "satellite",
+	            "mass": 1.2420512E17,
+	            "radius": 13E3,
+	            "rotationPeriod": 28255,
+	            "orbit": {
+	              "apoapsis": 48825000,
+	              "periapsis": 14175000,
+	              "inclination": 12,
+	              "ascendingNodeLongitude": 80,
+	              "periapsisArgument": 10,
+	              "meanAnomaly": 0.9
+	            }
+	          },
+	          {
+	            "name": "Faz",
+	            "color": "120,92,120",
+              "type": "satellite",
+	            "geeASL": 0.24,
+	            "radius": 200E3,
+	            "rotationPeriod": 46134.589375,
+	            "orbit": {
+	              "semiMajorAxis": 31500000,
+	              "eccentricity": 0.22,
+	              "inclination": 10.3,
+	              "ascendingNodeLongitude": 80,
+	              "periapsisArgument": 0,
+	              "meanAnomaly": 1.1
+	            }
+	          }
+	        ]
+	      },
+	      {
+	        "name": "Kerbin",
+	        "color": "72,145,207",
+            "type": "planet",
+	        "mass": 5.2915793E22,
+	        "radius": 600E3,
+	        "rotationPeriod": 21600,
+	        "orbit": {
+	          "apoapsis": 13599840256,
+	          "periapsis": 13599840256,
+	          "inclination": 0,
+	          "ascendingNodeLongitude": 0,
+	          "periapsisArgument": 0,
+	          "meanAnomaly": 3.14
+	        },
+	        "atmosphere": {
+	        	"surfacePressure": 101.325,
+	        	"scaleHeight": 5600,
+	        	"atmosphereLimit": 70000,
+	        	"temperatureMin": -35,
+	        	"temperatureMax": 41,
+	        	"haveOxygen": true
+	        },
+	        "celestials": [
+	          {
+	            "name": "Mun",
+	            "color": "120,130,125",
+                "type": "satellite",
+	            "mass": 9.7600236E20,
+	            "radius": 200E3,
+	            "rotationPeriod": 138984.38,
+	            "orbit": {
+	              "apoapsis": 12000000,
+	              "periapsis": 12000000,
+	              "inclination": 0,
+	              "ascendingNodeLongitude": 0,
+	              "periapsisArgument": 0,
+	              "meanAnomaly": 1.7
+	            }
+	          },
+	          {
+	            "name": "Minmus",
+	            "color": "178,237,215",
+                "type": "satellite",
+	            "mass": 2.6457897E19,
+	            "radius": 60E3,
+	            "rotationPeriod": 40400,
+	            "orbit": {
+	              "apoapsis": 47000000,
+	              "periapsis": 47000000,
+	              "inclination": 6,
+	              "ascendingNodeLongitude": 78,
+	              "periapsisArgument": 38,
+	              "meanAnomaly": 0.9
+	            }
+	          }
+	        ]
+	      },
+	      {
+	        "name": "Harvest",
+	        "color": "120,115,110",
+            "type": "dwarfplanet",
+	        "geeASL": 0.32,
+	        "radius": 200E3,
+	        "rotationPeriod": 46134.589375,
+	        "orbit": {
+	          "semiMajorAxis": 13599840256,
+	          "eccentricity": 0,
+	          "inclination": 0,
+	          "ascendingNodeLongitude": 300,
+	          "periapsisArgument": 0,
+	          "meanAnomaly": 3.14000010490417,
+						"epoch": 0
+	        }
+	      },
+	      {
+	        "name": "Duna",
+	        "color": "165,72,41",
+            "type": "planet",
+	        "mass": 4.5154812E21,
+	        "radius": 320E3,
+	        "rotationPeriod": 65517.859,
+	        "orbit": {
+	          "apoapsis": 21783189163,
+	          "periapsis": 19669121365,
+	          "inclination": 0.06,
+	          "ascendingNodeLongitude": 135.5,
+	          "periapsisArgument": 0,
+	          "meanAnomaly": 3.14
+	        },
+	        "atmosphere": {
+	        	"surfacePressure": 20.2650,
+	        	"scaleHeight": 6000,
+	        	"atmosphereLimit": 50000,
+	        	"temperatureMin": -90.15,
+	        	"temperatureMax": -2.15,
+	        	"haveOxygen": false
+	        },
+	        "celestials": [
+	          {
+	            "name": "Ike",
+	            "color": "128,128,128",
+                "type": "satellite",
+	            "mass": 2.7821949E20,
+	            "radius": 130E3,
+	            "rotationPeriod": 65517.862,
+	            "orbit": {
+	              "apoapsis": 3296000,
+	              "periapsis": 3104000,
+	              "inclination": 0.2,
+	              "ascendingNodeLongitude": 0,
+	              "periapsisArgument": 0,
+	              "meanAnomaly": 1.7
+	            }
+	          },
+						{
+	            "name": "Vix",
+	            "color": "120,110,100",
+                "type": "satellite",
+	            "geeASL": 0.09,
+	            "radius": 80E3,
+	            "rotationPeriod": 46134.589375,
+	            "orbit": {
+	              "semiMajorAxis": 6400000,
+	              "eccentricity": 0.12,
+	              "inclination": -4,
+	              "ascendingNodeLongitude": 55,
+	              "periapsisArgument": 0,
+	              "meanAnomaly": 1.1,
+								"epoch": 1343.91
+	            }
+	          }
+	        ]
+	      },
+	      {
+	        "name": "Dres",
+	        "color": "154,154,154",
+            "type": "dwarfplanet",
+	        "mass": 3.2191322E20,
+	        "radius": 138E3,
+	        "rotationPeriod": 34800,
+	        "orbit": {
+	          "apoapsis": 46761053522,
+	          "periapsis": 34917642884,
+	          "inclination": 5,
+	          "ascendingNodeLongitude": 280,
+	          "periapsisArgument": 90,
+	          "meanAnomaly": 3.14
+	        }
+	      },
+				{
+	        "name": "Valit",
+	        "color": "120,100,90",
+          "type": "dwarfplanet",
+	        "geeASL": 0.8,
+	        "radius": 310E3,
+	        "rotationPeriod": 46134.589375,
+	        "orbit": {
+	          "semiMajorAxis": 40839348203,
+	          "eccentricity": 0.08,
+	          "inclination": 3.3,
+	          "ascendingNodeLongitude": 280,
+	          "periapsisArgument": 90,
+	          "meanAnomaly": 0.14000010490417,
+						"epoch": 0
+	        }
+	      },
+				{
+	        "name": "Pergas",
+	        "color": "120,100,70",
+          "type": "dwarfplanet",
+	        "geeASL": 1,
+	        "radius": 245E3,
+	        "rotationPeriod": 46134.589375,
+	        "orbit": {
+	          "semiMajorAxis": 53839348203,
+	          "eccentricity": 0.02,
+	          "inclination": 3.3,
+	          "ascendingNodeLongitude": 200,
+	          "periapsisArgument": 80,
+	          "meanAnomaly": 1.1,
+						"epoch": 1343.91
+	        }
+	      },
+	      {
+	        "name": "Jool",
+	        "color": "117,173,78",
+            "type": "planet",
+	        "mass": 4.2332635E24,
+	        "radius": 6000E3,
+	        "rotationPeriod": 36000,
+	        "orbit": {
+	          "apoapsis": 72212238387,
+	          "periapsis": 65334882253,
+	          "inclination": 1.304,
+	          "ascendingNodeLongitude": 52,
+	          "periapsisArgument": 0,
+	          "meanAnomaly": 0.1
+	        },
+	        "atmosphere": {
+	        	"surfacePressure": 1519.88,
+	        	"scaleHeight": 31000,
+	        	"atmosphereLimit": 200000,
+	        	"temperatureMin": -73.15,
+	        	"temperatureMax": -73.15,
+	        	"haveOxygen": false
+	        },
+	        "celestials": [
+	          {
+	            "name": "Laythe",
+	            "color": "114,121,148",
+                "type": "satellite",
+	            "mass": 2.9397663E22,
+	            "radius": 500E3,
+	            "rotationPeriod": 52980.879,
+	            "orbit": {
+	              "apoapsis": 2718400,
+	              "periapsis": 2718400,
+	              "inclination": 0,
+	              "ascendingNodeLongitude": 0,
+	              "periapsisArgument": 0,
+	              "meanAnomaly": 3.14
+	            },
+	            "atmosphere": {
+		        	"surfacePressure": 60.7950,
+		        	"scaleHeight": 8000,
+		        	"atmosphereLimit": 50000,
+		        	"temperatureMin": -26.15,
+		        	"temperatureMax": 14.85,
+		        	"haveOxygen": true
+		        },
+	          },
+	          {
+	            "name": "Vall",
+	            "color": "140,158,160",
+                "type": "satellite",
+	            "mass": 3.1088028E21,
+	            "radius": 300E3,
+	            "rotationPeriod": 105962.09,
+	            "orbit": {
+	              "apoapsis": 43152000,
+	              "periapsis": 43152000,
+	              "inclination": 0,
+	              "ascendingNodeLongitude": 0,
+	              "periapsisArgument": 0,
+	              "meanAnomaly": 0.9
+	            }
+	          },
+	          {
+	            "name": "Tylo",
+	            "color": "188,180,168",
+                "type": "satellite",
+	            "mass": 4.2332635E22,
+	            "radius": 600E3,
+	            "rotationPeriod": 211926.36,
+	            "orbit": {
+	              "apoapsis": 68500000,
+	              "periapsis": 68500000,
+	              "inclination": 0.025,
+	              "ascendingNodeLongitude": 0,
+	              "periapsisArgument": 0,
+	              "meanAnomaly": 3.14
+	            }
+	          },
+	          {
+	            "name": "Bop",
+	            "color": "140,127,118",
+                "type": "satellite",
+	            "mass": 3.726153E19,
+	            "radius": 65E3,
+	            "rotationPeriod": 544507.40,
+	            "orbit": {
+	              "apoapsis": 158697500,
+	              "periapsis": 98302500,
+	              "inclination": 15,
+	              "ascendingNodeLongitude": 10,
+	              "periapsisArgument": 25,
+	              "meanAnomaly": 0.9
+	            }
+	          },
+	          {
+	            "name": "Pol",
+	            "color": "238,206,152",
+                "type": "satellite",
+	            "mass": 1.0813636E19,
+	            "radius": 44E3,
+	            "rotationPeriod": 901902.62,
+	            "orbit": {
+	              "apoapsis": 210624206,
+	              "periapsis": 149155794,
+	              "inclination": 4.25,
+	              "ascendingNodeLongitude": 2,
+	              "periapsisArgument": 15,
+	              "meanAnomaly": 0.9
+	            }
+	          }
+	        ]
+	      },
+	      {
+	        "name": "Eeloo",
+	        "color": "200,205,201",
+            "type": "dwarfplanet",
+	        "mass": 1.1149358E21,
+	        "radius": 210E3,
+	        "rotationPeriod": 19460,
+	        "orbit": {
+	          "apoapsis": 113549713200,
+	          "periapsis": 66687926800,
+	          "inclination": 6.15,
+	          "ascendingNodeLongitude": 50,
+	          "periapsisArgument": 260,
+	          "meanAnomaly": 3.14
+	        }
+	      },
+				{
+	        "name": "Kralaus",
+	        "color": "120,80,80",
+          "type": "dwarfplanet",
+	        "geeASL": 0.55,
+	        "radius": 198E3,
+	        "rotationPeriod": 46134.589375,
+	        "orbit": {
+	          "semiMajorAxis": 115798522368,
+	          "eccentricity": 0.08,
+	          "inclination": 3,
+	          "ascendingNodeLongitude": 45,
+	          "periapsisArgument": 90,
+	          "meanAnomaly": 1.1,
+						"epoch": 1343.91
+	        }
+	      },
+				{
+					"name": "Sarvin",
+	        "color": "200,200,220",
+          "type": "ringplanet",
+	        "geeASL": 0.7,
+	        "radius": 5600E3,
+	        "rotationPeriod": 39000,
+	        "orbit": {
+	          "semiMajorAxis": 155798522368,
+	          "eccentricity": 0.09,
+	          "inclination": 2.3,
+	          "ascendingNodeLongitude": 55,
+	          "periapsisArgument": 0,
+	          "meanAnomaly": 1.1,
+						"epoch": 1343.91
+	        },
+					"celestials": [
+						{
+			        "name": "Potatus",
+			        "color": "100,104,100",
+		        	"type": "satellite",
+			        "geeASL": 0.04,
+			        "radius": 240E3,
+			        "rotationPeriod": 52980.8790593796,
+			        "orbit": {
+			          "semiMajorAxis": 16548698,
+			          "eccentricity": 0.04,
+			          "inclination": 0,
+			          "ascendingNodeLongitude": 55,
+			          "periapsisArgument": 0,
+			          "meanAnomaly": 1.1,
+								"epoch": 1343.91
+			        }
+						},
+						{
+			        "name": "Fonso",
+			        "color": "100,90,90",
+		        	"type": "satellite",
+			        "geeASL": 0.04,
+			        "radius": 260E3,
+			        "rotationPeriod": 52247,
+			        "orbit": {
+			          "semiMajorAxis": 28548698,
+			          "eccentricity": 0.04,
+			          "inclination": 7.3,
+			          "ascendingNodeLongitude": 55,
+			          "periapsisArgument": 0,
+			          "meanAnomaly": 1.1,
+								"epoch": 1343.91
+			        }
+						},
+						{
+			        "name": "Daphy",
+			        "color": "200,200,200",
+		        	"type": "satellite",
+			        "geeASL": 0.04,
+			        "radius": 260E3,
+			        "rotationPeriod": 52247,
+			        "orbit": {
+			          "semiMajorAxis": 28548698,
+			          "eccentricity": 0.04,
+			          "inclination": 356.7,
+			          "ascendingNodeLongitude": 55,
+			          "periapsisArgument": 0,
+			          "meanAnomaly": 1.10000002384186,
+								"epoch": 1343.91003417969
+			        }
+						},
+						{
+			        "name": "Shayle",
+			        "color": "100,97,97",
+		        	"type": "satellite",
+			        "geeASL": 0.1,
+			        "radius": 100E3,
+			        "rotationPeriod": 44029,
+			        "orbit": {
+			          "semiMajorAxis": 56548696,
+			          "eccentricity": 0.039,
+			          "inclination": 20.3,
+			          "ascendingNodeLongitude": 55,
+			          "periapsisArgument": 0,
+			          "meanAnomaly": 1.1,
+								"epoch": 1343.91
+			        }
+						},
+						{
+			        "name": "S-1",
+			        "color": "145,69,69",
+		        	"type": "satellite",
+			        "geeASL": 0.09,
+			        "radius": 19E3,
+			        "rotationPeriod": 28255,
+			        "orbit": {
+			          "semiMajorAxis": 65113158,
+			          "eccentricity": 0.09,
+			          "inclination": 350,
+			          "ascendingNodeLongitude": 55,
+			          "periapsisArgument": 0,
+			          "meanAnomaly": 1.1,
+								"epoch": 1343.91
+			        }
+						},
+						{
+			        "name": "S-2",
+			        "color": "69,145,69",
+		        	"type": "satellite",
+			        "geeASL": 0.07,
+			        "radius": 22E3,
+			        "rotationPeriod": 28255,
+			        "orbit": {
+			          "semiMajorAxis": 61121319,
+			          "eccentricity": 0.59,
+			          "inclination": 180,
+			          "ascendingNodeLongitude": 55,
+			          "periapsisArgument": 0,
+			          "meanAnomaly": 1.1,
+								"epoch": 1343.91
+			        }
+						},
+						{
+			        "name": "S-3",
+			        "color": "69,69,145",
+		        	"type": "satellite",
+			        "geeASL": 0.04,
+			        "radius": 18E3,
+			        "rotationPeriod": 28255,
+			        "orbit": {
+			          "semiMajorAxis": 199792151,
+			          "eccentricity": 0.011,
+			          "inclination": 9,
+			          "ascendingNodeLongitude": 55,
+			          "periapsisArgument": 0,
+			          "meanAnomaly": 1.1,
+								"epoch": 1343.91
+			        }
+						},
+						{
+			        "name": "S-4",
+			        "color": "99,99,99",
+		        	"type": "satellite",
+			        "geeASL": 0.19,
+			        "radius": 20E3,
+			        "rotationPeriod": 28255,
+			        "orbit": {
+			          "semiMajorAxis": 199896941,
+			          "eccentricity": 0.6,
+			          "inclination": 49,
+			          "ascendingNodeLongitude": 55,
+			          "periapsisArgument": 0,
+			          "meanAnomaly": 1.1,
+								"epoch": 1343.91
+			        }
+						}
+					]
+				},
+				{
+					"name": "Ganag-Kal",
+          "type": "barycenter",
+	        "mass": 1,
+	        "radius": 3,
+	        "rotationPeriod": 0,
+	        "orbit": {
+	          "semiMajorAxis": 195798522368,
+	          "eccentricity": 0.06,
+	          "inclination": 7,
+	          "ascendingNodeLongitude": 180,
+	          "periapsisArgument": 0,
+	          "meanAnomaly": 1.1,
+						"epoch": 1343
+	        },
+					"celestials": [
+						{
+							"name": "Ganag",
+							"color": "100,100,100",
+		          "type": "dwarfplanet",
+			        "geeASL": 1.1,
+			        "radius": 120E3,
+			        "rotationPeriod": 46134.589375,
+			        "orbit": {
+			          "semiMajorAxis": 100000000,
+			          "eccentricity": 0.06,
+			          "inclination": 1,
+			          "ascendingNodeLongitude": 180,
+			          "periapsisArgument": 0,
+			          "meanAnomaly": 0,
+								"epoch": 0
+			        }
+						},
+						{
+							"name": "Kal",
+							"color": "150,120,120",
+		          "type": "dwarfplanet",
+			        "geeASL": 0.7,
+			        "radius": 98E3,
+			        "rotationPeriod": 46134.589375,
+			        "orbit": {
+			          "semiMajorAxis": 100000000,
+			          "eccentricity": 0,
+			          "inclination": 1,
+			          "ascendingNodeLongitude": 0,
+			          "periapsisArgument": 0,
+			          "meanAnomaly": 0,
+								"epoch": 1343
+			        }
+						}
+					]
+				},
+				{
+	        "name": "Corolet",
+	        "color": "221,255,221",
+        	"type": "comet",
+	        "geeASL": 0.24,
+	        "radius": 6000,
+	        "rotationPeriod": 46134.589375,
+	        "orbit": {
+	          "semiMajorAxis": 201500000256,
+	          "eccentricity": 0.97,
+	          "inclination": 16,
+	          "ascendingNodeLongitude": 80,
+	          "periapsisArgument": 0,
+	          "meanAnomaly": 1.1,
+						"epoch": 200000
+	        }
+	      },
+				{
+	        "name": "Keelon",
+	        "color": "200,170,170",
+        	"type": "planet",
+	        "geeASL": 2.7,
+	        "radius": 800E3,
+	        "rotationPeriod": 52247,
+	        "orbit": {
+	          "semiMajorAxis": 255798522368,
+	          "eccentricity": 0.1,
+	          "inclination": -10,
+	          "ascendingNodeLongitude": 180,
+	          "periapsisArgument": 0,
+	          "meanAnomaly": 1.1,
+						"epoch": 1343.91
+	        },
+					"celestials": [
+						{
+			        "name": "Phiscool",
+			        "color": "100,90,90",
+		        	"type": "satellite",
+			        "geeASL": 0.32,
+			        "radius": 180E3,
+			        "rotationPeriod": 52247,
+			        "orbit": {
+			          "semiMajorAxis": 13522368,
+			          "eccentricity": 0.09,
+			          "inclination": 2,
+			          "ascendingNodeLongitude": 55,
+			          "periapsisArgument": 0,
+			          "meanAnomaly": 1.1,
+								"epoch": 1343.91
+			        }
+						},
+						{
+			        "name": "Calad",
+			        "color": "115,135,138",
+		        	"type": "satellite",
+			        "geeASL": 0.21,
+			        "radius": 150E3,
+			        "rotationPeriod": 52247,
+			        "orbit": {
+			          "semiMajorAxis": 58522368,
+			          "eccentricity": 0.51,
+			          "inclination": 27,
+			          "ascendingNodeLongitude": 55,
+			          "periapsisArgument": 0,
+			          "meanAnomaly": 1.1,
+								"epoch": 1343.91
+			        }
+						},
+						{
+			        "name": "Zargav",
+			        "color": "209,200,200",
+		        	"type": "satellite",
+			        "geeASL": 0.21,
+			        "radius": 210E3,
+			        "rotationPeriod": 52247,
+			        "orbit": {
+			          "semiMajorAxis": 58522368,
+			          "eccentricity": 0.12,
+			          "inclination": -6,
+			          "ascendingNodeLongitude": 55,
+			          "periapsisArgument": 180,
+			          "meanAnomaly": 1.1,
+								"epoch": 1343.91
+			        }
+						},
+						{
+			        "name": "Womp",
+			        "color": "200,190,185",
+		        	"type": "satellite",
+			        "geeASL": 0.95,
+			        "radius": 280E3,
+			        "rotationPeriod": 52247,
+			        "orbit": {
+			          "semiMajorAxis": 128522368,
+			          "eccentricity": 0.021,
+			          "inclination": 6,
+			          "ascendingNodeLongitude": 100,
+			          "periapsisArgument": 0,
+			          "meanAnomaly": 1.1,
+								"epoch": 1343.91
+			        }
+						}
+					]
+	      }
+	   ]
+	}
+]

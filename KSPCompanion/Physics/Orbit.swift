@@ -30,7 +30,7 @@ class Orbit {
         self.ascendingNodeLongitude = ascendingNodeLongitude
         
         if let atTime = atTime {
-            // Should calculate the anomaly
+            // Should calculate the anomaly at time 0
             self.meanAnomaly = meanAnomaly
         } else {
             self.meanAnomaly = meanAnomaly
