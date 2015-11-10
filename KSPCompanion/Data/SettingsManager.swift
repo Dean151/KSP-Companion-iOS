@@ -7,27 +7,40 @@
 //
 
 import Foundation
+import SecureNSUserDefaults
 
-class SettingsManager {
+class Settings {
     
     // Names of the settings
-    static let hideAdsString = "hideAds"
-    static let solarSystemString = "solarSystem"
-    static let temperatureUnitString = "temperatureUnit"
-    static let earthTimeString = "useEarthTime"
+    private let hideAdsString = "hideAds"
+    private let solarSystemString = "solarSystem"
+    private let temperatureUnitString = "temperatureUnit"
+    private let earthTimeString = "useEarthTime"
     
-    static var settings = NSUserDefaults.standardUserDefaults()
+    // Singleton
+    static let sharedInstance = Settings()
     
-    static var hideAds: Bool {
+    let settings = NSUserDefaults.standardUserDefaults()
+    
+    init() {
+        guard let key = NSBundle.mainBundle().objectForInfoDictionaryKey("SecureNSUserDefaultKey") as? String else {
+            fatalError("Could access encryption key")
+        }
+        
+        settings.setSecret(key)
+    }
+    
+    var hideAds: Bool {
         get {
-            return settings.boolForKey(hideAdsString)
+        
+            return settings.secretBoolForKey(hideAdsString)
         }
         set {
-            settings.setBool(newValue, forKey: hideAdsString)
+            settings.setSecretBool(newValue, forKey: hideAdsString)
         }
     }
     
-    static var solarSystem: SolarSystem {
+    var solarSystem: SolarSystem {
         get {
             if let solarsystem = SolarSystem(rawValue: settings.integerForKey(solarSystemString)) {
                 return solarsystem
@@ -40,7 +53,7 @@ class SettingsManager {
         }
     }
     
-    static var temperatureUnit: TemperatureUnit {
+    var temperatureUnit: TemperatureUnit {
         get {
             if let temp = TemperatureUnit(rawValue: settings.integerForKey(temperatureUnitString)) {
                 return temp
@@ -53,7 +66,7 @@ class SettingsManager {
         }
     }
     
-    static var useEarthTime: Bool {
+    var useEarthTime: Bool {
         get {
             return settings.boolForKey(earthTimeString)
         }
@@ -62,7 +75,7 @@ class SettingsManager {
         }
     }
     
-    static var useKerbinTime: Bool {
+    var useKerbinTime: Bool {
         get {
             return !useEarthTime
         }

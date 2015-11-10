@@ -81,8 +81,8 @@ class Units {
         
         let minuteDuration:Double = 60
         let hourDuration = 60 * minuteDuration
-        let dayDuration = (SettingsManager.useKerbinTime ? 6 : 24) * hourDuration
-        let yearDuration = (SettingsManager.useKerbinTime ? 426 : 365) * dayDuration
+        let dayDuration = (Settings.sharedInstance.useKerbinTime ? 6 : 24) * hourDuration
+        let yearDuration = (Settings.sharedInstance.useKerbinTime ? 426 : 365) * dayDuration
         
         if seconds/yearDuration >= 1 {
             years = Int(floor( seconds/yearDuration ))
@@ -124,11 +124,11 @@ class Units {
             out += " \(seconds)s"
         }
         
-        if time == dayDuration && SettingsManager.useKerbinTime {
+        if time == dayDuration && Settings.sharedInstance.useKerbinTime {
             return NSLocalizedString("DAY_DETAIL", comment: "")
         }
         
-        if time == yearDuration && SettingsManager.useKerbinTime {
+        if time == yearDuration && Settings.sharedInstance.useKerbinTime {
             return NSLocalizedString("YEAR_DETAIL", comment: "")
         }
         
@@ -145,7 +145,7 @@ class Units {
     }
     
     static func temperatureUnit(celsius celsius: Double) -> String {
-        return temperatureUnit(celsius: celsius, out: SettingsManager.temperatureUnit)
+        return temperatureUnit(celsius: celsius, out: Settings.sharedInstance.temperatureUnit)
     }
 }
 

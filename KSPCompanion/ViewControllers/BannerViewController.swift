@@ -53,7 +53,7 @@ class BannerViewController: UIViewController, ADBannerViewDelegate {
         
         bannerFrame.size = bannerView.sizeThatFits(contentFrame.size)
         
-        if bannerView.bannerLoaded && !SettingsManager.hideAds {
+        if bannerView.bannerLoaded && !Settings.sharedInstance.hideAds {
             contentFrame.size.height -= bannerFrame.size.height
             bannerFrame.origin.y = contentFrame.size.height - (self.parentViewController as! UITabBarController).tabBar.frame.size.height
         } else {
@@ -62,7 +62,7 @@ class BannerViewController: UIViewController, ADBannerViewDelegate {
         
         contentController.view.frame = contentFrame
         
-        if self.isViewLoaded() && !SettingsManager.hideAds && self.view.window != nil {
+        if self.isViewLoaded() && !Settings.sharedInstance.hideAds && self.view.window != nil {
             self.view.addSubview(bannerView)
             bannerView.frame = bannerFrame
         } else {

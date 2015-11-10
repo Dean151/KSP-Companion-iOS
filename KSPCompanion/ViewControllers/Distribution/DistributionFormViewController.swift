@@ -123,7 +123,7 @@ class DistributionFormViewController: FormViewController {
             <<< PushRow<Celestial>("celestial") {
                 $0.title = NSLocalizedString("ORBIT_AROUND", comment: "")
                 $0.options = self.celestials
-                $0.value = SettingsManager.solarSystem == .KerbolPlus ? self.celestials[5] : self.celestials[4] // Kerbin
+                $0.value = Settings.sharedInstance.solarSystem == .KerbolPlus ? self.celestials[5] : self.celestials[4] // Kerbin
             }
             
             <<< IntRow("number") {

@@ -69,5 +69,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>SecureNSUserDefaultKey</key>
+	<string>$(SECURE_NS_USER_DEFAULT_KEY)</string>
 </dict>
 </plist>

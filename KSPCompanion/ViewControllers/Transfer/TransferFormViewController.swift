@@ -101,12 +101,12 @@ class TransferFormViewController: FormViewController {
             <<< PushRow<Celestial>("from") {
                 $0.title = NSLocalizedString("FROM", comment: "")
                 $0.options = self.celestials
-                $0.value = SettingsManager.solarSystem == .KerbolPlus ? self.celestials[4] : self.celestials[3] // Kerbin
+                $0.value = Settings.sharedInstance.solarSystem == .KerbolPlus ? self.celestials[4] : self.celestials[3] // Kerbin
             }
             <<< PushRow<Celestial>("to") {
                 $0.title = NSLocalizedString("TO", comment: "")
                 $0.options = self.celestials
-                $0.value = SettingsManager.solarSystem == .KerbolPlus ? self.celestials[8] : self.celestials[6] // Duna
+                $0.value = Settings.sharedInstance.solarSystem == .KerbolPlus ? self.celestials[8] : self.celestials[6] // Duna
             }
         
         if (UI_USER_INTERFACE_IDIOM() == .Pad) {
