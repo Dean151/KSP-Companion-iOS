@@ -96,6 +96,8 @@ class CelestialsTableViewController: UITableViewController {
         
         cell.accessoryType = self.splitViewController!.collapsed ? .DisclosureIndicator : .None;
         
+        //cell.indentationLevel = celestial.indentation
+        
         if let img = celestial.type.image {
             cell.imageView?.image = img.imageWithRenderingMode(.AlwaysTemplate)
         } else {

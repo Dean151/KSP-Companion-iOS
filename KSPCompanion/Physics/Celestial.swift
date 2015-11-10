@@ -11,7 +11,7 @@ import UIKit
 import Darwin
 
 enum CelestialType: Int, CustomStringConvertible {
-    case Star=0, Planet, RingPlanet, DwarfPlanet, Satellite, Comet, Other
+    case Star=0, Planet, RingPlanet, DwarfPlanet, Satellite, Comet, Barycenter, Other
     
     var image: UIImage? {
         switch self {
@@ -27,6 +27,8 @@ enum CelestialType: Int, CustomStringConvertible {
             return UIImage(named: "satellite")
         case .Comet:
             return UIImage(named: "comet")
+        case .Barycenter:
+            return UIImage(named: "barycenter")
         default:
             return nil
         }
@@ -46,6 +48,8 @@ enum CelestialType: Int, CustomStringConvertible {
             return "Natural satellite"
         case .Comet:
             return "Comet"
+        case .Barycenter:
+            return "Barycenter"
         default:
             return "Other"
         }
@@ -65,6 +69,8 @@ enum CelestialType: Int, CustomStringConvertible {
             return .DwarfPlanet
         case "comet":
             return .Comet
+        case "barycenter":
+            return .Barycenter
         default:
             return .Other
         }
@@ -123,6 +129,14 @@ class Celestial: Equatable, CustomStringConvertible {
         let blue: CGFloat = CGFloat((colors[2] as NSString).floatValue)/255
         
         self.color = UIColor(red: red, green: green, blue: blue, alpha: 1)
+    }
+    
+    var indentation: Int {
+        if let orbit = self.orbit {
+            return orbit.orbitAroundCelestial.indentation + 1
+        } else {
+            return 0
+        }
     }
     
     var surface: Double {

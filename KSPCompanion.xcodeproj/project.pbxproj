@@ -182,11 +182,11 @@
 		E907FE941BB1ED4000857D14 /* KSPCompanion */ = {
 			isa = PBXGroup;
 			children = (
+				E907FE951BB1ED4000857D14 /* AppDelegate.swift */,
 				E9808BFD1BB200AA000FA2CC /* Data */,
 				E9808C011BB200AA000FA2CC /* Physics */,
 				E9808C061BB200AA000FA2CC /* ViewControllers */,
 				E9808C0A1BB200AA000FA2CC /* Views */,
-				E907FE951BB1ED4000857D14 /* AppDelegate.swift */,
 				E907FE9B1BB1ED4000857D14 /* Main.storyboard */,
 				E907FEA01BB1ED4000857D14 /* LaunchScreen.storyboard */,
 				E907FE9E1BB1ED4000857D14 /* Assets.xcassets */,
@@ -202,8 +202,8 @@
 			isa = PBXGroup;
 			children = (
 				E9808BFE1BB200AA000FA2CC /* System.json */,
-				E9629BE61BF15C5A005E5391 /* KerbolPlus.json */,
 				E924D7251BB2E0D400443B4E /* OuterPlanets.json */,
+				E9629BE61BF15C5A005E5391 /* KerbolPlus.json */,
 				E9808BFF1BB200AA000FA2CC /* DataManager.swift */,
 				E9808C001BB200AA000FA2CC /* SettingsManager.swift */,
 			);
