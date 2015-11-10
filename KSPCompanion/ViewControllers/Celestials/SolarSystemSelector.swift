@@ -58,7 +58,7 @@ class SolarSystemSelector: UITableViewController {
         
         if let solarSystem = SolarSystem(rawValue: indexPath.row) {
             cell.textLabel?.text = "\(solarSystem)"
-            if solarSystem == SettingsManager.solarSystem {
+            if solarSystem == Settings.sharedInstance.solarSystem {
                 cell.accessoryType = .Checkmark
             } else {
                 cell.accessoryType = .None
@@ -70,7 +70,7 @@ class SolarSystemSelector: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let solarSystem = SolarSystem(rawValue: indexPath.row) {
-            SettingsManager.solarSystem = solarSystem
+            Settings.sharedInstance.solarSystem = solarSystem
             self.dismiss(self)
         }
     }

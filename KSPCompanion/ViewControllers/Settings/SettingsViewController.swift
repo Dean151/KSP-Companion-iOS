@@ -29,7 +29,7 @@ class SettingsViewController: FormViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if !SettingsManager.hideAds && !iapFetched {
+        if !Settings.sharedInstance.hideAds && !iapFetched {
             setupIAP()
         }
     }
@@ -61,19 +61,19 @@ class SettingsViewController: FormViewController {
             <<< SegmentedRow<String>("temperature") {
                 $0.title = NSLocalizedString("TEMPERATURE_UNIT", comment: "")
                 $0.options = self.tempOptions
-                $0.value = self.tempOptions[SettingsManager.temperatureUnit.rawValue]
+                $0.value = self.tempOptions[Settings.sharedInstance.temperatureUnit.rawValue]
             }.onChange { row in
                 guard let tempString = row.value else { return }
                 guard let temp = TemperatureUnit(rawValue: self.tempOptions.indexOf(tempString)!) else { return }
-                SettingsManager.temperatureUnit = temp
+                Settings.sharedInstance.temperatureUnit = temp
             }
             
             <<< SwitchRow("time") {
                 $0.title = NSLocalizedString("KERBIN_TIME_UNITS", comment: "")
-                $0.value = SettingsManager.useKerbinTime
+                $0.value = Settings.sharedInstance.useKerbinTime
             }.onChange { row in
                     guard let kerbinTime = row.value else { return }
-                    SettingsManager.useKerbinTime = kerbinTime
+                    Settings.sharedInstance.useKerbinTime = kerbinTime
             }
             
         
@@ -83,7 +83,7 @@ class SettingsViewController: FormViewController {
                 $0.title = NSLocalizedString("REMOVE_ADS", comment: "")
                 $0.cell.tintColor = UIColor.appGreenColor
                 $0.hidden = Condition.Function([], { form in
-                    return SettingsManager.hideAds
+                    return Settings.sharedInstance.hideAds
                 })
                 $0.disabled = Condition.Function([], { form in
                     return !self.iapFetched
@@ -103,7 +103,7 @@ class SettingsViewController: FormViewController {
                 $0.title = NSLocalizedString("RESTORE_ADS", comment: "")
                 $0.cell.tintColor = UIColor.appGreenColor
                 $0.hidden = Condition.Function([], { form in
-                    return SettingsManager.hideAds
+                    return Settings.sharedInstance.hideAds
                 })
                 $0.disabled = Condition.Function([], { form in
                     return !self.iapFetched
@@ -120,7 +120,7 @@ class SettingsViewController: FormViewController {
                 $0.cell.tintColor = UIColor.appGreenColor
                 $0.disabled = true
                 $0.hidden = Condition.Function([], { form in
-                    return !SettingsManager.hideAds
+                    return !Settings.sharedInstance.hideAds
                 })
             }
         
@@ -151,7 +151,7 @@ class SettingsViewController: FormViewController {
     func didPurchasedProduct(sender: AnyObject) {
         iapFetched = false
         self.updateForm()
-        SettingsManager.hideAds = true
+        Settings.sharedInstance.hideAds = true
         
         NSNotificationCenter.defaultCenter().postNotificationName(BannerShouldBeHiddenByIAP, object: nil)
         
