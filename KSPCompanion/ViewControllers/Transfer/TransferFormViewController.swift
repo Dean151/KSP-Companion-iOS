@@ -58,13 +58,17 @@ class TransferFormViewController: FormViewController {
         if from != dest {
             guard let alt = results["altitude"] as? Int else { print("not int"); return }
             if alt > 0 {
-                if let calcul = from.transfertTo(dest, withAltitude: Double(alt)) {
-                    self.results = calcul
-                    Answers.logCustomEventWithName("TransferCalculation", customAttributes: ["from": from.name, "to": dest.name, "parking": alt])
-                    performSegueWithIdentifier("calculateSegue", sender: self)
-                }
-                else {
-                    TSMessage.showNotificationWithTitle(NSLocalizedString("COULD_NOT_CALCUL_NOTIF", comment: ""), subtitle: NSLocalizedString("NOT_AROUND_SAME_CELESTIAL", comment: ""), type: .Error)
+                if from.orbit!.eccentricity < 0.3 && dest.orbit!.eccentricity < 0.3 {
+                    if let calcul = from.transfertTo(dest, withAltitude: Double(alt)) {
+                        self.results = calcul
+                        Answers.logCustomEventWithName("TransferCalculation", customAttributes: ["from": from.name, "to": dest.name, "parking": alt])
+                        performSegueWithIdentifier("calculateSegue", sender: self)
+                    }
+                    else {
+                        TSMessage.showNotificationWithTitle(NSLocalizedString("COULD_NOT_CALCUL_NOTIF", comment: ""), subtitle: NSLocalizedString("NOT_AROUND_SAME_CELESTIAL", comment: ""), type: .Error)
+                    }
+                } else {
+                    TSMessage.showNotificationWithTitle(NSLocalizedString("FROM_DEST_NOT_ROUND_ENOUGH", comment: ""), subtitle: NSLocalizedString("FROM_DEST_NOT_ROUND_ENOUGH_DESC", comment: ""), type: .Error)
                 }
             }
         } else {

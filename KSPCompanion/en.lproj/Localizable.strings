@@ -38,6 +38,8 @@
 "ESTIMATED_DV" = "Estimated ∆v";
 "ESTIMATED_DV_FOOTER" = "This number does not include the ∆v necessary for making your first circular orbit.";
 "FROM" = "From";
+"FROM_DEST_NOT_ROUND_ENOUGH" = "From or destination's orbit is not round enough !";
+"FROM_DEST_NOT_ROUND_ENOUGH_DESC" = "The calcul wouldn't be accurate enough to let you through. Sorry !";
 "GEOSYNC_ORBIT" = "Geosync. orbit";
 "HAS_OXYGEN" = "Has oxygen";
 "IAP_FAIL" = "Purchase has failed";

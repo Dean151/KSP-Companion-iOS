@@ -38,6 +38,8 @@
 "ESTIMATED_DV" = "∆v estimé";
 "ESTIMATED_DV_FOOTER" = "Cette valeur de ∆v ne comprends pas la valeur nécessaire pour effectuer la première orbite";
 "FROM" = "Depuis";
+"FROM_DEST_NOT_ROUND_ENOUGH" = "L'orbite d'origine ou de destination n'est pas assez ronde !";
+"FROM_DEST_NOT_ROUND_ENOUGH_DESC" = "Le calcul ne serait pas assez précis avec cet outil. Désolé !";
 "GEOSYNC_ORBIT" = "Orbite synchro.";
 "HAS_OXYGEN" = "Présence d'oxygène";
 "IAP_FAIL" = "L'achat a échoué";
