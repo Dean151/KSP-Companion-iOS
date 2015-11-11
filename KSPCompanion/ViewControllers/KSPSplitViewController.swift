@@ -39,8 +39,15 @@ class KSPSplitViewController: UISplitViewController, UISplitViewControllerDelega
     
     func sizeChanged(sender: AnyObject) {
         guard let navVC = self.viewControllers.first as? UINavigationController else { return }
-        guard let detailVC = navVC.topViewController as? CelestialsTableViewController else { return }
-        detailVC.tableView.reloadData()
+        guard let masterVC = navVC.topViewController as? CelestialsTableViewController else { return }
+        masterVC.tableView.reloadData()
+    }
+    
+    func rollBack() {
+        if self.collapsed {
+            guard let navVC = self.viewControllers.last as? UINavigationController else { return }
+            navVC.popToRootViewControllerAnimated(true)
+        }
     }
 }
 

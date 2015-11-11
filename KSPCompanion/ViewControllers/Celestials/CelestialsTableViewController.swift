@@ -143,7 +143,7 @@ class CelestialsTableViewController: UITableViewController {
     func setFromOrTo(from: Bool, atIndexPath indexPath: NSIndexPath) {
         self.performSelector("closeEditActions", withObject: nil, afterDelay: 0.1)
         // Looking for the right controller
-        guard let tabBarController = self.tabBarController else { print("No Tab Bar"); return }
+        guard let tabBarController = self.tabBarController as? KSPTabBarController else { print("No Tab Bar"); return }
         guard let bannerVC = tabBarController.viewControllers?[1] as? BannerViewController else { print("No Banner view controller"); return }
         guard let splitVC = bannerVC.contentController as? KSPSplitViewController else { print("No Split view controller"); return }
         guard let navVC = splitVC.viewControllers.first as? UINavigationController else { print("No nav controller"); return }
@@ -164,7 +164,7 @@ class CelestialsTableViewController: UITableViewController {
         transferVC.tableView!.reloadData()
         
         // Changing the view
-        self.tabBarController?.selectedIndex = 1
+        tabBarController.changeToIndex(1)
     }
     
     func closeEditActions() {

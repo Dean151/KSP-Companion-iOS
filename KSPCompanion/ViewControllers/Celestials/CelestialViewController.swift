@@ -276,7 +276,7 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         guard let celestial = self.celestial else { return }
         
         // Looking for the right controller
-        guard let tabBarController = self.tabBarController else { print("No Tab Bar"); return }
+        guard let tabBarController = self.tabBarController as? KSPTabBarController else { print("No Tab Bar"); return }
         guard let bannerVC = tabBarController.viewControllers?[2] as? BannerViewController else { print("No Banner view controller"); return }
         guard let splitVC = bannerVC.contentController as? KSPSplitViewController else { print("No Split view controller"); return }
         guard let navVC = splitVC.viewControllers.first as? UINavigationController else { print("No nav controller"); return }
@@ -301,7 +301,7 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         distributionVC.tableView!.reloadData()
         
         // Changing the view
-        self.tabBarController?.selectedIndex = 2
+        tabBarController.changeToIndex(2)
     }
     
     func closeEditActions() {

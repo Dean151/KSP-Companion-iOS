@@ -10,8 +10,12 @@ import UIKit
 
 class KSPTabBarController: UITabBarController {
     
+    var selectedItem: UITabBarItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //self.delegate = self
         
         var newViewControllers = [BannerViewController]()
         
@@ -23,5 +27,23 @@ class KSPTabBarController: UITabBarController {
         }
         
         self.setViewControllers(newViewControllers, animated: false)
+        self.selectedItem = newViewControllers[0].tabBarItem
+    }
+    
+    func changeToIndex(index: Int) {
+        self.selectedItem = self.viewControllers![index].tabBarItem
+        self.selectedIndex = index
+    }
+    
+    // MARK: UITabBarControllerDelegate
+    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        if self.selectedItem == item {
+            // Here we tapped again a selected item
+            // So we should go back on one step
+            guard let bannerVC = self.selectedViewController as? BannerViewController else { return }
+            (bannerVC.contentController as? KSPSplitViewController)?.rollBack()
+        } else {
+            self.selectedItem = item
+        }
     }
 }
