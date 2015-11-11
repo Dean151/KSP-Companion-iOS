@@ -111,11 +111,11 @@ class CelestialsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return indexPath.row != 0
+    }
+    
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        if indexPath.row == 0 {
-            return [] // No action from Kerbol !
-        }
-        
         // From action
         let fromAction = UITableViewRowAction(style: .Default, title: NSLocalizedString("LEAVE", comment: "") , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             self.setFromAtIndexPath(indexPath)

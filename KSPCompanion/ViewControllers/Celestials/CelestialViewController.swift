@@ -244,17 +244,21 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        guard let celestial = self.celestial else { return [] }
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        guard let celestial = self.celestial else { return false }
         
         if indexPath.section != 0 || (indexPath.row != 6 && indexPath.row != 7) {
-            return [] // No action for every row
+            return false // No action for every row
         }
         
         if (indexPath.row == 6 && !celestial.canGeoSync) || (indexPath.row == 7 && !celestial.canSemiGeoSync) {
-            return [] // No action if out of SOI
+            return false // No action if out of SOI
         }
         
+        return true
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         // Distribute action
         let distributeAction = UITableViewRowAction(style: .Default, title: NSLocalizedString("DISTRIBUTE", comment: "") , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
             self.setDistributionAtIndexPath(indexPath)
