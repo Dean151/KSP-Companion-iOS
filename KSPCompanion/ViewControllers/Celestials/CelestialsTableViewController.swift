@@ -28,7 +28,9 @@ class CelestialsTableViewController: UITableViewController {
         let newData = DataManager.getCelestialsFromJson()
         if celestials.count != newData.count {
             celestials = newData
-            self.tableView.reloadData()
+            self.tableView.beginUpdates()
+            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+            self.tableView.endUpdates()
         }
     }
     
