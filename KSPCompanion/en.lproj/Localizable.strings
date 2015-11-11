@@ -24,6 +24,7 @@
 "DAY_SUFFIX" = " %dd";
 "DISCLAIMER" = "Kerbal Space Program, the celestials names and data are the property of Squad.\nAll trademark and copyright for these data belong to Squad.";
 "DISMISS" = "Dismiss";
+"DISTRIBUTE" = "Distribute";
 "DISTRIBUTE_SATELLITE_FOOTER" = "Design a vessel with the number of satellites you want to distribute.\nThis tool will allow you to calculate the manoeuvers to distribute your satellites.";
 "DISTRIBUTE_SATELLITE_HEADER" = "Distribute satellites on an orbit";
 "DISTRIBUTE_SATELLITES" = "Distribute Satellites";

@@ -24,6 +24,7 @@
 "DAY_SUFFIX" = " %dj";
 "DISCLAIMER" = "Kerbal Space Program, le nom et les données des astres sont la propriété de Squad.\nToutes les trademark et copyright sur ces données appartiennent à Squad.";
 "DISMISS" = "Fermer";
+"DISTRIBUTE" = "Distribuer";
 "DISTRIBUTE_SATELLITE_FOOTER" = "Construisez un vaisseau avec le nombre de satellite que vous voulez distribuer.\nCet outil va calculer les manœuvres nécessaires à la distribution des satellites.";
 "DISTRIBUTE_SATELLITE_HEADER" = "Distribution de satellites sur une orbite";
 "DISTRIBUTE_SATELLITES" = "Distribution de Satellites";

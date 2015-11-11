@@ -240,6 +240,70 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         }
     }
     
+    // MARK: TableView custom actions
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        guard let celestial = self.celestial else { return [] }
+        
+        if indexPath.section != 0 || (indexPath.row != 6 && indexPath.row != 7) {
+            return [] // No action for every row
+        }
+        
+        if (indexPath.row == 6 && !celestial.canGeoSync) || (indexPath.row == 7 && !celestial.canSemiGeoSync) {
+            return [] // No action if out of SOI
+        }
+        
+        // Distribute action
+        let distributeAction = UITableViewRowAction(style: .Default, title: NSLocalizedString("DISTRIBUTE", comment: "") , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+            self.setDistributionAtIndexPath(indexPath)
+        })
+        
+        // Custom colors
+        distributeAction.backgroundColor = UIColor(hexString: "#34AADC")
+        
+        return [distributeAction]
+    }
+    
+    func setDistributionAtIndexPath(indexPath: NSIndexPath) {
+        self.performSelector("closeEditActions", withObject: nil, afterDelay: 0.1)
+        
+        guard let celestial = self.celestial else { return }
+        
+        // Looking for the right controller
+        guard let tabBarController = self.tabBarController else { print("No Tab Bar"); return }
+        guard let bannerVC = tabBarController.viewControllers?[2] as? BannerViewController else { print("No Banner view controller"); return }
+        guard let splitVC = bannerVC.contentController as? KSPSplitViewController else { print("No Split view controller"); return }
+        guard let navVC = splitVC.viewControllers.first as? UINavigationController else { print("No nav controller"); return }
+        guard let distributionVC = navVC.viewControllers.first as? DistributionFormViewController else { print("No distribution controller"); return }
+        
+        // We reload celestial in the case the system was changed just before using a shortcut
+        distributionVC.loadCelestials()
+        
+        // Setting the destination
+        distributionVC.form.setValues(["celestial": celestial])
+        
+        if indexPath.row == 6 {
+            // Geosync
+            distributionVC.form.setValues(["orbittype": distributionVC.orbitOptions[0]])
+        }
+        if indexPath.row == 7 {
+            // Semi-Geosync
+            distributionVC.form.setValues(["orbittype": distributionVC.orbitOptions[1]])
+        }
+        
+        // Reloading the table
+        distributionVC.tableView!.reloadData()
+        
+        // Changing the view
+        self.tabBarController?.selectedIndex = 2
+    }
+    
+    func closeEditActions() {
+        self.tableView.setEditing(false, animated: true)
+    }
+    
     // MARK: DZNEmptyDataSetSource
     
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
