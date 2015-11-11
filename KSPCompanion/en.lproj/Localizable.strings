@@ -41,6 +41,7 @@
 "FROM_DEST_NOT_ROUND_ENOUGH" = "From or destination's orbit is not round enough !";
 "FROM_DEST_NOT_ROUND_ENOUGH_DESC" = "The calcul wouldn't be accurate enough to let you through. Sorry !";
 "GEOSYNC_ORBIT" = "Geosync. orbit";
+"GO_TO" = "Go to";
 "HAS_OXYGEN" = "Has oxygen";
 "IAP_FAIL" = "Purchase has failed";
 "IAP_FAILURE_DESC" = "Please try again if you want to remove ads. You're awesome !";
@@ -56,6 +57,7 @@
 "KERBAL_SYSTEM" = "Original KSP system";
 "KERBIN_TIME_UNITS" = "Kerbal time units";
 "KERBOL_PLUS_SYSTEM" = "Kerbol Plus Mod's system";
+"LEAVE" = "Leave";
 "LONGITUDE_ASCENDING_NODE" = "Longitude of ascending node";
 "MANOEUVER" = "Manoeuver";
 "MANOEUVER_FOOTER" = "Once the celestials have the correct phase angle, achieve this manoeuver from your parking orbit to leave correctly the sphere of influence.";

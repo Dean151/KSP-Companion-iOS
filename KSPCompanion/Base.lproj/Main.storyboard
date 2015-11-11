@@ -488,7 +488,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="E97-Mf-9Ce"/>
-        <segue reference="GgA-p1-e5E"/>
         <segue reference="wVa-fo-pfP"/>
+        <segue reference="GgA-p1-e5E"/>
     </inferredMetricsTieBreakers>
 </document>

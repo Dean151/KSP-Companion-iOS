@@ -106,4 +106,68 @@ class CelestialsTableViewController: UITableViewController {
             cell.imageView?.image = nil
         }
     }
+    
+    // MARK: TableView custom actions
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        if indexPath.row == 0 {
+            return [] // No action from Kerbol !
+        }
+        
+        // From action
+        let fromAction = UITableViewRowAction(style: .Default, title: NSLocalizedString("LEAVE", comment: "") , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+            self.setFromAtIndexPath(indexPath)
+        })
+        // To action
+        let toAction = UITableViewRowAction(style: .Default, title: NSLocalizedString("GO_TO", comment: "") , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+            self.setToAtIndexPath(indexPath)
+        })
+        
+        // Custom colors
+        fromAction.backgroundColor = UIColor(hexString: "#a4a4a4")
+        toAction.backgroundColor = UIColor(hexString: "#868686")
+        
+        return [toAction,fromAction]
+    }
+    
+    func setFromAtIndexPath(indexPath: NSIndexPath) {
+        self.setFromOrTo(true, atIndexPath: indexPath)
+    }
+    
+    func setToAtIndexPath(indexPath: NSIndexPath) {
+        self.setFromOrTo(false, atIndexPath: indexPath)
+    }
+    
+    func setFromOrTo(from: Bool, atIndexPath indexPath: NSIndexPath) {
+        self.performSelector("closeEditActions", withObject: nil, afterDelay: 0.1)
+        // Looking for the right controller
+        guard let tabBarController = self.tabBarController else { print("No Tab Bar"); return }
+        guard let bannerVC = tabBarController.viewControllers?[1] as? BannerViewController else { print("No Banner view controller"); return }
+        guard let splitVC = bannerVC.contentController as? KSPSplitViewController else { print("No Split view controller"); return }
+        guard let navVC = splitVC.viewControllers.first as? UINavigationController else { print("No nav controller"); return }
+        guard let transferVC = navVC.viewControllers.first as? TransferFormViewController else { print("No tranfer controller"); return }
+        
+        // We reload celestial in the case the system was changed just before using a shortcut
+        transferVC.loadCelestials()
+        
+        // Setting the destination
+        let celestial = celestials[indexPath.row]
+        if from {
+            transferVC.form.setValues(["from": celestial])
+        } else {
+            transferVC.form.setValues(["to": celestial])
+        }
+        
+        // Reloading the table
+        transferVC.tableView!.reloadData()
+        
+        // Changing the view
+        self.tabBarController?.selectedIndex = 1
+    }
+    
+    func closeEditActions() {
+        self.tableView.setEditing(false, animated: true)
+    }
 }

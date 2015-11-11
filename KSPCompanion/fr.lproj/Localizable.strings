@@ -41,6 +41,7 @@
 "FROM_DEST_NOT_ROUND_ENOUGH" = "L'orbite d'origine ou de destination n'est pas assez ronde !";
 "FROM_DEST_NOT_ROUND_ENOUGH_DESC" = "Le calcul ne serait pas assez précis avec cet outil. Désolé !";
 "GEOSYNC_ORBIT" = "Orbite synchro.";
+"GO_TO" = "Y aller";
 "HAS_OXYGEN" = "Présence d'oxygène";
 "IAP_FAIL" = "L'achat a échoué";
 "IAP_FAILURE_DESC" = "Essayez à nouveau si vous voulez supprimer les apps. Vous êtes génial !";
@@ -56,6 +57,7 @@
 "KERBAL_SYSTEM" = "Système original de KSP";
 "KERBIN_TIME_UNITS" = "Unités de temps Kerbiennes";
 "KERBOL_PLUS_SYSTEM" = "Système avec Kerbol Plus Mod";
+"LEAVE" = "En partir";
 "LONGITUDE_ASCENDING_NODE" = "Longitude du nœud ascendant";
 "MASS" = "Masse";
 "MANOEUVER" = "Manœuvre";

@@ -13,7 +13,7 @@ class KSPTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var newViewControllers = [UIViewController]()
+        var newViewControllers = [BannerViewController]()
         
         self.viewControllers!.forEach { vc in
             vc.title = NSLocalizedString(vc.title!, comment: "")
