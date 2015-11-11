@@ -112,7 +112,9 @@ class CelestialsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return indexPath.row != 0
+        let celestial = celestials[indexPath.row]
+        guard let orbit = celestial.orbit else { return false }
+        return orbit.eccentricity < 0.3
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
