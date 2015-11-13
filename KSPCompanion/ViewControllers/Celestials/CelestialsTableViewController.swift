@@ -22,6 +22,13 @@ class CelestialsTableViewController: UITableViewController {
         self.navigationController?.topViewController!.title = NSLocalizedString("CELESTIALS", comment: "")
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings"), style: .Plain, target: self, action: "openSolarSystemSelector:")
+        
+        // Peek and Pop
+        if #available(iOS 9.0, *) {
+            if traitCollection.forceTouchCapability == .Available {
+                registerForPreviewingWithDelegate(self, sourceView: view)
+            }
+        }
     }
     
     func loadCelestials() {
@@ -171,5 +178,25 @@ class CelestialsTableViewController: UITableViewController {
     
     func closeEditActions() {
         self.tableView.setEditing(false, animated: true)
+    }
+}
+
+@available(iOS 9.0, *)
+extension CelestialsTableViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        // Getting celestial
+        guard let indexPath = self.tableView.indexPathForRowAtPoint(location) else { return nil }
+        
+        // Creating viewController
+        guard let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("celestialViewController") as? CelestialViewController else { return nil }
+        
+        // Param controller
+        viewController.preferredContentSize = CGSize(width: 0, height: 0)
+        viewController.prepare(celestial: self.celestials[indexPath.row])
+        
+        return viewController
+    }
+    func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
+        showViewController(viewControllerToCommit, sender: self)
     }
 }
