@@ -60,8 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self()])
         
         if #available(iOS 9.0, *) {
-            handleQuickAction(.Transfer)
-            
             if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
                 // Handle the sortcutItem
                 guard let shortcutType = ShortcutIdentifier(fullType: shortcutItem.type) else { return false }
