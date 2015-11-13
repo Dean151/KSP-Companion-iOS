@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     enum ShortcutIdentifier: String {
         case Celestials
-        case Tranfer
+        case Transfer
         case Distribute
         
         init?(fullType: String) {
@@ -60,10 +60,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self()])
         
         if #available(iOS 9.0, *) {
+            handleQuickAction(.Transfer)
+            
             if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
-                isLaunchedFromQuickAction = true
                 // Handle the sortcutItem
-                handleQuickAction(shortcutItem)
+                guard let shortcutType = ShortcutIdentifier(fullType: shortcutItem.type) else { return false }
+                isLaunchedFromQuickAction = true
+                handleQuickAction(shortcutType)
             }
         }
         
@@ -74,30 +77,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
         
         // Handle quick actions
-        completionHandler(handleQuickAction(shortcutItem))
+        guard let shortcutType = ShortcutIdentifier(fullType: shortcutItem.type) else { return }
+        completionHandler(handleQuickAction(shortcutType))
     }
     
     @available(iOS 9.0, *)
-    func handleQuickAction(shortcutItem: UIApplicationShortcutItem) -> Bool {
+    func handleQuickAction(shortcutType: ShortcutIdentifier) -> Bool {
         guard let tabbar = self.window?.rootViewController as? KSPTabBarController else { return false }
-        guard let shortcutType = ShortcutIdentifier(fullType: shortcutItem.type) else { return false }
         
         switch shortcutType {
         case .Celestials:
             // Open Celestials
-            tabbar.setIndex(0)
+            tabbar.shouldShow = 0
             return true
-        case .Tranfer:
+        case .Transfer:
             // Open Transfer
-            tabbar.setIndex(1)
+            tabbar.shouldShow = 1
             return true
         case .Distribute:
             // Open Distribute
-            tabbar.setIndex(2)
+            tabbar.shouldShow = 2
             return true
         }
-        
-        return false
     }
 
     func applicationWillResignActive(application: UIApplication) {

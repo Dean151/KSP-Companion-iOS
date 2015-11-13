@@ -32,7 +32,6 @@ class Settings {
     
     var hideAds: Bool {
         get {
-        
             return settings.secretBoolForKey(hideAdsString)
         }
         set {

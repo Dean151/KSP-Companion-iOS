@@ -11,11 +11,24 @@ import UIKit
 class KSPTabBarController: UITabBarController {
     
     var selectedItem: UITabBarItem?
+    var vcReplaced = false
+    
+    var _shoudShow = 0
+    var shouldShow: Int {
+        get {
+            return _shoudShow
+        }
+        set {
+            _shoudShow = newValue
+            if newValue != self.selectedIndex && vcReplaced {
+                self.setIndex(newValue)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let recordedSelectedIndex = self.selectedIndex
         var newViewControllers = [BannerViewController]()
         
         self.viewControllers!.forEach { vc in
@@ -26,12 +39,15 @@ class KSPTabBarController: UITabBarController {
         }
         
         self.setViewControllers(newViewControllers, animated: false)
-        self.setIndex(recordedSelectedIndex)
+        self.vcReplaced = true
+        
+        self.setIndex(shouldShow)
     }
     
     func setIndex(index: Int) {
-        self.selectedItem = self.viewControllers![index].tabBarItem
+        guard index < self.viewControllers!.count else { return }
         self.selectedIndex = index
+        self.selectedItem = self.viewControllers![index].tabBarItem
     }
     
     // MARK: UITabBarControllerDelegate
