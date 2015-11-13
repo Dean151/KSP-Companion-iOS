@@ -166,7 +166,7 @@ class CelestialsTableViewController: UITableViewController {
         transferVC.tableView!.reloadData()
         
         // Changing the view
-        tabBarController.changeToIndex(1)
+        tabBarController.setIndex(1)
     }
     
     func closeEditActions() {

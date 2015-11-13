@@ -15,9 +15,9 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     enum ShortcutIdentifier: String {
-        case celestials
-        case tranfer
-        case distribute
+        case Celestials
+        case Tranfer
+        case Distribute
         
         init?(fullType: String) {
             guard let last = fullType.componentsSeparatedByString(".").last else { return nil }
@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        var isLaunchedFromQuickAction = false
         
         if let window = self.window {
             window.tintColor = UIColor.appGreenColor
@@ -58,7 +59,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics.self()])
         
-        return true
+        if #available(iOS 9.0, *) {
+            if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] as? UIApplicationShortcutItem {
+                isLaunchedFromQuickAction = true
+                // Handle the sortcutItem
+                handleQuickAction(shortcutItem)
+            }
+        }
+        
+        return !isLaunchedFromQuickAction
+    }
+    
+    @available(iOS 9.0, *)
+    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+        
+        // Handle quick actions
+        completionHandler(handleQuickAction(shortcutItem))
+    }
+    
+    @available(iOS 9.0, *)
+    func handleQuickAction(shortcutItem: UIApplicationShortcutItem) -> Bool {
+        guard let tabbar = self.window?.rootViewController as? KSPTabBarController else { return false }
+        guard let shortcutType = ShortcutIdentifier(fullType: shortcutItem.type) else { return false }
+        
+        switch shortcutType {
+        case .Celestials:
+            // Open Celestials
+            tabbar.setIndex(0)
+            return true
+        case .Tranfer:
+            // Open Transfer
+            tabbar.setIndex(1)
+            return true
+        case .Distribute:
+            // Open Distribute
+            tabbar.setIndex(2)
+            return true
+        }
+        
+        return false
     }
 
     func applicationWillResignActive(application: UIApplication) {

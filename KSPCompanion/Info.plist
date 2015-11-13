@@ -38,6 +38,33 @@
 	<true/>
 	<key>SecureNSUserDefaultKey</key>
 	<string>$(SECURE_NS_USER_DEFAULT_KEY)</string>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>s_transfer</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Transfer</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Transfer</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>s_distribution</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Distribution</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Distribution</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>s_celestials</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Celestials</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Celestials</string>
+		</dict>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

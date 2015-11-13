@@ -15,8 +15,7 @@ class KSPTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.delegate = self
-        
+        let recordedSelectedIndex = self.selectedIndex
         var newViewControllers = [BannerViewController]()
         
         self.viewControllers!.forEach { vc in
@@ -27,10 +26,10 @@ class KSPTabBarController: UITabBarController {
         }
         
         self.setViewControllers(newViewControllers, animated: false)
-        self.selectedItem = newViewControllers[0].tabBarItem
+        self.setIndex(recordedSelectedIndex)
     }
     
-    func changeToIndex(index: Int) {
+    func setIndex(index: Int) {
         self.selectedItem = self.viewControllers![index].tabBarItem
         self.selectedIndex = index
     }

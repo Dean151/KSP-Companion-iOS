@@ -301,7 +301,7 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         distributionVC.tableView!.reloadData()
         
         // Changing the view
-        tabBarController.changeToIndex(2)
+        tabBarController.setIndex(2)
     }
     
     func closeEditActions() {
