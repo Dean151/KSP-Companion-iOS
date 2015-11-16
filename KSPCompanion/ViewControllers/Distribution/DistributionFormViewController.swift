@@ -11,6 +11,25 @@ import Crashlytics
 import Eureka
 import TSMessages
 
+enum DistributionError {
+    case NotHighEnough, NotLowEnough, NotEnoughSats
+    
+    func showMessage(showMessage: Bool) {
+        if !showMessage {
+            return
+        }
+        
+        switch self {
+        case .NotHighEnough:
+            TSMessage.showNotificationWithTitle(NSLocalizedString("TOO_LOW_NOTIF", comment: ""), subtitle: NSLocalizedString("TOO_LOW_NOTIF_DESC", comment: ""), type: .Error)
+        case .NotLowEnough:
+            TSMessage.showNotificationWithTitle(NSLocalizedString("TOO_HIGH_NOTIF", comment: ""), subtitle: NSLocalizedString("TOO_HIGH_NOTIF_DESC", comment: ""), type: .Error)
+        case .NotEnoughSats:
+            TSMessage.showNotificationWithTitle(NSLocalizedString("NOT_ENOUGH_NOTIF", comment: ""), subtitle: NSLocalizedString("NOT_ENOUGH_NOTIF_DESC", comment: ""), type: .Error)
+        }
+    }
+}
+
 class DistributionFormViewController: FormViewController {
     var celestials = [Celestial]()
     let orbitOptions = ["Sync.", "Semisync.", NSLocalizedString("CUSTOM", comment: "")]
@@ -46,14 +65,10 @@ class DistributionFormViewController: FormViewController {
         loadCelestials()
     }
     
-    func submit(sender: AnyObject!) {
+    func doTheMaths(showMessage: Bool) -> (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int, deltaV: Double)? {
         let results = self.form.values()
         
-        if let indexPath = tableView!.indexPathForSelectedRow {
-            tableView!.deselectRowAtIndexPath(indexPath, animated: true)
-        }
-        
-        guard let nbsat = results["number"] as? Int, cel = results["celestial"] as? Celestial, typeOrbit = results["orbittype"] as? String else { return }
+        guard let nbsat = results["number"] as? Int, cel = results["celestial"] as? Celestial, typeOrbit = results["orbittype"] as? String else { return nil }
         var targetAltitude: Double = 0
         
         if typeOrbit == orbitOptions[0] {
@@ -70,21 +85,21 @@ class DistributionFormViewController: FormViewController {
             // Check for atmosphere
             if let atmo = cel.atmosphere {
                 if targetAltitude < atmo.limitAltitude {
-                    TSMessage.showNotificationWithTitle(NSLocalizedString("TOO_LOW_NOTIF", comment: ""), subtitle: NSLocalizedString("TOO_LOW_NOTIF_DESC", comment: ""), type: .Error)
-                    return
+                    DistributionError.NotHighEnough.showMessage(showMessage)
+                    return nil
                 }
             }
             
             // Check for sphere of influence
             if targetAltitude > cel.sphereOfInfluence {
-                TSMessage.showNotificationWithTitle(NSLocalizedString("TOO_HIGH_NOTIF", comment: ""), subtitle: NSLocalizedString("TOO_HIGH_NOTIF_DESC", comment: ""), type: .Error)
-                return
+                DistributionError.NotLowEnough.showMessage(showMessage)
+                return nil
             }
             
             // Check for satellite numbers
             if nbsat < 2 {
-                TSMessage.showNotificationWithTitle(NSLocalizedString("NOT_ENOUGH_NOTIF", comment: ""), subtitle: NSLocalizedString("NOT_ENOUGH_NOTIF_DESC", comment: ""), type: .Error)
-                return
+                DistributionError.NotEnoughSats.showMessage(showMessage)
+                return nil
             }
             
             if let transferAltitude = cel.distributeSatellitesAtAltitude(targetAltitude, numberOfSatellites: nbsat) {
@@ -94,13 +109,26 @@ class DistributionFormViewController: FormViewController {
                 let targetOrbit = Orbit(orbitAround: cel, apoapsis: targetAltitude+cel.radius, periapsis: targetAltitude+cel.radius)
                 let deltaV = abs(targetOrbit.apoapsisVelocity - transferOrbit.apoapsisVelocity )
                 
-                self.results = (targetOrbit, transferOrbit, nbsat, deltaV)
-                
                 Answers.logCustomEventWithName("DistributionCalculation", customAttributes: ["around": cel.name, "satNb": nbsat, "alt": targetAltitude])
                 
-                performSegueWithIdentifier("calculateSegue", sender: self)
+                return (targetOrbit, transferOrbit, nbsat, deltaV)
             }
+        } else {
+            DistributionError.NotHighEnough.showMessage(false)
         }
+        
+        return nil
+    }
+    
+    func submit(sender: AnyObject!) {
+        if let indexPath = tableView!.indexPathForSelectedRow {
+            tableView!.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+        
+        guard let calcul = self.doTheMaths(true) else { return }
+        self.results = calcul
+        
+        performSegueWithIdentifier("calculateSegue", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -124,7 +152,7 @@ class DistributionFormViewController: FormViewController {
                 $0.title = NSLocalizedString("ORBIT_AROUND", comment: "")
                 $0.options = self.celestials
                 $0.value = Settings.sharedInstance.solarSystem == .KerbolPlus ? self.celestials[5] : self.celestials[4] // Kerbin
-            }
+            }.onChange(self.formChanged)
             
             <<< IntRow("number") {
                 $0.title = NSLocalizedString("NUMBER_OF_SATELLITES", comment: "")
@@ -137,7 +165,7 @@ class DistributionFormViewController: FormViewController {
                 $0.title = NSLocalizedString("ORBIT", comment: "")
                 $0.options = self.orbitOptions
                 $0.value = self.orbitOptions[0]
-            }
+            }.onChange(self.formChanged)
             
             <<< IntRow("altitude") {
                 $0.title = NSLocalizedString("TARGETED_ALTITUDE", comment: "")
@@ -158,6 +186,13 @@ class DistributionFormViewController: FormViewController {
             }.onCellSelection { (cell, row) in
                 self.submit(row)
             }
+        }
+    }
+    
+    func formChanged(row: BaseRow) {
+        if !self.splitViewController!.collapsed {
+            self.tableView?.reloadData()
+            self.submit(self)
         }
     }
 }

@@ -76,6 +76,7 @@ class TransferFormViewController: FormViewController {
             if alt > 0 {
                 if from.orbit!.eccentricity < 0.3 && dest.orbit!.eccentricity < 0.3 {
                     if let calcul = from.transfertTo(dest, withAltitude: Double(alt)) {
+                        Answers.logCustomEventWithName("TransferCalculation", customAttributes: ["from": from.name, "to": dest.name, "altitude": alt])
                         return calcul
                     }
                     else {
@@ -104,7 +105,6 @@ class TransferFormViewController: FormViewController {
         guard let calcul = self.doTheMath(true) else { return }
         self.results = calcul
         
-        Answers.logCustomEventWithName("TransferCalculation", customAttributes: ["from": self.results!.from.name, "to": self.results!.to.name])
         performSegueWithIdentifier("calculateSegue", sender: self)
     }
     
@@ -150,7 +150,7 @@ class TransferFormViewController: FormViewController {
         }
     }
     
-    func formChanged(row: PushRow<Celestial>) {
+    func formChanged(row: BaseRow) {
         if !self.splitViewController!.collapsed {
             self.tableView?.reloadData()
             self.submit(self)
