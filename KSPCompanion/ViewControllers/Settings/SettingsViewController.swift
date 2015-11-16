@@ -56,7 +56,7 @@ class SettingsViewController: FormViewController {
         form.removeAll()
         
         form +++
-            Section(header: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("SETTINGS", comment: "")), footer: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("SETTINGS_FOOTER", comment: "")))
+            Section(header: NSLocalizedString("SETTINGS", comment: ""), footer: NSLocalizedString("SETTINGS_FOOTER", comment: ""))
             
             <<< SegmentedRow<String>("temperature") {
                 $0.title = NSLocalizedString("TEMPERATURE_UNIT", comment: "")
@@ -77,7 +77,7 @@ class SettingsViewController: FormViewController {
             }
             
         
-            +++ Section(header: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("ADS", comment: "")), footer: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("ADS_FOOTER", comment: "")))
+            +++ Section(header: NSLocalizedString("ADS", comment: ""), footer: NSLocalizedString("ADS_FOOTER", comment: ""))
            
             <<<  ButtonRow("remove") {
                 $0.title = NSLocalizedString("REMOVE_ADS", comment: "")
@@ -125,7 +125,7 @@ class SettingsViewController: FormViewController {
             }
         
             
-            +++ Section(HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("INFORMATIONS", comment: "")))
+            +++ Section(NSLocalizedString("INFORMATIONS", comment: ""))
         
             <<< TextAreaRow("disclaimer") {
                 $0.value = NSLocalizedString("DISCLAIMER", comment: "")

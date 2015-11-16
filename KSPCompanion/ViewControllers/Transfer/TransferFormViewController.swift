@@ -123,7 +123,7 @@ class TransferFormViewController: FormViewController {
         form.removeAll()
         
         form +++
-            Section(header: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("INTERPLANETARY_TRANSFER_HEADER", comment: "")), footer: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("INTERPLANETARY_TRANSFER_FOOTER", comment: "")))
+            Section(header: NSLocalizedString("INTERPLANETARY_TRANSFER_HEADER", comment: ""), footer: NSLocalizedString("INTERPLANETARY_TRANSFER_FOOTER", comment: ""))
             <<< IntRow("altitude") {
                 $0.title = NSLocalizedString("PARKING_ALTITURE", comment: "")
                 $0.value = 100000

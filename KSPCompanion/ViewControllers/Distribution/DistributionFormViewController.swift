@@ -118,7 +118,7 @@ class DistributionFormViewController: FormViewController {
         form.removeAll()
         
         form +++
-            Section(header: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("DISTRIBUTE_SATELLITE_HEADER", comment: "")), footer: HeaderFooterView<UIView>(stringLiteral: NSLocalizedString("DISTRIBUTE_SATELLITE_FOOTER", comment: "")))
+            Section(header: NSLocalizedString("DISTRIBUTE_SATELLITE_HEADER", comment: ""), footer: NSLocalizedString("DISTRIBUTE_SATELLITE_FOOTER", comment: ""))
             
             <<< PushRow<Celestial>("celestial") {
                 $0.title = NSLocalizedString("ORBIT_AROUND", comment: "")
