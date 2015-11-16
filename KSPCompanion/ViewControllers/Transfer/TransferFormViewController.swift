@@ -134,12 +134,11 @@ class TransferFormViewController: FormViewController {
                 $0.title = NSLocalizedString("FROM", comment: "")
                 $0.options = self.celestials
                 $0.value = Settings.sharedInstance.solarSystem == .KerbolPlus ? self.celestials[4] : self.celestials[3] // Kerbin
-            }
+            }.onChange(self.formChanged)
             <<< PushRow<Celestial>("to") {
                 $0.title = NSLocalizedString("TO", comment: "")
                 $0.options = self.celestials
-                $0.value = Settings.sharedInstance.solarSystem == .KerbolPlus ? self.celestials[8] : self.celestials[6] // Duna
-            }
+            }.onChange(self.formChanged)
         
         if (UI_USER_INTERFACE_IDIOM() == .Pad) {
             form +++= ButtonRow("calculate") {
@@ -148,6 +147,13 @@ class TransferFormViewController: FormViewController {
                 }.onCellSelection { (cell, row) in
                     self.submit(row)
             }
+        }
+    }
+    
+    func formChanged(row: PushRow<Celestial>) {
+        if !self.splitViewController!.collapsed {
+            self.tableView?.reloadData()
+            self.submit(self)
         }
     }
 }
