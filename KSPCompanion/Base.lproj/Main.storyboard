@@ -82,7 +82,7 @@
         <!--Celestial View Controller-->
         <scene sceneID="4dE-rw-nj5">
             <objects>
-                <tableViewController storyboardIdentifier="celestialViewController" extendedLayoutIncludesOpaqueBars="YES" id="44E-ay-DWj" customClass="CelestialViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CelestialViewController" extendedLayoutIncludesOpaqueBars="YES" id="44E-ay-DWj" customClass="CelestialViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Tie-mP-kni">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -283,7 +283,7 @@
         <!--Distribution Result Table View Controller-->
         <scene sceneID="FB9-Tx-8Gn">
             <objects>
-                <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="8XG-HO-vfQ" customClass="DistributionResultTableViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="DistributionResultViewController" extendedLayoutIncludesOpaqueBars="YES" id="8XG-HO-vfQ" customClass="DistributionResultTableViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="szj-4W-a2z">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -366,7 +366,7 @@
         <!--Transfer Result Table View Controller-->
         <scene sceneID="NL9-JD-qsc">
             <objects>
-                <tableViewController extendedLayoutIncludesOpaqueBars="YES" id="dow-YB-Nqe" customClass="TransferResultTableViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TransferResultViewController" extendedLayoutIncludesOpaqueBars="YES" id="dow-YB-Nqe" customClass="TransferResultTableViewController" customModule="KSPCompanion" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="lKL-kx-NdA">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

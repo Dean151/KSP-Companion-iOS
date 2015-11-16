@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     enum ShortcutIdentifier: String {
         case Celestials
         case Transfer
-        case Distribute
+        case Distribution
         
         init?(fullType: String) {
             guard let last = fullType.componentsSeparatedByString(".").last else { return nil }
@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Open Transfer
             tabbar.shouldShow = 1
             return true
-        case .Distribute:
+        case .Distribution:
             // Open Distribute
             tabbar.shouldShow = 2
             return true

@@ -188,7 +188,7 @@ extension CelestialsTableViewController: UIViewControllerPreviewingDelegate {
         guard let indexPath = self.tableView.indexPathForRowAtPoint(location) else { return nil }
         
         // Creating viewController
-        guard let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("celestialViewController") as? CelestialViewController else { return nil }
+        guard let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("CelestialViewController") as? CelestialViewController else { return nil }
         
         // Param controller
         viewController.preferredContentSize = CGSize(width: 0, height: 0)
