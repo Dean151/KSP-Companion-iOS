@@ -11,8 +11,28 @@ import Crashlytics
 import Eureka
 import TSMessages
 
-class TransferFormViewController: FormViewController {
+enum TransferError {
+    case SameCelestial, NotAroundSameCelestial, NotRoundEnough, NotHighEnough
     
+    func showMessage(showMessage: Bool) {
+        if !showMessage {
+            return
+        }
+        
+        switch self {
+        case .SameCelestial:
+            TSMessage.showNotificationWithTitle(NSLocalizedString("COULD_NOT_CALCUL_NOTIF", comment: ""), subtitle: NSLocalizedString("SAME_CELESTIAL", comment: ""), type: .Error)
+        case .NotAroundSameCelestial:
+            TSMessage.showNotificationWithTitle(NSLocalizedString("COULD_NOT_CALCUL_NOTIF", comment: ""), subtitle: NSLocalizedString("NOT_AROUND_SAME_CELESTIAL", comment: ""), type: .Error)
+        case .NotRoundEnough:
+            TSMessage.showNotificationWithTitle(NSLocalizedString("FROM_DEST_NOT_ROUND_ENOUGH", comment: ""), subtitle: NSLocalizedString("FROM_DEST_NOT_ROUND_ENOUGH_DESC", comment: ""), type: .Error)
+        case .NotHighEnough:
+            break
+        }
+    }
+}
+
+class TransferFormViewController: FormViewController {
     var celestials = [Celestial]()
     
     var results: (parent: Celestial, from: Celestial, to: Celestial, phaseAngle: Double, ejectionAngle: Double, ejectionSpeed: Double, deltaV: Double)?
@@ -47,33 +67,45 @@ class TransferFormViewController: FormViewController {
         loadCelestials()
     }
     
-    func submit(sender: AnyObject) {
+    func doTheMath(showMessage: Bool) -> (parent: Celestial, from: Celestial, to: Celestial, phaseAngle: Double, ejectionAngle: Double, ejectionSpeed: Double, deltaV: Double)? {
         let results = form.values()
         
+        guard let from = results["from"] as? Celestial, dest = results["to"] as? Celestial else { return nil }
+        guard let alt = results["altitude"] as? Int else { return nil }
+        if from != dest {
+            if alt > 0 {
+                if from.orbit!.eccentricity < 0.3 && dest.orbit!.eccentricity < 0.3 {
+                    if let calcul = from.transfertTo(dest, withAltitude: Double(alt)) {
+                        return calcul
+                    }
+                    else {
+                        TransferError.NotAroundSameCelestial.showMessage(showMessage)
+                        return nil
+                    }
+                } else {
+                    TransferError.NotRoundEnough.showMessage(showMessage)
+                    return nil
+                }
+            } else {
+                TransferError.NotHighEnough.showMessage(showMessage)
+                return nil
+            }
+        } else {
+            TransferError.SameCelestial.showMessage(showMessage)
+            return nil
+        }
+    }
+    
+    func submit(sender: AnyObject) {
         if let indexPath = tableView!.indexPathForSelectedRow {
             tableView!.deselectRowAtIndexPath(indexPath, animated: true)
         }
         
-        guard let from = results["from"] as? Celestial, dest = results["to"] as? Celestial else { print("not celestial"); return }
-        if from != dest {
-            guard let alt = results["altitude"] as? Int else { print("not int"); return }
-            if alt > 0 {
-                if from.orbit!.eccentricity < 0.3 && dest.orbit!.eccentricity < 0.3 {
-                    if let calcul = from.transfertTo(dest, withAltitude: Double(alt)) {
-                        self.results = calcul
-                        Answers.logCustomEventWithName("TransferCalculation", customAttributes: ["from": from.name, "to": dest.name, "parking": alt])
-                        performSegueWithIdentifier("calculateSegue", sender: self)
-                    }
-                    else {
-                        TSMessage.showNotificationWithTitle(NSLocalizedString("COULD_NOT_CALCUL_NOTIF", comment: ""), subtitle: NSLocalizedString("NOT_AROUND_SAME_CELESTIAL", comment: ""), type: .Error)
-                    }
-                } else {
-                    TSMessage.showNotificationWithTitle(NSLocalizedString("FROM_DEST_NOT_ROUND_ENOUGH", comment: ""), subtitle: NSLocalizedString("FROM_DEST_NOT_ROUND_ENOUGH_DESC", comment: ""), type: .Error)
-                }
-            }
-        } else {
-            TSMessage.showNotificationWithTitle(NSLocalizedString("COULD_NOT_CALCUL_NOTIF", comment: ""), subtitle: NSLocalizedString("SAME_CELESTIAL", comment: ""), type: .Error)
-        }
+        guard let calcul = self.doTheMath(true) else { return }
+        self.results = calcul
+        
+        Answers.logCustomEventWithName("TransferCalculation", customAttributes: ["from": self.results!.from.name, "to": self.results!.to.name])
+        performSegueWithIdentifier("calculateSegue", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
