@@ -185,7 +185,7 @@ class CelestialsTableViewController: UITableViewController {
 extension CelestialsTableViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         // Getting celestial
-        guard let indexPath = self.tableView.indexPathForRowAtPoint(location) else { return nil }
+        guard let indexPath = self.tableView.indexPathForRowAtPoint(location), cell = tableView.cellForRowAtIndexPath(indexPath) else { return nil }
         
         // Creating viewController
         guard let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("CelestialViewController") as? CelestialViewController else { return nil }
@@ -193,6 +193,9 @@ extension CelestialsTableViewController: UIViewControllerPreviewingDelegate {
         // Param controller
         viewController.preferredContentSize = CGSize(width: 0, height: 0)
         viewController.prepare(celestial: self.celestials[indexPath.row])
+        
+        // Context source rect for bluring the right place
+        previewingContext.sourceRect = cell.frame
         
         return viewController
     }
