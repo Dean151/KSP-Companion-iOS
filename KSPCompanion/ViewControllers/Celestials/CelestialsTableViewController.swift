@@ -9,10 +9,14 @@
 import UIKit
 import HexColors
 
-class CelestialsTableViewController: UITableViewController {
+class CelestialsTableViewController: UITableViewController, UISearchControllerDelegate, UISearchResultsUpdating {
     
     let reusableCellIdentifier = "CelestialCell"
-    var celestials = [Celestial]()
+    var celestials: [Celestial] = []
+    
+    // Research
+    var searchController:UISearchController!
+    var searchResults:[Celestial] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,21 @@ class CelestialsTableViewController: UITableViewController {
         self.navigationController?.topViewController!.title = NSLocalizedString("CELESTIALS", comment: "")
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings"), style: .Plain, target: self, action: "openSolarSystemSelector:")
+        
+        // Research
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        tableView.tableHeaderView = searchController.searchBar
+        
+        // Searchbar customization
+        searchController.searchBar.barTintColor = UIColor.blackColor()
+        
+        definesPresentationContext = true
+        
         
         // Peek and Pop
         if #available(iOS 9.0, *) {
@@ -34,6 +53,7 @@ class CelestialsTableViewController: UITableViewController {
     func loadCelestials() {
         let newData = DataManager.getCelestialsFromJson()
         if celestials.count != newData.count {
+            searchResults = []
             celestials = newData
             self.tableView.beginUpdates()
             self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
@@ -54,14 +74,43 @@ class CelestialsTableViewController: UITableViewController {
         if segue.identifier == "viewCelestialDetails" {
             let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CelestialViewController
             
-            if let index = tableView.indexPathForSelectedRow {
-                controller.prepare(celestial: celestials[index.row])
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let celestial = getCelestialAtIndexPath(indexPath)
+                controller.prepare(celestial: celestial)
             }
         }
     }
     
+    // MARK: Research feature
+    
+    func filterContentForSearchText(searchText: String) {
+        searchResults = self.celestials.filter({ ( cel: Celestial) -> Bool in
+            let nameMatch = cel.name.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            return nameMatch != nil
+            })
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else { return }
+        filterContentForSearchText(searchText)
+        tableView.reloadData()
+    }
+    
+    func willPresentSearchController(searchController: UISearchController) {
+        self.navigationItem.rightBarButtonItem?.enabled = false
+    }
+    
+    func willDismissSearchController(searchController: UISearchController) {
+        self.navigationItem.rightBarButtonItem?.enabled = true
+    }
+    
+    // MARK: Other solar systems
+    
     func openSolarSystemSelector(sender: UIBarButtonItem) {
         let viewController = SolarSystemSelector()
+        
+        guard !searchController.active else { return }
+        
         viewController.parentController = self
         let navController = UINavigationController(rootViewController: viewController)
         
@@ -80,18 +129,21 @@ class CelestialsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return celestials.count
+        return searchController.active ? searchResults.count :celestials.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(reusableCellIdentifier, forIndexPath: indexPath) 
         
-        let row = indexPath.row
-        let celestial = celestials[row]
+        let celestial = getCelestialAtIndexPath(indexPath)
         
         configureCell(cell, celestial: celestial)
         
         return cell
+    }
+    
+    func getCelestialAtIndexPath(indexPath: NSIndexPath) -> Celestial {
+        return searchController.active ? searchResults[indexPath.row] : celestials[indexPath.row]
     }
     
     func configureCell(cell: UITableViewCell, celestial: Celestial) {
@@ -119,7 +171,7 @@ class CelestialsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        let celestial = celestials[indexPath.row]
+        let celestial = getCelestialAtIndexPath(indexPath)
         guard let orbit = celestial.orbit else { return false }
         return orbit.eccentricity < 0.3
     }
@@ -162,7 +214,7 @@ class CelestialsTableViewController: UITableViewController {
         transferVC.loadCelestials()
         
         // Setting the destination
-        let celestial = celestials[indexPath.row]
+        let celestial = getCelestialAtIndexPath(indexPath)
         if from {
             transferVC.form.setValues(["from": celestial])
         } else {
@@ -192,7 +244,7 @@ extension CelestialsTableViewController: UIViewControllerPreviewingDelegate {
         
         // Param controller
         viewController.preferredContentSize = CGSize(width: 0, height: 0)
-        viewController.prepare(celestial: self.celestials[indexPath.row])
+        viewController.prepare(celestial: getCelestialAtIndexPath(indexPath))
         
         // Context source rect for bluring the right place
         previewingContext.sourceRect = cell.frame
