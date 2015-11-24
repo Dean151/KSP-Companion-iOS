@@ -18,6 +18,7 @@
 "CELESTIAL_PROPERTIES" = "Propriété de l'astre";
 "CELESTIALS" = "Astres";
 "CHOOSE_A_PLANET" = "Choisissez un astre à gauche";
+"COMET" = "Comète";
 "COULD_NOT_CALCUL_NOTIF" = "Le transfert n'a pas été calculé";
 "CUSTOM" = "Autre";
 "DAY_DETAIL" = "1 jour (6h)";
@@ -33,6 +34,7 @@
 "DISTRIBUTION_RESULT" = "Distribution de satellites";
 "DO_A_CALCUL" = "Faire un transfert";
 "DO_A_CALCUL_DESC" = "Utilisez le formulaire sur la gauche pour faire un calcul de transfert interplanétaire";
+"DWARF_PLANET" = "Planète naine";
 "ECCENTRICITY" = "Excentricité";
 "EQUATORIAL_RADIUS" = "Rayon à l'équateur";
 "ESCAPE_VELOCITY" = "Vitesse de libération";
@@ -85,6 +87,7 @@
 "PHASE_ANGLE" = "Angle de phase";
 "PHASE_ANGLE_FOOTER" = "Attendez que les astres de départ et d'arrivée facent cet angle.\nPressez le bouton pour un aperçu graphique";
 "PHASE_ANGLE_HEADER" = "Angle de phase des astres";
+"PLANET" = "Planète";
 "PROGRADE_DV" = "∆v prograde";
 "REMOVE_ADS" = "Supprimer la publicité";
 "REMOVE_ADS_WITH_PRICE" = "Supprimer la publicité (%@)";
@@ -92,12 +95,14 @@
 "RETROGRADE_DV" = "∆v rétrograde";
 "ROTATION_PERIOD" = "Période de rotation";
 "SAME_CELESTIAL" = "L'origine et la destination doivent être différentes et orbiter autour du même corps";
+"SATELLITE" = "Satellite";
 "SATELLITE_DISTRIBUTION" = "Distribution de satellites";
 "SEMI_MAJOR_AXIS" = "Demi-grand axe";
 "SEMISYNC_ORBIT" = "Orbite semi-sync.";
 "SETTINGS" = "Réglages";
 "SETTINGS_FOOTER" = "Sur Kerbin, les jours durent 6h et les années 426 jours";
 "SOI" = "Sphère d'influence";
+"STAR" = "Étoile";
 "SURFACE_GRAVITY" = "Gravité à la surface";
 "SYSTEM_SELECTION_DESCRIPTION" = "Le système solaire change en fonction des mods installés sur Kerbal Space Program. Sélectionnez celui qui correspond à votre installation";
 "SYSTEMS" = "Systèmes";

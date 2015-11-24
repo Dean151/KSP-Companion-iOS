@@ -354,7 +354,20 @@ extension CelestialViewController {
         
         let activity = NSUserActivity(activityType: HandoffIdentifier.Celestial.type)
         activity.title = celestial.name
+        if celestial.type.localisedDescription != "" {
+            activity.title! += " (\(celestial.type.localisedDescription))"
+        }
         activity.userInfo = ["SolarSystem": Settings.sharedInstance.solarSystem.rawValue, "CelestialIndex": index]
+        
+        if #available(iOS 9.0, *) {
+            activity.eligibleForSearch = true
+            activity.eligibleForPublicIndexing = true
+            activity.keywords = [celestial.name]
+            if celestial.type.localisedDescription != "" {
+                activity.keywords.insert(celestial.type.localisedDescription)
+            }
+            activity.requiredUserInfoKeys = ["SolarSystem", "CelestialIndex"]
+        }
         
         userActivity = activity
         userActivity?.becomeCurrent()

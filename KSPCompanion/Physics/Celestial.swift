@@ -34,6 +34,23 @@ enum CelestialType: Int, CustomStringConvertible {
         }
     }
     
+    var localisedDescription: String {
+        switch self {
+        case .Star:
+            return NSLocalizedString("STAR", comment: "")
+        case .Planet, .RingPlanet:
+            return NSLocalizedString("PLANET", comment: "")
+        case .DwarfPlanet:
+            return NSLocalizedString("DWARF_PLANET", comment: "")
+        case .Satellite:
+            return NSLocalizedString("SATELLITE", comment: "")
+        case .Comet:
+            return NSLocalizedString("COMET", comment: "")
+        default:
+            return ""
+        }
+    }
+    
     var description: String {
         switch self {
         case .Star:

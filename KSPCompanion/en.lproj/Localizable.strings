@@ -18,6 +18,7 @@
 "CELESTIAL_PROPERTIES" = "Celestial properties";
 "CELESTIALS" = "Celestials";
 "CHOOSE_A_PLANET" = "Choose a celestial on the left";
+"COMET" = "Comet";
 "COULD_NOT_CALCUL_NOTIF" = "Could not calcul transfer";
 "CUSTOM" = "Custom";
 "DAY_DETAIL" = "1 day (6h)";
@@ -33,6 +34,7 @@
 "DISTRIBUTION_RESULT" = "Distribution result";
 "DO_A_CALCUL" = "Make a transfer";
 "DO_A_CALCUL_DESC" = "Use the form on the left to perform calculations for an interplanetary transfer";
+"DWARF_PLANET" = "Dwarf planet";
 "ECCENTRICITY" = "Eccentricity";
 "EQUATORIAL_RADIUS" = "Equatorial radius";
 "ESCAPE_VELOCITY" = "Escape velocity";
@@ -85,6 +87,7 @@
 "PHASE_ANGLE" = "Phase angle";
 "PHASE_ANGLE_FOOTER" = "Wait for the origin celestial and the destination to have this angle.\nPress the details button for a graphic preview";
 "PHASE_ANGLE_HEADER" = "Celestials phase angle";
+"PLANET" = "Planet";
 "PROGRADE_DV" = "Prograde ∆v";
 "REMOVE_ADS" = "Remove ads";
 "REMOVE_ADS_WITH_PRICE" = "Remove ads (%@)";
@@ -92,12 +95,14 @@
 "RETROGRADE_DV" = "Retrograde ∆v";
 "ROTATION_PERIOD" = "Rotation period";
 "SAME_CELESTIAL" = "Origin and destination must be differents and orbiting aroud the same celestial";
+"SATELLITE" = "Satellite";
 "SATELLITE_DISTRIBUTION" = "Satellite distribution";
 "SEMI_MAJOR_AXIS" = "Semi-major axis";
 "SEMISYNC_ORBIT" = "Semi-sync. orbit";
 "SETTINGS" = "Settings";
 "SETTINGS_FOOTER" = "On Kerbin, days last 6h and years 426 days";
 "SOI" = "Sphere of influence";
+"STAR" = "Star";
 "SURFACE_GRAVITY" = "Surface gravity";
 "SYSTEM_SELECTION_DESCRIPTION" = "The solar system can change according to installed mods. Choose the one that match to your setup";
 "SYSTEMS" = "Systems";
