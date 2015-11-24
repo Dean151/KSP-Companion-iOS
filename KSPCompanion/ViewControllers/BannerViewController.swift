@@ -97,6 +97,11 @@ class BannerViewController: UIViewController, ADBannerViewDelegate {
             return contentController.navigationItem
         }
     }
+    
+    override func restoreUserActivityState(activity: NSUserActivity) {
+        self.contentController.restoreUserActivityState(activity)
+        super.restoreUserActivityState(activity)
+    }
 }
 
 class BannerViewManager: NSObject, ADBannerViewDelegate {

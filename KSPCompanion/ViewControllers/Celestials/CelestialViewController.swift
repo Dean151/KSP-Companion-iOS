@@ -37,6 +37,14 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         // Adding sections
         prepareCelestial()
         self.tableView.reloadData()
+        
+        beginUserActivity()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        stopUserActivity()
     }
     
     func prepareCelestial() {
@@ -330,5 +338,39 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
             NSParagraphStyleAttributeName: paragraph]
         
         return NSAttributedString(string: text, attributes: attributes)
+    }
+}
+
+
+
+// MARK: - Handoff
+
+extension CelestialViewController {
+    func beginUserActivity() {
+        guard let celestial = self.celestial else { return }
+        
+        let celestials = DataManager.getCelestialsFromJson()
+        guard let index = celestials.indexOf(celestial) else { return }
+        
+        let activity = NSUserActivity(activityType: HandoffIdentifier.Celestial.type)
+        activity.title = celestial.name
+        activity.userInfo = ["SolarSystem": Settings.sharedInstance.solarSystem.rawValue, "CelestialIndex": index]
+        
+        userActivity = activity
+        userActivity?.becomeCurrent()
+    }
+    
+    override func updateUserActivityState(activity: NSUserActivity) {
+        guard let celestial = self.celestial else { return }
+        
+        let celestials = DataManager.getCelestialsFromJson()
+        guard let index = celestials.indexOf(celestial) else { return }
+        
+        activity.addUserInfoEntriesFromDictionary(["SolarSystem": Settings.sharedInstance.solarSystem.rawValue, "CelestialIndex": index])
+        super.updateUserActivityState(activity)
+    }
+    
+    func stopUserActivity() {
+        userActivity?.invalidate()
     }
 }

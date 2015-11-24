@@ -11,25 +11,52 @@ import iRate
 import Fabric
 import Crashlytics
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+enum HandoffIdentifier: String {
+    case Celestials, Celestial
     
-    enum ShortcutIdentifier: String {
-        case Celestials
-        case Transfer
-        case Distribution
-        
-        init?(fullType: String) {
-            guard let last = fullType.componentsSeparatedByString(".").last else { return nil }
-            
-            self.init(rawValue: last)
-        }
-        
-        var type: String {
-            return NSBundle.mainBundle().bundleIdentifier! + ".\(self.rawValue)"
+    init?(fullType: String) {
+        guard let last = fullType.componentsSeparatedByString(".").last else { return nil }
+        self.init(rawValue: last)
+    }
+    
+    var type: String {
+        return NSBundle.mainBundle().bundleIdentifier! + ".\(self.rawValue)"
+    }
+    
+    var tabNumber: Int {
+        switch self {
+        case .Celestials, .Celestial:
+            return 0
         }
     }
+}
 
+enum ShortcutIdentifier: String {
+    case Celestials, Transfer, Distribution
+    
+    init?(fullType: String) {
+        guard let last = fullType.componentsSeparatedByString(".").last else { return nil }
+        self.init(rawValue: last)
+    }
+    
+    var type: String {
+        return NSBundle.mainBundle().bundleIdentifier! + ".\(self.rawValue)"
+    }
+    
+    var tabNumber: Int {
+        switch self {
+        case .Celestials:
+            return 0
+        case .Transfer:
+            return 1
+        case .Distribution:
+            return 2
+        }
+    }
+}
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     override init() {
@@ -71,6 +98,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return !isLaunchedFromQuickAction
     }
     
+    // MARK: - Handoff
+    
+    func application(application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
+        return true
+    }
+    
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+        var handled = false
+        
+        guard let userInfo = userActivity.userInfo else { return false }
+        print("Received a payload via handoff: \(userInfo)")
+        
+        if let handoffId = HandoffIdentifier.init(fullType: userActivity.activityType) {
+            guard let tabbar = self.window?.rootViewController as? KSPTabBarController else { return false }
+            tabbar.shouldShow = handoffId.tabNumber
+            tabbar.restoreUserActivityState(userActivity)
+            handled = true
+        }
+        
+        return handled
+    }
+    
+    func application(application: UIApplication, didFailToContinueUserActivityWithType userActivityType: String, error: NSError) {
+        if error.code != NSUserCancelledError {
+            print("Handoff error occured")
+        } else {
+            print("Handoff cancelled")
+        }
+    }
+    
+    // Mark: - 3DTouch Shortcuts
+    
     @available(iOS 9.0, *)
     func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
         
@@ -82,21 +141,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @available(iOS 9.0, *)
     func handleQuickAction(shortcutType: ShortcutIdentifier) -> Bool {
         guard let tabbar = self.window?.rootViewController as? KSPTabBarController else { return false }
-        
-        switch shortcutType {
-        case .Celestials:
-            // Open Celestials
-            tabbar.shouldShow = 0
-            return true
-        case .Transfer:
-            // Open Transfer
-            tabbar.shouldShow = 1
-            return true
-        case .Distribution:
-            // Open Distribute
-            tabbar.shouldShow = 2
-            return true
-        }
+        tabbar.shouldShow = shortcutType.tabNumber
+        return true
     }
 
     func applicationWillResignActive(application: UIApplication) {

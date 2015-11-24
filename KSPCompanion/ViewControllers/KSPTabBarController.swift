@@ -50,6 +50,13 @@ class KSPTabBarController: UITabBarController {
         self.selectedItem = self.viewControllers![index].tabBarItem
     }
     
+    override func restoreUserActivityState(activity: NSUserActivity) {
+        self.viewControllers?.forEach({
+            $0.restoreUserActivityState(activity)
+        })
+        super.restoreUserActivityState(activity)
+    }
+    
     // MARK: UITabBarControllerDelegate
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         if self.selectedItem == item {

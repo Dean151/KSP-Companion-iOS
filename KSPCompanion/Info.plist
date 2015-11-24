@@ -36,6 +36,11 @@
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER).Celestials</string>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER).Celestial</string>
+	</array>
 	<key>SecureNSUserDefaultKey</key>
 	<string>$(SECURE_NS_USER_DEFAULT_KEY)</string>
 	<key>UIApplicationShortcutItems</key>

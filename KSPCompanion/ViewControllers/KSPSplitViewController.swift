@@ -49,6 +49,13 @@ class KSPSplitViewController: UISplitViewController, UISplitViewControllerDelega
             navVC.popToRootViewControllerAnimated(true)
         }
     }
+    
+    override func restoreUserActivityState(activity: NSUserActivity) {
+        self.viewControllers.forEach({
+            $0.restoreUserActivityState(activity)
+        })
+        super.restoreUserActivityState(activity)
+    }
 }
 
 extension UINavigationController {
@@ -58,5 +65,12 @@ extension UINavigationController {
         }
         
         super.viewWillAppear(animated)
+    }
+    
+    override public func restoreUserActivityState(activity: NSUserActivity) {
+        self.viewControllers.forEach({
+            $0.restoreUserActivityState(activity)
+        })
+        super.restoreUserActivityState(activity)
     }
 }
