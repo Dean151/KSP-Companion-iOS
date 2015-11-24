@@ -82,6 +82,11 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
     
     // MARK: Research feature
     
+    var isResearching: Bool {
+        guard let searchText = searchController.searchBar.text else { return false }
+        return searchController.active && !searchText.isEmpty
+    }
+    
     func filterContentForSearchText(searchText: String) {
         searchResults = self.celestials.filter({ ( cel: Celestial) -> Bool in
             let nameMatch = cel.name.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
@@ -128,7 +133,7 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchController.active ? searchResults.count :celestials.count
+        return self.isResearching ? searchResults.count :celestials.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -142,7 +147,7 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
     }
     
     func getCelestialAtIndexPath(indexPath: NSIndexPath) -> Celestial {
-        return searchController.active ? searchResults[indexPath.row] : celestials[indexPath.row]
+        return self.isResearching ? searchResults[indexPath.row] : celestials[indexPath.row]
     }
     
     func configureCell(cell: UITableViewCell, celestial: Celestial) {
