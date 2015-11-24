@@ -5,7 +5,7 @@ use_frameworks!
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'DZNEmptyDataSet'
-pod 'Eureka', :git => "https://github.com/xmartlabs/Eureka.git"
+pod 'Eureka'
 pod 'iRate'
 pod 'IAPController', :git => "https://github.com/materik/IAPController.git", :tag => "0.2.0"
 pod 'SecureNSUserDefaults', '~> 1.0.0'

@@ -35,11 +35,10 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.sizeToFit()
         tableView.tableHeaderView = searchController.searchBar
+        definesPresentationContext = true
         
         // Searchbar customization
         searchController.searchBar.barTintColor = UIColor.blackColor()
-        
-        definesPresentationContext = true
         
         
         // Peek and Pop
