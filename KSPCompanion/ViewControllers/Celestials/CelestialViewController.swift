@@ -38,13 +38,13 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         prepareCelestial()
         self.tableView.reloadData()
         
-        beginUserActivity()
+        //beginUserActivity()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        stopUserActivity()
+        //stopUserActivity()
     }
     
     func prepareCelestial() {
@@ -344,7 +344,7 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
 
 
 // MARK: - Handoff
-
+/*
 extension CelestialViewController {
     func beginUserActivity() {
         guard let celestial = self.celestial else { return }
@@ -387,3 +387,4 @@ extension CelestialViewController {
         userActivity?.invalidate()
     }
 }
+*/

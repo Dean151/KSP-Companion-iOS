@@ -67,7 +67,7 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
         
         super.viewWillAppear(animated)
         
-        beginUserActivity()
+        //beginUserActivity()
         
         // refreshing data
         loadCelestials()
@@ -75,7 +75,7 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "viewCelestialDetails" {
-            stopUserActivity()
+            //stopUserActivity()
             
             let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CelestialViewController
             
@@ -244,12 +244,13 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
 }
 
 // MARK: - Handoff
-
+/*
 extension CelestialsTableViewController {
     func beginUserActivity() {
         let activity = NSUserActivity(activityType: HandoffIdentifier.Celestials.type)
         activity.title = NSLocalizedString("CELESTIALS", comment: "")
         activity.userInfo = ["SolarSystem": Settings.sharedInstance.solarSystem.rawValue]
+        
         
         userActivity = activity
         userActivity?.becomeCurrent()
@@ -292,6 +293,7 @@ extension CelestialsTableViewController {
         super.restoreUserActivityState(activity)
     }
 }
+*/
 
 // MARK: - Peek & Pop
 
