@@ -17,11 +17,16 @@ class SolarSystemSelector: UITableViewController {
     }
 
     required init?(coder aDecoder: NSCoder) {
+        
+        self.parentController = aDecoder.decodeObjectForKey("parent") as? CelestialsTableViewController
+        
         super.init(coder: aDecoder)
     }
     
-    private override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    override func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(parentController, forKey: "parent")
+        
+        super.encodeWithCoder(aCoder)
     }
     
     override func viewDidLoad() {
