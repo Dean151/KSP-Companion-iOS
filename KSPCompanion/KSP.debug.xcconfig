@@ -7,5 +7,5 @@
 //
 
 #include "Keys.xcconfig"
-#include "Pods/Target Support Files/Pods/Pods.debug.xcconfig"
+#include "Pods/Target Support Files/Pods-KSPCompanion/Pods-KSPCompanion.debug.xcconfig"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited)

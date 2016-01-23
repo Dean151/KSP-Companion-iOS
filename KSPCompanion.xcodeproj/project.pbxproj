@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A3F9A37F119E94D5EAD5F7F7 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F39D61BF80B5DF64BA7B68 /* Pods.framework */; };
+		4B55BD10F800B733C0FE156A /* Pods_KSPCompanion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2690CEA87168DFEC67D0339 /* Pods_KSPCompanion.framework */; };
 		E90185831BB3046E00F1BCAB /* SolarSystemSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90185821BB3046E00F1BCAB /* SolarSystemSelector.swift */; };
 		E90185861BB33B7C00F1BCAB /* TransferAnglePhaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90185841BB33B7C00F1BCAB /* TransferAnglePhaseView.swift */; };
 		E90185871BB33B7C00F1BCAB /* TransferManoeuverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90185851BB33B7C00F1BCAB /* TransferManoeuverView.swift */; };
@@ -56,9 +56,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		25F59577345E9C38C2D08C5C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		453AAB7E7C22AFE04A3A6A9B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		64F39D61BF80B5DF64BA7B68 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2690CEA87168DFEC67D0339 /* Pods_KSPCompanion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KSPCompanion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90185821BB3046E00F1BCAB /* SolarSystemSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarSystemSelector.swift; sourceTree = "<group>"; };
 		E90185841BB33B7C00F1BCAB /* TransferAnglePhaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferAnglePhaseView.swift; sourceTree = "<group>"; };
 		E90185851BB33B7C00F1BCAB /* TransferManoeuverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferManoeuverView.swift; sourceTree = "<group>"; };
@@ -105,18 +104,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3F9A37F119E94D5EAD5F7F7 /* Pods.framework in Frameworks */,
+				4B55BD10F800B733C0FE156A /* Pods_KSPCompanion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8A5468D2B8F629837BC2DE9F /* Pods */ = {
+		55A0547CDB4187CE8BF5F985 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				25F59577345E9C38C2D08C5C /* Pods.debug.xcconfig */,
-				453AAB7E7C22AFE04A3A6A9B /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -125,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				64F39D61BF80B5DF64BA7B68 /* Pods.framework */,
+				B2690CEA87168DFEC67D0339 /* Pods_KSPCompanion.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -166,8 +164,8 @@
 				E9C36BA01BC7E75700373BD0 /* KSP.release.xcconfig */,
 				E907FE941BB1ED4000857D14 /* KSPCompanion */,
 				E907FE931BB1ED4000857D14 /* Products */,
-				8A5468D2B8F629837BC2DE9F /* Pods */,
 				B29E747990CF4026D7E5F625 /* Frameworks */,
+				55A0547CDB4187CE8BF5F985 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -261,14 +259,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E907FEA61BB1ED4000857D14 /* Build configuration list for PBXNativeTarget "KSPCompanion" */;
 			buildPhases = (
-				A732D987F71082EE96DEDDBA /* Check Pods Manifest.lock */,
+				DDD94091C621CBBF63EE0AAE /* Check Pods Manifest.lock */,
 				E907FE8E1BB1ED4000857D14 /* Sources */,
 				E907FE8F1BB1ED4000857D14 /* Frameworks */,
 				E907FE901BB1ED4000857D14 /* Resources */,
 				E9808BFB1BB1FE70000FA2CC /* Embed Frameworks */,
-				BDBFF2D7C5A94F1AE0C7D533 /* Embed Pods Frameworks */,
-				10AAE0B1AE1941E1ACE29C56 /* Copy Pods Resources */,
 				E9C36B9E1BC7DCD400373BD0 /* Run Script */,
+				ED5D16447DA3660B04AF935D /* Embed Pods Frameworks */,
+				DDCBA59A3CFEAAB6CF7D774D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -333,7 +331,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		10AAE0B1AE1941E1ACE29C56 /* Copy Pods Resources */ = {
+		DDCBA59A3CFEAAB6CF7D774D /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -345,10 +343,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KSPCompanion/Pods-KSPCompanion-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A732D987F71082EE96DEDDBA /* Check Pods Manifest.lock */ = {
+		DDD94091C621CBBF63EE0AAE /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -361,21 +359,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		BDBFF2D7C5A94F1AE0C7D533 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E9C36B9E1BC7DCD400373BD0 /* Run Script */ = {
@@ -391,6 +374,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" ${FABRIC_API_KEY} ${FABRIC_BUILD_SECRET}";
+		};
+		ED5D16447DA3660B04AF935D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KSPCompanion/Pods-KSPCompanion-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
