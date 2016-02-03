@@ -8,25 +8,18 @@
 
 import UIKit
 
-class SolarSystemSelector: UITableViewController {
+class SolarSystemSelector: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    weak var tableView: UITableView!
     var parentController: CelestialsTableViewController?
     
-    init () {
-        super.init(style: .Grouped)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
+    override func loadView() {
+        super.loadView()
         
-        self.parentController = aDecoder.decodeObjectForKey("parent") as? CelestialsTableViewController
-        
-        super.init(coder: aDecoder)
-    }
-    
-    override func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(parentController, forKey: "parent")
-        
-        super.encodeWithCoder(aCoder)
+        self.view = UITableView(frame: CGRectZero, style: .Grouped)
+        self.tableView = self.view as! UITableView
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
     }
     
     override func viewDidLoad() {
@@ -54,11 +47,11 @@ class SolarSystemSelector: UITableViewController {
     }
     
     // Mark: TableView
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SolarSystem.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
         
         if let solarSystem = SolarSystem(rawValue: indexPath.row) {
@@ -73,14 +66,14 @@ class SolarSystemSelector: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let solarSystem = SolarSystem(rawValue: indexPath.row) {
             Settings.sharedInstance.solarSystem = solarSystem
             self.dismiss(self)
         }
     }
     
-    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return NSLocalizedString("SYSTEM_SELECTION_DESCRIPTION", comment: "")
     }
 }
