@@ -279,14 +279,13 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
     }
     
     func setDistributionAtIndexPath(indexPath: NSIndexPath) {
-        self.performSelector("closeEditActions", withObject: nil, afterDelay: 0.1)
+        self.performSelector(#selector(CelestialViewController.closeEditActions), withObject: nil, afterDelay: 0.1)
         
         guard let celestial = self.celestial else { return }
         
         // Looking for the right controller
         guard let tabBarController = self.tabBarController as? KSPTabBarController else { print("No Tab Bar"); return }
-        guard let bannerVC = tabBarController.viewControllers?[2] as? BannerViewController else { print("No Banner view controller"); return }
-        guard let splitVC = bannerVC.contentController as? KSPSplitViewController else { print("No Split view controller"); return }
+        guard let splitVC = tabBarController.viewControllers?[2] as? KSPSplitViewController else { print("No Split view controller"); return }
         guard let navVC = splitVC.viewControllers.first as? UINavigationController else { print("No nav controller"); return }
         guard let distributionVC = navVC.viewControllers.first as? DistributionFormViewController else { print("No distribution controller"); return }
         

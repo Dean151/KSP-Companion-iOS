@@ -56,7 +56,7 @@ class TransferFormViewController: FormViewController {
         loadCelestials()
         
         if (UI_USER_INTERFACE_IDIOM() != .Pad) {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("CALCULATE", comment: ""), style: .Plain, target: self, action: "submit:")
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("CALCULATE", comment: ""), style: .Plain, target: self, action: #selector(TransferFormViewController.submit(_:)))
         }
     }
     

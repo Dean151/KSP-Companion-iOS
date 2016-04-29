@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import IAPController
 import Eureka
+import IAPController
 
 class SettingsViewController: FormViewController {
     let tempOptions = ["°C", "°F", "K"]
@@ -43,9 +43,9 @@ class SettingsViewController: FormViewController {
     func setupIAP() {
         iapcontroller.fetchProducts()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didFetchedProducts:", name: IAPControllerFetchedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didPurchasedProduct:", name: IAPControllerPurchasedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didFailedToPurchaseProduct:", name: IAPControllerFailedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsViewController.didFetchedProducts(_:)), name: IAPControllerFetchedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsViewController.didPurchasedProduct(_:)), name: IAPControllerPurchasedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsViewController.didFailedToPurchaseProduct(_:)), name: IAPControllerFailedNotification, object: nil)
     }
     
     deinit {
@@ -152,8 +152,6 @@ class SettingsViewController: FormViewController {
         iapFetched = false
         self.updateForm()
         Settings.sharedInstance.hideAds = true
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(BannerShouldBeHiddenByIAP, object: nil)
         
         let alert = UIAlertView(title: NSLocalizedString("THANK_YOU", comment: ""), message: NSLocalizedString("IAP_SUCCESS", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("DISMISS", comment: ""))
         alert.show()

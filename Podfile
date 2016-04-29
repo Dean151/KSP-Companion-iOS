@@ -8,7 +8,7 @@ target "KSPCompanion" do
   pod 'DZNEmptyDataSet'
   pod 'Eureka'
   pod 'iRate'
-  pod 'IAPController', :git => "https://github.com/materik/IAPController.git", :tag => "0.2.0"
+  pod 'IAPController'
   pod 'SecureNSUserDefaults', '~> 1.0.0'
   pod 'SnapKit'
   pod 'SwiftyJSON'

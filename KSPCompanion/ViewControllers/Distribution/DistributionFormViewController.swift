@@ -54,7 +54,7 @@ class DistributionFormViewController: FormViewController {
         loadCelestials()
         
         if (UI_USER_INTERFACE_IDIOM() == .Phone) {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("CALCULATE", comment: ""), style: .Plain, target: self, action: "submit:")
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("CALCULATE", comment: ""), style: .Plain, target: self, action: #selector(DistributionFormViewController.submit(_:)))
         }
     }
     

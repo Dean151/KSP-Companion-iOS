@@ -16,7 +16,7 @@ class KSPSplitViewController: UISplitViewController, UISplitViewControllerDelega
         self.delegate = self
         self.preferredDisplayMode = .AllVisible
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sizeChanged:", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(KSPSplitViewController.sizeChanged(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -11,7 +11,6 @@ import UIKit
 class KSPTabBarController: UITabBarController {
     
     var selectedItem: UITabBarItem?
-    var vcReplaced = false
     
     var _shoudShow = 0
     var shouldShow: Int {
@@ -20,7 +19,7 @@ class KSPTabBarController: UITabBarController {
         }
         set {
             _shoudShow = newValue
-            if newValue != self.selectedIndex && vcReplaced {
+            if newValue != self.selectedIndex {
                 self.setIndex(newValue)
             }
         }
@@ -28,18 +27,6 @@ class KSPTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var newViewControllers = [BannerViewController]()
-        
-        self.viewControllers!.forEach { vc in
-            vc.title = NSLocalizedString(vc.title!, comment: "")
-            let bvc = BannerViewController(contentController: vc)
-            bvc.tabBarItem = vc.tabBarItem
-            newViewControllers.append(bvc)
-        }
-        
-        self.setViewControllers(newViewControllers, animated: false)
-        self.vcReplaced = true
         
         self.setIndex(shouldShow)
     }
@@ -62,8 +49,8 @@ class KSPTabBarController: UITabBarController {
         if self.selectedItem == item {
             // Here we tapped again a selected item
             // So we should go back on one step
-            guard let bannerVC = self.selectedViewController as? BannerViewController else { return }
-            (bannerVC.contentController as? KSPSplitViewController)?.rollBack()
+            guard let splitVC = self.selectedViewController as? KSPSplitViewController else { return }
+            splitVC.rollBack()
         } else {
             self.selectedItem = item
         }

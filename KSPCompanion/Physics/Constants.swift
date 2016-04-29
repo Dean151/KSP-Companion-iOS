@@ -38,7 +38,7 @@ enum TemperatureUnit: Int, CustomStringConvertible {
     
     static var count: Int {
         var max: Int = 0
-        while let _ = self.init(rawValue: ++max) {}
+        while let _ = self.init(rawValue: max) { max += 1 }
         return max
     }
     
@@ -64,7 +64,7 @@ class Units {
         if allowSubUnits {
             while (newLength/1000 > 1 && actualUnit < preUnits.count-1) {
                 newLength = length / 1000
-                actualUnit++
+                actualUnit += 1
             }
         }
         

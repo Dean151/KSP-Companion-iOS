@@ -25,7 +25,7 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
         
         self.navigationController?.topViewController!.title = NSLocalizedString("CELESTIALS", comment: "")
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings"), style: .Plain, target: self, action: "openSolarSystemSelector:")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings"), style: .Plain, target: self, action: #selector(CelestialsTableViewController.openSolarSystemSelector(_:)))
         
         // Research
         searchController = UISearchController(searchResultsController: nil)
@@ -212,11 +212,10 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
     }
     
     func setFromOrTo(from: Bool, atIndexPath indexPath: NSIndexPath) {
-        self.performSelector("closeEditActions", withObject: nil, afterDelay: 0.1)
+        self.performSelector(#selector(CelestialsTableViewController.closeEditActions), withObject: nil, afterDelay: 0.1)
         // Looking for the right controller
         guard let tabBarController = self.tabBarController as? KSPTabBarController else { print("No Tab Bar"); return }
-        guard let bannerVC = tabBarController.viewControllers?[1] as? BannerViewController else { print("No Banner view controller"); return }
-        guard let splitVC = bannerVC.contentController as? KSPSplitViewController else { print("No Split view controller"); return }
+        guard let splitVC = tabBarController.viewControllers?[1] as? KSPSplitViewController else { print("No Split view controller"); return }
         guard let navVC = splitVC.viewControllers.first as? UINavigationController else { print("No nav controller"); return }
         guard let transferVC = navVC.viewControllers.first as? TransferFormViewController else { print("No tranfer controller"); return }
         

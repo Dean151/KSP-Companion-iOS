@@ -41,6 +41,10 @@ class Settings {
     
     var solarSystem: SolarSystem {
         get {
+            guard hideAds == true else {
+                return SolarSystem.Kerbolian
+            }
+            
             if let solarsystem = SolarSystem(rawValue: settings.integerForKey(solarSystemString)) {
                 return solarsystem
             } else {

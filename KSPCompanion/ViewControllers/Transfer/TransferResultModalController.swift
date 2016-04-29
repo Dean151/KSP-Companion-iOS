@@ -18,7 +18,7 @@ class TransferResultModalController: UIViewController {
         
         self.view.backgroundColor = UIColor.blackColor()
         
-        let dismissButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("dismiss:"))
+        let dismissButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(TransferResultModalController.dismiss(_:)))
         self.navigationItem.rightBarButtonItem = dismissButton;
     }
     
