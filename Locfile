@@ -1,0 +1,7 @@
+platform :ios, :create_constants => false
+formatting :none
+
+output_path 'KSPCompanion/'
+
+source :xlsx,
+       :path => 'Localizable.xlsx'

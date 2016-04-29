@@ -1,12 +1,14 @@
-/* 
-  Localizable.strings
-  
+/*
+Localizable.strings
 
-  Created by Thomas Durand on 07/07/2015.
+GENERATED - DO NOT MODIFY - use the localio gem instead.
+
+Created by localio.
 */
 
+
 "ADS" = "Publicité";
-"ADS_FOOTER" = "Je n'aime pas les publicités non plus, mais envoyer une application sur l'AppStore n'est pas gratuit !\nSi vous aimez cet application, vous pouvez les retirer pour toujours avec un achat In-App ; ça m'aide !";
+"ADS_FOOTER" = "Je n'aime pas les publicités non plus, mais envoyer une application sur l'AppStore n'est pas gratuit !\nSi vous aimez cette application, vous pouvez les retirer pour toujours avec un achat In-App ; ça m'aide !";
 "ALTITUDE" = "Altitude";
 "ANGLE" = "Angle";
 "APOAPSIS" = "Apoastre";
@@ -62,10 +64,10 @@
 "KERBOL_PLUS_SYSTEM" = "Système avec Kerbol Plus Mod";
 "LEAVE" = "En partir";
 "LONGITUDE_ASCENDING_NODE" = "Longitude du nœud ascendant";
-"MASS" = "Masse";
 "MANOEUVER" = "Manœuvre";
 "MANOEUVER_FOOTER" = "Une fois que les objets font le bon angle, réalisez cette manœuvre depuis votre orbite de parking pour quitter correctement la sphère d'influence.";
 "MANOEUVER_HEADER" = "Détails de la manœuvre";
+"MASS" = "Masse";
 "MEAN_ANOMALY" = "Anomalie moyenne";
 "NO" = "Non";
 "NO_PLANET" = "Aucune sélection";
