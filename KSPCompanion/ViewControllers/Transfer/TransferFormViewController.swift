@@ -70,6 +70,19 @@ class TransferFormViewController: FormViewController {
     func doTheMath(showMessage: Bool) -> (parent: Celestial, from: Celestial, to: Celestial, phaseAngle: Double, ejectionAngle: Double, ejectionSpeed: Double, deltaV: Double)? {
         let results = form.values()
         
+        guard Settings.sharedInstance.canDoCalculation else {
+            let alert = UIAlertController(title: NSLocalizedString("ONLY_X_CALCULATION", comment: ""), message: NSLocalizedString("COMPLETE_VERSION_FOOTER", comment: ""), preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: NSLocalizedString("BUY_IN_SETTINGS", comment: ""), style: .Default, handler: { action in
+                let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+                appDelegate?.handleQuickAction(.Settings)
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .Cancel, handler: nil))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+            return nil
+        }
+        
         guard let from = results["from"] as? Celestial, dest = results["to"] as? Celestial else { return nil }
         guard let alt = results["altitude"] as? Int else { return nil }
         if from != dest {
@@ -77,6 +90,7 @@ class TransferFormViewController: FormViewController {
                 if from.orbit!.eccentricity < 0.3 && dest.orbit!.eccentricity < 0.3 {
                     if let calcul = from.transfertTo(dest, withAltitude: Double(alt)) {
                         Answers.logCustomEventWithName("TransferCalculation", customAttributes: ["from": from.name, "to": dest.name, "altitude": alt])
+                        Settings.sharedInstance.numberOfCalculations += 1
                         return calcul
                     }
                     else {

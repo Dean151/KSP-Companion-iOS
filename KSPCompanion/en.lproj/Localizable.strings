@@ -7,8 +7,6 @@ Created by localio.
 */
 
 
-"ADS" = "Ads";
-"ADS_FOOTER" = "I don't like ads either, but sending an app on the AppStore is not free !\nIf you like this app, you can remove them forever with an In-App Purchase; it helps !";
 "ALTITUDE" = "Altitude";
 "ANGLE" = "Angle";
 "APOAPSIS" = "Apoapsis";
@@ -16,11 +14,18 @@ Created by localio.
 "ATMO_LIMIT" = "Atmosphere limit";
 "ATMO_PRESSURE" = "Atmospheric pressure";
 "ATMO_PROPERTIES" = "Atmosphere properties";
+"BUY_COMPLETE_VERSION" = "Buy complete version";
+"BUY_COMPLETE_VERSION_WITH_PRICE" = "Buy complete version (%@)";
+"BUY_IN_SETTINGS" = "Buy in settings";
 "CALCULATE" = "Calculate";
+"CANCEL" = "Cancel";
 "CELESTIAL_PROPERTIES" = "Celestial properties";
 "CELESTIALS" = "Celestials";
 "CHOOSE_A_PLANET" = "Choose a celestial on the left";
 "COMET" = "Comet";
+"COMPLETE_VERSION" = "Complete version";
+"COMPLETE_VERSION_FEATURE" = "Unavailable feature";
+"COMPLETE_VERSION_FOOTER" = "If you like this app, or that you use it a lot, you can buy the complete version for barely nothing!\nWith this complete version, you won't have any restriction on calculations, and you will be able to use alternate systems";
 "COULD_NOT_CALCUL_NOTIF" = "Could not calcul transfer";
 "CUSTOM" = "Custom";
 "DAY_DETAIL" = "1 day (6h)";
@@ -76,6 +81,7 @@ Created by localio.
 "NOT_ENOUGH_NOTIF_DESC" = "You should send at least 2 satellites to calculate a distribution";
 "NUMBER_OF_SATELLITES" = "Number of satellites";
 "NUMBER_OF_SATELLITES_PLACEHOLDER" = "3 for a triangle";
+"ONLY_X_CALCULATION" = "Sorry, only 20 calculations a day. Come back tomorrow !";
 "ORBIT" = "Orbit";
 "ORBIT_AROUND" = "Orbit around";
 "ORBIT_PROPERTIES" = "Orbit properties";
@@ -91,9 +97,7 @@ Created by localio.
 "PHASE_ANGLE_HEADER" = "Celestials phase angle";
 "PLANET" = "Planet";
 "PROGRADE_DV" = "Prograde ∆v";
-"REMOVE_ADS" = "Remove ads";
-"REMOVE_ADS_WITH_PRICE" = "Remove ads (%@)";
-"RESTORE_ADS" = "Restore In-App purchases";
+"RESTORE_COMPLETE_VERSION" = "Restore In-App purchases";
 "RETROGRADE_DV" = "Retrograde ∆v";
 "ROTATION_PERIOD" = "Rotation period";
 "SAME_CELESTIAL" = "Origin and destination must be differents and orbiting aroud the same celestial";

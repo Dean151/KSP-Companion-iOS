@@ -39,6 +39,7 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
         
         // Searchbar customization
         searchController.searchBar.barTintColor = UIColor.blackColor()
+        searchController.searchBar.backgroundImage = UIImage()
         
         
         // Peek and Pop

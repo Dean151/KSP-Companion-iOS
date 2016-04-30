@@ -32,7 +32,7 @@ enum HandoffIdentifier: String {
 }
 
 enum ShortcutIdentifier: String {
-    case Celestials, Transfer, Distribution
+    case Celestials, Transfer, Distribution, Settings
     
     init?(fullType: String) {
         guard let last = fullType.componentsSeparatedByString(".").last else { return nil }
@@ -51,6 +51,8 @@ enum ShortcutIdentifier: String {
             return 1
         case .Distribution:
             return 2
+        case .Settings:
+            return 3
         }
     }
 }
@@ -138,7 +140,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         completionHandler(handleQuickAction(shortcutType))
     }
     
-    @available(iOS 9.0, *)
     func handleQuickAction(shortcutType: ShortcutIdentifier) -> Bool {
         guard let tabbar = self.window?.rootViewController as? KSPTabBarController else { return false }
         tabbar.shouldShow = shortcutType.tabNumber

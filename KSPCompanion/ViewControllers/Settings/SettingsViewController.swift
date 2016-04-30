@@ -29,7 +29,7 @@ class SettingsViewController: FormViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if !Settings.sharedInstance.hideAds && !iapFetched {
+        if !Settings.sharedInstance.completeVersionPurchased && !iapFetched {
             setupIAP()
         }
     }
@@ -77,13 +77,13 @@ class SettingsViewController: FormViewController {
             }
             
         
-            +++ Section(header: NSLocalizedString("ADS", comment: ""), footer: NSLocalizedString("ADS_FOOTER", comment: ""))
+            +++ Section(header: NSLocalizedString("COMPLETE_VERSION", comment: ""), footer: NSLocalizedString("COMPLETE_VERSION_FOOTER", comment: ""))
            
             <<<  ButtonRow("remove") {
-                $0.title = NSLocalizedString("REMOVE_ADS", comment: "")
+                $0.title = NSLocalizedString("BUY_COMPLETE_VERSION", comment: "")
                 $0.cell.tintColor = UIColor.appGreenColor
                 $0.hidden = Condition.Function([], { form in
-                    return Settings.sharedInstance.hideAds
+                    return Settings.sharedInstance.completeVersionPurchased
                 })
                 $0.disabled = Condition.Function([], { form in
                     return !self.iapFetched
@@ -95,15 +95,15 @@ class SettingsViewController: FormViewController {
                 }
             }.cellUpdate { (cell, row) in
                 if self.iapFetched {
-                    row.title = String.localizedStringWithFormat(NSLocalizedString("REMOVE_ADS_WITH_PRICE", comment: ""), self.iapcontroller.products!.first!.priceFormatted!);
+                    row.title = String.localizedStringWithFormat(NSLocalizedString("BUY_COMPLETE_VERSION_WITH_PRICE", comment: ""), self.iapcontroller.products!.first!.priceFormatted!);
                 }
             }
     
             <<< ButtonRow("restore") {
-                $0.title = NSLocalizedString("RESTORE_ADS", comment: "")
+                $0.title = NSLocalizedString("RESTORE_COMPLETE_VERSION", comment: "")
                 $0.cell.tintColor = UIColor.appGreenColor
                 $0.hidden = Condition.Function([], { form in
-                    return Settings.sharedInstance.hideAds
+                    return Settings.sharedInstance.completeVersionPurchased
                 })
                 $0.disabled = Condition.Function([], { form in
                     return !self.iapFetched
@@ -120,7 +120,7 @@ class SettingsViewController: FormViewController {
                 $0.cell.tintColor = UIColor.appGreenColor
                 $0.disabled = true
                 $0.hidden = Condition.Function([], { form in
-                    return !Settings.sharedInstance.hideAds
+                    return !Settings.sharedInstance.completeVersionPurchased
                 })
             }
         
@@ -151,7 +151,7 @@ class SettingsViewController: FormViewController {
     func didPurchasedProduct(sender: AnyObject) {
         iapFetched = false
         self.updateForm()
-        Settings.sharedInstance.hideAds = true
+        Settings.sharedInstance.completeVersionPurchased = true
         
         let alert = UIAlertView(title: NSLocalizedString("THANK_YOU", comment: ""), message: NSLocalizedString("IAP_SUCCESS", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("DISMISS", comment: ""))
         alert.show()

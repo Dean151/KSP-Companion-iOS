@@ -7,8 +7,6 @@ Created by localio.
 */
 
 
-"ADS" = "Publicité";
-"ADS_FOOTER" = "Je n'aime pas les publicités non plus, mais envoyer une application sur l'AppStore n'est pas gratuit !\nSi vous aimez cette application, vous pouvez les retirer pour toujours avec un achat In-App ; ça m'aide !";
 "ALTITUDE" = "Altitude";
 "ANGLE" = "Angle";
 "APOAPSIS" = "Apoastre";
@@ -16,11 +14,18 @@ Created by localio.
 "ATMO_LIMIT" = "Limite de l'atmosphère";
 "ATMO_PRESSURE" = "Pression atmosphérique";
 "ATMO_PROPERTIES" = "Propriétés atmosphériques";
+"BUY_COMPLETE_VERSION" = "Acheter la version complête";
+"BUY_COMPLETE_VERSION_WITH_PRICE" = "Buy complete version (%@)";
+"BUY_IN_SETTINGS" = "Voir dans les réglages";
 "CALCULATE" = "Calculer";
+"CANCEL" = "Annuler";
 "CELESTIAL_PROPERTIES" = "Propriété de l'astre";
 "CELESTIALS" = "Astres";
 "CHOOSE_A_PLANET" = "Choisissez un astre à gauche";
 "COMET" = "Comète";
+"COMPLETE_VERSION" = "Version complète";
+"COMPLETE_VERSION_FEATURE" = "Fonctionnalité non disponible";
+"COMPLETE_VERSION_FOOTER" = "Si vous aimez l'application, ou que vous l'utilisez beaucoup, vous pouvez acheter la version complete pour une bouchée de pain !\nAvec la version complete, il n'y a pas de restrictuion sur le quantité de calculs, et vous pourrez choisir des systèmes planétaires alternatifs";
 "COULD_NOT_CALCUL_NOTIF" = "Le transfert n'a pas été calculé";
 "CUSTOM" = "Autre";
 "DAY_DETAIL" = "1 jour (6h)";
@@ -76,6 +81,7 @@ Created by localio.
 "NOT_ENOUGH_NOTIF_DESC" = "Vous devez envoyer au moins 2 satellites pour pouvoir les distribuer";
 "NUMBER_OF_SATELLITES" = "Nombre de satellites";
 "NUMBER_OF_SATELLITES_PLACEHOLDER" = "3 pour un triangle";
+"ONLY_X_CALCULATION" = "Désolé, seulement 20 calculs par jour. Revenez demain !";
 "ORBIT" = "Orbite";
 "ORBIT_AROUND" = "Orbite autour de";
 "ORBIT_PROPERTIES" = "Propriétés orbitales";
@@ -91,9 +97,7 @@ Created by localio.
 "PHASE_ANGLE_HEADER" = "Angle de phase des astres";
 "PLANET" = "Planète";
 "PROGRADE_DV" = "∆v prograde";
-"REMOVE_ADS" = "Supprimer la publicité";
-"REMOVE_ADS_WITH_PRICE" = "Supprimer la publicité (%@)";
-"RESTORE_ADS" = "Restaurer les achats In-App";
+"RESTORE_COMPLETE_VERSION" = "Restaurer les achats In-App";
 "RETROGRADE_DV" = "∆v rétrograde";
 "ROTATION_PERIOD" = "Période de rotation";
 "SAME_CELESTIAL" = "L'origine et la destination doivent être différentes et orbiter autour du même corps";

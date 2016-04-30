@@ -11,8 +11,12 @@ import SecureNSUserDefaults
 
 class Settings {
     
+    let calculationLimit = 20
+    
     // Names of the settings
     private let hideAdsString = "hideAds"
+    private let lastCounterReinitDateString = "lastCounterReinitDate"
+    private let counterString = "counter"
     private let solarSystemString = "solarSystem"
     private let temperatureUnitString = "temperatureUnit"
     private let earthTimeString = "useEarthTime"
@@ -30,7 +34,26 @@ class Settings {
         settings.setSecret(key)
     }
     
-    var hideAds: Bool {
+    var canDoCalculation: Bool {
+        if completeVersionPurchased {
+            return true
+        }
+        
+        let calendar = NSCalendar.currentCalendar()
+        let flags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
+        let comp1 = calendar.components(flags, fromDate: lastResetCounterDate)
+        let comp2 = calendar.components(flags, fromDate: NSDate())
+        
+        if !(comp1.day == comp2.day && comp1.month == comp2.month && comp1.year == comp2.year) {
+            numberOfCalculations = 0
+            lastResetCounterDate = NSDate()
+            return true
+        }
+        
+        return numberOfCalculations < calculationLimit
+    }
+    
+    var completeVersionPurchased: Bool {
         get {
             return settings.secretBoolForKey(hideAdsString)
         }
@@ -39,9 +62,27 @@ class Settings {
         }
     }
     
+    var numberOfCalculations: Int {
+        get {
+            return settings.secretIntegerForKey(counterString)
+        }
+        set {
+            settings.setSecretInteger(newValue, forKey: counterString)
+        }
+    }
+    
+    private var lastResetCounterDate: NSDate {
+        get {
+            return NSDate(timeIntervalSince1970: settings.secretDoubleForKey(lastCounterReinitDateString))
+        }
+        set {
+            settings.setSecretDouble(newValue.timeIntervalSince1970, forKey: lastCounterReinitDateString)
+        }
+    }
+    
     var solarSystem: SolarSystem {
         get {
-            guard hideAds == true else {
+            guard completeVersionPurchased == true else {
                 return SolarSystem.Kerbolian
             }
             

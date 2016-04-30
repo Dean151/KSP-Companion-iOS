@@ -32,7 +32,7 @@ class SolarSystemSelector: UIViewController, UITableViewDataSource, UITableViewD
         self.preferredContentSize = CGSizeMake(320, 130 + 44*CGFloat(SolarSystem.count))
         
         // Adding button to dismiss view
-        let dismissButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: Selector("dismiss:"))
+        let dismissButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(SolarSystemSelector.dismiss(_:)))
         self.navigationItem.rightBarButtonItem = dismissButton;
     }
     
@@ -67,6 +67,23 @@ class SolarSystemSelector: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        guard Settings.sharedInstance.completeVersionPurchased || indexPath.row == 0 else {
+            // We can't change
+            let alert = UIAlertController(title: NSLocalizedString("COMPLETE_VERSION_FEATURE", comment: ""), message: NSLocalizedString("COMPLETE_VERSION_FOOTER", comment: ""), preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: NSLocalizedString("BUY_IN_SETTINGS", comment: ""), style: .Default, handler: { action in
+                self.dismissViewControllerAnimated(true, completion: {
+                    let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+                    appDelegate?.handleQuickAction(.Settings)
+                })
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .Cancel, handler: nil))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        
         if let solarSystem = SolarSystem(rawValue: indexPath.row) {
             Settings.sharedInstance.solarSystem = solarSystem
             self.dismiss(self)

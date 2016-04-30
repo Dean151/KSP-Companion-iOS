@@ -68,6 +68,19 @@ class DistributionFormViewController: FormViewController {
     func doTheMaths(showMessage: Bool) -> (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int, deltaV: Double)? {
         let results = self.form.values()
         
+        guard Settings.sharedInstance.canDoCalculation else {
+            let alert = UIAlertController(title: NSLocalizedString("ONLY_X_CALCULATION", comment: ""), message: NSLocalizedString("COMPLETE_VERSION_FOOTER", comment: ""), preferredStyle: .Alert)
+            
+            alert.addAction(UIAlertAction(title: NSLocalizedString("BUY_IN_SETTINGS", comment: ""), style: .Default, handler: { action in
+                let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+                appDelegate?.handleQuickAction(.Settings)
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .Cancel, handler: nil))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+            return nil
+        }
+        
         guard let nbsat = results["number"] as? Int, cel = results["celestial"] as? Celestial, typeOrbit = results["orbittype"] as? String else { return nil }
         var targetAltitude: Double = 0
         
@@ -110,7 +123,7 @@ class DistributionFormViewController: FormViewController {
                 let deltaV = abs(targetOrbit.apoapsisVelocity - transferOrbit.apoapsisVelocity )
                 
                 Answers.logCustomEventWithName("DistributionCalculation", customAttributes: ["around": cel.name, "satNb": nbsat, "alt": targetAltitude])
-                
+                Settings.sharedInstance.numberOfCalculations += 1
                 return (targetOrbit, transferOrbit, nbsat, deltaV)
             }
         } else {
