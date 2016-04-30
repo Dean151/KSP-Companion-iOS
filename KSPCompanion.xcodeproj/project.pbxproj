@@ -21,12 +21,12 @@
 		E901859E1BB4A8DE00F1BCAB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E901859D1BB4A8DE00F1BCAB /* SettingsViewController.swift */; };
 		E90185A01BB4C2AC00F1BCAB /* IAPControllerProductIds.plist in Resources */ = {isa = PBXBuildFile; fileRef = E901859F1BB4C2AC00F1BCAB /* IAPControllerProductIds.plist */; };
 		E907FE961BB1ED4000857D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E907FE951BB1ED4000857D14 /* AppDelegate.swift */; };
-		E907FE9D1BB1ED4000857D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E907FE9B1BB1ED4000857D14 /* Main.storyboard */; };
 		E907FE9F1BB1ED4000857D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E907FE9E1BB1ED4000857D14 /* Assets.xcassets */; };
 		E907FEA21BB1ED4000857D14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E907FEA01BB1ED4000857D14 /* LaunchScreen.storyboard */; };
 		E924D7261BB2E0D400443B4E /* OuterPlanets.json in Resources */ = {isa = PBXBuildFile; fileRef = E924D7251BB2E0D400443B4E /* OuterPlanets.json */; };
 		E92A43AA1BB20DFE009B7526 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E92A43AC1BB20DFE009B7526 /* Localizable.strings */; };
 		E9335CF11BB5C41000D6F1A2 /* KSPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9335CF01BB5C41000D6F1A2 /* KSPTabBarController.swift */; };
+		E950A89C1CD49F3400E1EB98 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E950A89A1CD49F3400E1EB98 /* MainStoryboard.storyboard */; };
 		E9629BE71BF15C5A005E5391 /* KerbolPlus.json in Resources */ = {isa = PBXBuildFile; fileRef = E9629BE61BF15C5A005E5391 /* KerbolPlus.json */; };
 		E9808C0B1BB200AA000FA2CC /* System.json in Resources */ = {isa = PBXBuildFile; fileRef = E9808BFE1BB200AA000FA2CC /* System.json */; };
 		E9808C0C1BB200AA000FA2CC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9808BFF1BB200AA000FA2CC /* DataManager.swift */; };
@@ -71,7 +71,6 @@
 		E901859F1BB4C2AC00F1BCAB /* IAPControllerProductIds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IAPControllerProductIds.plist; sourceTree = "<group>"; };
 		E907FE921BB1ED4000857D14 /* KSPCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KSPCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E907FE951BB1ED4000857D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E907FE9C1BB1ED4000857D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E907FE9E1BB1ED4000857D14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E907FEA11BB1ED4000857D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E907FEA31BB1ED4000857D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,6 +78,7 @@
 		E92A43AB1BB20DFE009B7526 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E92A43AD1BB20E25009B7526 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9335CF01BB5C41000D6F1A2 /* KSPTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSPTabBarController.swift; sourceTree = "<group>"; };
+		E950A89B1CD49F3400E1EB98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		E9629BE61BF15C5A005E5391 /* KerbolPlus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = KerbolPlus.json; sourceTree = "<group>"; };
 		E9808BFE1BB200AA000FA2CC /* System.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = System.json; sourceTree = "<group>"; };
 		E9808BFF1BB200AA000FA2CC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 				E9808C011BB200AA000FA2CC /* Physics */,
 				E9808C061BB200AA000FA2CC /* ViewControllers */,
 				E9808C0A1BB200AA000FA2CC /* Views */,
-				E907FE9B1BB1ED4000857D14 /* Main.storyboard */,
+				E950A89A1CD49F3400E1EB98 /* MainStoryboard.storyboard */,
 				E907FEA01BB1ED4000857D14 /* LaunchScreen.storyboard */,
 				E907FE9E1BB1ED4000857D14 /* Assets.xcassets */,
 				E907FEA31BB1ED4000857D14 /* Info.plist */,
@@ -319,9 +319,9 @@
 				E924D7261BB2E0D400443B4E /* OuterPlanets.json in Resources */,
 				E9629BE71BF15C5A005E5391 /* KerbolPlus.json in Resources */,
 				E9808C0B1BB200AA000FA2CC /* System.json in Resources */,
+				E950A89C1CD49F3400E1EB98 /* MainStoryboard.storyboard in Resources */,
 				E907FEA21BB1ED4000857D14 /* LaunchScreen.storyboard in Resources */,
 				E907FE9F1BB1ED4000857D14 /* Assets.xcassets in Resources */,
-				E907FE9D1BB1ED4000857D14 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,14 +422,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E907FE9B1BB1ED4000857D14 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E907FE9C1BB1ED4000857D14 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E907FEA01BB1ED4000857D14 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -445,6 +437,14 @@
 				E92A43AD1BB20E25009B7526 /* fr */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		E950A89A1CD49F3400E1EB98 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E950A89B1CD49F3400E1EB98 /* Base */,
+			);
+			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
 		E9E718971BBB2B4D00ACAC8A /* InfoPlist.strings */ = {
