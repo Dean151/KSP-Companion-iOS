@@ -54,7 +54,7 @@ Created by localio.
 "GO_TO" = "Y aller";
 "HAS_OXYGEN" = "Présence d'oxygène";
 "IAP_FAIL" = "L'achat a échoué";
-"IAP_FAILURE_DESC" = "Essayez à nouveau si vous voulez supprimer les apps. Vous êtes génial !";
+"IAP_FAILURE_DESC" = "Essayez à nouveau si vous voulez acheter l'app complête. Vous êtes génial !";
 "IAP_NOT_ENABLED" = "Achats in-App désactivés";
 "IAP_NOT_ENABLED_DESC" = "Activez-les dans les réglages";
 "IAP_SUCCESS" = "Vous aurez désormais une app sans pub ! Vous êtes génial !";
