@@ -234,7 +234,7 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
     
     override func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
         
-        if action == Selector("copy:") {
+        if action == #selector(copy(_:)) {
             return true
         }
         
@@ -242,7 +242,7 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
     }
     
     override func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-        if action == Selector("copy:") {
+        if action == #selector(copy(_:)) {
             let pasteboard = UIPasteboard.generalPasteboard()
             pasteboard.string = self.getValuesAtIndexPath(indexPath).value
         }

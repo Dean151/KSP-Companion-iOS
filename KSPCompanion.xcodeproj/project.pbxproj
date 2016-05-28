@@ -90,7 +90,7 @@
 		E9808C081BB200AA000FA2CC /* CelestialsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CelestialsTableViewController.swift; sourceTree = "<group>"; };
 		E9808C091BB200AA000FA2CC /* CelestialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CelestialViewController.swift; sourceTree = "<group>"; };
 		E9A288221BB2281300714612 /* KSPSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSPSplitViewController.swift; sourceTree = "<group>"; };
-		E9C36B9F1BC7E17000373BD0 /* Keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Keys.xcconfig; path = KSPCompanion/Keys.xcconfig; sourceTree = "<group>"; };
+		E9A459151CFA415300661ED2 /* Keys.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Keys.xcconfig; path = KSPCompanion/Keys.xcconfig; sourceTree = "<group>"; };
 		E9C36BA01BC7E75700373BD0 /* KSP.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = KSP.release.xcconfig; path = KSPCompanion/KSP.release.xcconfig; sourceTree = "<group>"; };
 		E9C36BA21BC7E7A300373BD0 /* KSP.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = KSP.debug.xcconfig; path = KSPCompanion/KSP.debug.xcconfig; sourceTree = "<group>"; };
 		E9E718961BBB2B4D00ACAC8A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 		E907FE891BB1ED4000857D14 = {
 			isa = PBXGroup;
 			children = (
-				E9C36B9F1BC7E17000373BD0 /* Keys.xcconfig */,
+				E9A459151CFA415300661ED2 /* Keys.xcconfig */,
 				E9C36BA21BC7E7A300373BD0 /* KSP.debug.xcconfig */,
 				E9C36BA01BC7E75700373BD0 /* KSP.release.xcconfig */,
 				E907FE941BB1ED4000857D14 /* KSPCompanion */,
@@ -261,7 +261,7 @@
 				E907FE8F1BB1ED4000857D14 /* Frameworks */,
 				E907FE901BB1ED4000857D14 /* Resources */,
 				E9808BFB1BB1FE70000FA2CC /* Embed Frameworks */,
-				E9C36B9E1BC7DCD400373BD0 /* Run Script */,
+				E9C36B9E1BC7DCD400373BD0 /* Fabric integration */,
 				ED5D16447DA3660B04AF935D /* Embed Pods Frameworks */,
 				DDCBA59A3CFEAAB6CF7D774D /* Copy Pods Resources */,
 			);
@@ -358,14 +358,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		E9C36B9E1BC7DCD400373BD0 /* Run Script */ = {
+		E9C36B9E1BC7DCD400373BD0 /* Fabric integration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = "Fabric integration";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
