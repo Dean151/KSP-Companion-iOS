@@ -21,6 +21,7 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor(hexString: "#2E2E2E")
         tableView.backgroundColor = UIColor(hexString: "#2E2E2E")
         
         self.navigationController?.topViewController!.title = NSLocalizedString("CELESTIALS", comment: "")

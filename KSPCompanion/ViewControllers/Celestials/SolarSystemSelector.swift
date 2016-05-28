@@ -68,6 +68,8 @@ class SolarSystemSelector: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         guard Settings.sharedInstance.completeVersionPurchased || indexPath.row == 0 else {
             // We can't change
             let alert = UIAlertController(title: NSLocalizedString("COMPLETE_VERSION_FEATURE", comment: ""), message: NSLocalizedString("COMPLETE_VERSION_FOOTER", comment: ""), preferredStyle: .Alert)
