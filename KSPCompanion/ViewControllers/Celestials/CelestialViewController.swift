@@ -50,8 +50,10 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
     func prepareCelestial() {
         guard let celestial = self.celestial else { return }
         
+        navigationItem.title = celestial.name
+        
         if let navController = self.navigationController {
-            navController.topViewController!.title = celestial.name
+            // When split view mode
             navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: celestial.color]
         }
         
