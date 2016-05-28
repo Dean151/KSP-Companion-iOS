@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "barycenter@1.png",
+      "filename" : "Barycenter@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "barycenter@2.png",
+      "filename" : "Barycenter@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "barycenter@3.png",
+      "filename" : "Barycenter@3x.png",
       "scale" : "3x"
     }
   ],

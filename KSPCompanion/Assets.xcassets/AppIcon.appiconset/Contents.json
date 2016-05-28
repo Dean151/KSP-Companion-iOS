@@ -3,79 +3,79 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "58x58.png",
+      "filename" : "AppIcon58.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "87x87.png",
+      "filename" : "AppIcon87.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "80x80.png",
+      "filename" : "AppIcon80.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "120x120.png",
+      "filename" : "AppIcon120.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "120x120.png",
+      "filename" : "AppIcon120.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "180x180.png",
+      "filename" : "AppIcon180.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "29x29.png",
+      "filename" : "AppIcon29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "58x58.png",
+      "filename" : "AppIcon58.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "40x40.png",
+      "filename" : "AppIcon40.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "80x80.png",
+      "filename" : "AppIcon80.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "76x76.png",
+      "filename" : "AppIcon76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "152x152.png",
+      "filename" : "AppIcon152.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "167x167.png",
+      "filename" : "AppIcon167.png",
       "scale" : "2x"
     }
   ],
