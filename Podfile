@@ -7,7 +7,6 @@ target "KSPCompanion" do
   pod 'Crashlytics'
   pod 'DZNEmptyDataSet'
   pod 'Eureka'
-  pod 'iRate'
   pod 'IAPController'
   pod 'SecureNSUserDefaults', '~> 1.0.0'
   pod 'SnapKit'

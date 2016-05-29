@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import iRate
 import Fabric
 import Crashlytics
 
@@ -60,13 +59,6 @@ enum ShortcutIdentifier: String {
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    
-    override init() {
-        // Giving manually this data allow to make quick access to iTunes data
-        iRate.sharedInstance().appStoreID = 1004723358
-        iRate.sharedInstance().applicationName = "KSP Companion"
-        iRate.sharedInstance().verboseLogging = false
-    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         var isLaunchedFromQuickAction = false
