@@ -171,6 +171,7 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
         
         if let img = celestial.type.image {
             cell.imageView?.image = img.imageWithRenderingMode(.AlwaysTemplate)
+            cell.imageView?.highlightedImage = img.imageWithRenderingMode(.AlwaysOriginal)
         } else {
             cell.imageView?.image = nil
         }
