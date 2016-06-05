@@ -242,58 +242,6 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
     }
 }
 
-// MARK: - Handoff
-/*
-extension CelestialsTableViewController {
-    func beginUserActivity() {
-        let activity = NSUserActivity(activityType: HandoffIdentifier.Celestials.type)
-        activity.title = NSLocalizedString("CELESTIALS", comment: "")
-        activity.userInfo = ["SolarSystem": Settings.sharedInstance.solarSystem.rawValue]
-        
-        
-        userActivity = activity
-        userActivity?.becomeCurrent()
-    }
-    
-    override func updateUserActivityState(activity: NSUserActivity) {
-        activity.addUserInfoEntriesFromDictionary(["SolarSystem": Settings.sharedInstance.solarSystem.rawValue])
-        super.updateUserActivityState(activity)
-    }
-    
-    func stopUserActivity() {
-        userActivity?.invalidate()
-    }
-    
-    override func restoreUserActivityState(activity: NSUserActivity) {
-        guard let userInfo = activity.userInfo else {
-            print("No user information to restore")
-            return
-        }
-        
-        // Solar System restoration
-        if let solarIndex = userInfo["SolarSystem"] as? Int {
-            if let solarSystem = SolarSystem(rawValue: solarIndex) {
-                Settings.sharedInstance.solarSystem = solarSystem
-                self.loadCelestials()
-            }
-        }
-        
-        if activity.activityType == HandoffIdentifier.Celestial.type {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            }
-            if let row = userInfo["CelestialIndex"] as? Int {
-                self.tableView.selectRowAtIndexPath(NSIndexPath(forRow: row, inSection: 0), animated: true, scrollPosition: .Middle)
-            }
-            // FIXME: Will always push which is bad
-            self.performSegueWithIdentifier("viewCelestialDetails", sender: self)
-        }
-        
-        super.restoreUserActivityState(activity)
-    }
-}
-*/
-
 // MARK: - Peek & Pop
 
 @available(iOS 9.0, *)
