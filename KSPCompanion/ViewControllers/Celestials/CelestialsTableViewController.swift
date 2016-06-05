@@ -65,11 +65,9 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
-        
         super.viewWillAppear(animated)
         
-        //beginUserActivity()
+        rz_smoothlyDeselectRows(tableView: self.tableView)
         
         // refreshing data
         loadCelestials()
@@ -318,5 +316,37 @@ extension CelestialsTableViewController: UIViewControllerPreviewingDelegate {
     }
     func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
         showViewController(viewControllerToCommit, sender: self)
+    }
+}
+
+extension UIViewController {
+    
+    ///  Smoothly deselect selected rows in a table view during an animated
+    ///  transition, and intelligently reselect those rows if the interactive
+    ///  transition is canceled. Call this method from inside your view
+    ///  controller's `viewWillAppear(_:)` method.
+    ///
+    ///  - parameter tableView: The table view in which to perform deselection/reselection.
+    func rz_smoothlyDeselectRows(tableView tableView: UITableView?) {
+        let selectedIndexPaths = tableView?.indexPathsForSelectedRows ?? []
+        
+        if let coordinator = transitionCoordinator() {
+            coordinator.animateAlongsideTransitionInView(parentViewController?.view, animation: { context in
+                selectedIndexPaths.forEach {
+                    tableView?.deselectRowAtIndexPath($0, animated: context.isAnimated())
+                }
+                }, completion: { context in
+                    if context.isCancelled() {
+                        selectedIndexPaths.forEach {
+                            tableView?.selectRowAtIndexPath($0, animated: false, scrollPosition: .None)
+                        }
+                    }
+            })
+        }
+        else {
+            selectedIndexPaths.forEach {
+                tableView?.deselectRowAtIndexPath($0, animated: false)
+            }
+        }
     }
 }
