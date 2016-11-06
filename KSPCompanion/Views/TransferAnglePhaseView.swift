@@ -12,15 +12,15 @@ import UIKit
 @IBDesignable class TransferAnglePhaseView: UIView {
     let π = CGFloat(M_PI)
     
-    @IBInspectable var parentColor: UIColor = UIColor.yellowColor()
+    @IBInspectable var parentColor: UIColor = UIColor.yellow
     @IBInspectable var parentSize: CGFloat = 20
     
     @IBInspectable var fromSemiMajorAxis: CGFloat = 10
-    @IBInspectable var fromColor: UIColor = UIColor.blueColor()
+    @IBInspectable var fromColor: UIColor = UIColor.blue
     @IBInspectable var fromSize: CGFloat = 10
     
     @IBInspectable var toSemiMajorAxis: CGFloat = 15
-    @IBInspectable var toColor: UIColor = UIColor.orangeColor()
+    @IBInspectable var toColor: UIColor = UIColor.orange
     @IBInspectable var toSize: CGFloat = 10
     
     @IBInspectable var calculatedAnglePhase: CGFloat = 0
@@ -38,7 +38,7 @@ import UIKit
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let center = CGPoint(x:bounds.width/2, y: bounds.height/2)
         
         // Detecting outside and inside planet
@@ -73,44 +73,44 @@ import UIKit
         let outPath = UIBezierPath(arcCenter: center, radius: outRadius, startAngle: 0, endAngle: 2*π, clockwise: true)
         let inPath = UIBezierPath(arcCenter: center, radius: inRadius, startAngle: 0, endAngle: 2*π, clockwise: true)
         
-        UIColor.grayColor().setStroke()
+        UIColor.gray.setStroke()
         outPath.stroke()
         inPath.stroke()
         
         // Drawing angle lines
         let angleLines = UIBezierPath()
-        angleLines.moveToPoint(center)
-        angleLines.addLineToPoint(fromPosition)
-        angleLines.moveToPoint(center)
-        angleLines.addLineToPoint(toPosition)
+        angleLines.move(to: center)
+        angleLines.addLine(to: fromPosition)
+        angleLines.move(to: center)
+        angleLines.addLine(to: toPosition)
         angleLines.stroke()
         
         // Drawing vessel trajectory
         let theCGContext = UIGraphicsGetCurrentContext()
-        CGContextSaveGState(theCGContext)
+        theCGContext?.saveGState()
         
         let vesselOrbit = Orbit(apoapsis: Double(outRadius), periapsis: Double(inRadius))
-        let trajectoryRect = CGRectMake(center.x - (fromIsInterior ? outRadius : inRadius), center.y - CGFloat(vesselOrbit.b), CGFloat(vesselOrbit.a*2), CGFloat(vesselOrbit.b*2))
+        let trajectoryRect = CGRect(x: center.x - (fromIsInterior ? outRadius : inRadius), y: center.y - CGFloat(vesselOrbit.b), width: CGFloat(vesselOrbit.a*2), height: CGFloat(vesselOrbit.b*2))
         
-        let clip = UIBezierPath(rect: CGRectMake(0, 0, center.x*2, center.y))
+        let clip = UIBezierPath(rect: CGRect(x: 0, y: 0, width: center.x*2, height: center.y))
         clip.addClip()
-        let vesselTrajectory = UIBezierPath(ovalInRect: trajectoryRect)
-        UIColor.orangeColor().setStroke()
+        let vesselTrajectory = UIBezierPath(ovalIn: trajectoryRect)
+        UIColor.orange.setStroke()
         vesselTrajectory.stroke()
         
-        CGContextRestoreGState(theCGContext)
+        theCGContext?.restoreGState()
         
         
         // Drawing angle
         let angle = UIBezierPath(arcCenter: center, radius: (inRadius-parentSize/2)/3 + parentSize/2, startAngle: 0, endAngle: -2*π*calculatedAnglePhase/360, clockwise: calculatedAnglePhase<0)
-        UIColor.redColor().setStroke()
+        UIColor.red.setStroke()
         angle.stroke()
         
         let textRadius = (inRadius-parentSize/2)/3 + parentSize/2 + 20
         let textAngle = -π*calculatedAnglePhase/360
         "\(round(calculatedAnglePhase*100)/100)°".drawAtPoint(
             CGPoint(x: center.x + textRadius*cos(textAngle) - 10, y: center.y + textRadius*sin(textAngle) - 6),
-            withAttributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+            withAttributes: [NSForegroundColorAttributeName: UIColor.red])
         
         // Drawing the parent of the orbits
         let parentPath = UIBezierPath(arcCenter: center, radius: parentSize/2, startAngle: 0, endAngle: 2*π, clockwise: true)
@@ -119,26 +119,26 @@ import UIKit
         
         // Drawing the from planet
         let fromRect = CGRect(x: fromPosition.x - fromSize/2, y: fromPosition.y - fromSize/2, width: fromSize, height: fromSize)
-        let fromPath = UIBezierPath(ovalInRect: fromRect)
+        let fromPath = UIBezierPath(ovalIn: fromRect)
         fromColor.setFill()
         fromPath.fill()
         
         // Drawing the destination planet
         let toRect = CGRect(x: toPosition.x - toSize/2, y: toPosition.y - toSize/2, width: toSize, height: toSize)
-        let toPath = UIBezierPath(ovalInRect: toRect)
+        let toPath = UIBezierPath(ovalIn: toRect)
         toColor.setFill()
         toPath.fill()
         
         // Drawing the end planet
         let endRect = CGRect(x: endPosition.x - toSize/2, y: endPosition.y - toSize/2, width: toSize, height: toSize)
-        let endPath = UIBezierPath(ovalInRect: endRect)
+        let endPath = UIBezierPath(ovalIn: endRect)
         toColor.setStroke()
         endPath.stroke()
     }
 }
 
 extension String {
-    func drawAtPoint(point: CGPoint, withAttributes: [String : AnyObject]?) {
-        (self as NSString).drawAtPoint(point, withAttributes: withAttributes)
+    func drawAtPoint(_ point: CGPoint, withAttributes: [String : AnyObject]?) {
+        (self as NSString).draw(at: point, withAttributes: withAttributes)
     }
 }

@@ -12,13 +12,13 @@ import Darwin
 let gravitationalConstant = 6.674E-11
 
 enum TemperatureUnit: Int, CustomStringConvertible {
-    case Celsius=0, Farenheit, Kelvin
+    case celsius=0, farenheit, kelvin
     
     var description: String {
         switch self {
-        case .Farenheit:
+        case .farenheit:
             return "Farenheit"
-        case .Kelvin:
+        case .kelvin:
             return "Kelvin"
         default:
             return "Celsius"
@@ -27,9 +27,9 @@ enum TemperatureUnit: Int, CustomStringConvertible {
     
     var symbol: String {
         switch self {
-        case .Farenheit:
+        case .farenheit:
             return "°F"
-        case .Kelvin:
+        case .kelvin:
             return "K"
         default:
             return "°C"
@@ -42,11 +42,11 @@ enum TemperatureUnit: Int, CustomStringConvertible {
         return max
     }
     
-    func fromCelsius(celsius: Double) -> Double {
+    func fromCelsius(_ celsius: Double) -> Double {
         switch self {
-        case .Kelvin:
+        case .kelvin:
             return celsius+287.15
-        case .Farenheit:
+        case .farenheit:
             return celsius*1.8+32
         default:
             return celsius
@@ -55,7 +55,7 @@ enum TemperatureUnit: Int, CustomStringConvertible {
 }
 
 class Units {
-    static func lengthUnit(length: Double, allowSubUnits: Bool) -> String {
+    static func lengthUnit(_ length: Double, allowSubUnits: Bool) -> String {
         
         let preUnits = ["", "k"]
         var actualUnit = 0
@@ -72,7 +72,7 @@ class Units {
         return "\(roundedLength) \(preUnits[actualUnit])m"
     }
     
-    static func timeUnit(time: Double) -> String {
+    static func timeUnit(_ time: Double) -> String {
         var seconds = round(time*10)/10
         var minutes = 0
         var hours = 0
@@ -86,22 +86,22 @@ class Units {
         
         if seconds/yearDuration >= 1 {
             years = Int(floor( seconds/yearDuration ))
-            seconds = seconds%yearDuration
+            seconds = seconds.truncatingRemainder(dividingBy: yearDuration)
         }
         
         if seconds/dayDuration >= 1 {
             days = Int(floor( seconds/dayDuration ))
-            seconds = seconds%dayDuration
+            seconds = seconds.truncatingRemainder(dividingBy: dayDuration)
         }
         
         if seconds/hourDuration >= 1 {
             hours = Int(floor(seconds/hourDuration))
-            seconds = seconds%hourDuration
+            seconds = seconds.truncatingRemainder(dividingBy: hourDuration)
         }
         
         if seconds/minuteDuration >= 1 {
             minutes = Int(floor(seconds/minuteDuration))
-            seconds = seconds%minuteDuration
+            seconds = seconds.truncatingRemainder(dividingBy: minuteDuration)
         }
         
         seconds = round(seconds*10)/10
@@ -135,31 +135,30 @@ class Units {
         return out
     }
     
-    static func pressureUnit(pressure: Double) -> String {
+    static func pressureUnit(_ pressure: Double) -> String {
         let roundedPressure = pressure.format()
         return "\(roundedPressure) kPa"
     }
     
-    static func temperatureUnit(celsius celsius: Double, out: TemperatureUnit) -> String {
+    static func temperatureUnit(celsius: Double, out: TemperatureUnit) -> String {
         return "\(out.fromCelsius(celsius))\(out.symbol)"
     }
     
-    static func temperatureUnit(celsius celsius: Double) -> String {
+    static func temperatureUnit(celsius: Double) -> String {
         return temperatureUnit(celsius: celsius, out: Settings.sharedInstance.temperatureUnit)
     }
 }
 
 extension Double {
-    func format(f: Double) -> String {
-        let nb = round( self * pow(10, f) ) / pow(10, f)
-            return nb.format()
+    func format(_ f: Double) -> String {
+        let nb = (self * pow(10, f)).rounded() / pow(10, f)
+        return nb.format()
     }
     
     func format() -> String {
-        let nf = NSNumberFormatter()
+        let nf = NumberFormatter()
         nf.groupingSeparator = " "
-        nf.numberStyle = NSNumberFormatterStyle.DecimalStyle
-        
-        return nf.stringFromNumber(self)!
+        nf.numberStyle = NumberFormatter.Style.decimal
+        return nf.string(from: NSNumber(value: self))!
     }
 }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B55BD10F800B733C0FE156A /* Pods_KSPCompanion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2690CEA87168DFEC67D0339 /* Pods_KSPCompanion.framework */; };
+		8FE4E207AE40A2AE9B7039A5 /* Pods_KSPCompanion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FFE04DF6DE9B3E837A36DC8 /* Pods_KSPCompanion.framework */; };
 		E90185831BB3046E00F1BCAB /* SolarSystemSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90185821BB3046E00F1BCAB /* SolarSystemSelector.swift */; };
 		E90185861BB33B7C00F1BCAB /* TransferAnglePhaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90185841BB33B7C00F1BCAB /* TransferAnglePhaseView.swift */; };
 		E90185871BB33B7C00F1BCAB /* TransferManoeuverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90185851BB33B7C00F1BCAB /* TransferManoeuverView.swift */; };
@@ -55,8 +55,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1FFE04DF6DE9B3E837A36DC8 /* Pods_KSPCompanion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KSPCompanion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64F39D61BF80B5DF64BA7B68 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2690CEA87168DFEC67D0339 /* Pods_KSPCompanion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KSPCompanion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90185821BB3046E00F1BCAB /* SolarSystemSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolarSystemSelector.swift; sourceTree = "<group>"; };
 		E90185841BB33B7C00F1BCAB /* TransferAnglePhaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferAnglePhaseView.swift; sourceTree = "<group>"; };
 		E90185851BB33B7C00F1BCAB /* TransferManoeuverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferManoeuverView.swift; sourceTree = "<group>"; };
@@ -102,14 +102,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B55BD10F800B733C0FE156A /* Pods_KSPCompanion.framework in Frameworks */,
+				8FE4E207AE40A2AE9B7039A5 /* Pods_KSPCompanion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		55A0547CDB4187CE8BF5F985 /* Pods */ = {
+		4E27EB9E8DEF5485398158C4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -120,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				64F39D61BF80B5DF64BA7B68 /* Pods.framework */,
-				B2690CEA87168DFEC67D0339 /* Pods_KSPCompanion.framework */,
+				1FFE04DF6DE9B3E837A36DC8 /* Pods_KSPCompanion.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -163,7 +163,7 @@
 				E907FE941BB1ED4000857D14 /* KSPCompanion */,
 				E907FE931BB1ED4000857D14 /* Products */,
 				B29E747990CF4026D7E5F625 /* Frameworks */,
-				55A0547CDB4187CE8BF5F985 /* Pods */,
+				4E27EB9E8DEF5485398158C4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -256,14 +256,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E907FEA61BB1ED4000857D14 /* Build configuration list for PBXNativeTarget "KSPCompanion" */;
 			buildPhases = (
-				DDD94091C621CBBF63EE0AAE /* Check Pods Manifest.lock */,
+				84411F1E187C894F33562C1D /* [CP] Check Pods Manifest.lock */,
 				E907FE8E1BB1ED4000857D14 /* Sources */,
 				E907FE8F1BB1ED4000857D14 /* Frameworks */,
 				E907FE901BB1ED4000857D14 /* Resources */,
 				E9808BFB1BB1FE70000FA2CC /* Embed Frameworks */,
 				E9C36B9E1BC7DCD400373BD0 /* Fabric integration */,
-				ED5D16447DA3660B04AF935D /* Embed Pods Frameworks */,
-				DDCBA59A3CFEAAB6CF7D774D /* Copy Pods Resources */,
+				6F610BB6249524A56C79525C /* [CP] Embed Pods Frameworks */,
+				EB8D58F0735B655C2083E8FB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -280,12 +280,13 @@
 		E907FE8A1BB1ED4000857D14 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Thomas Durand";
 				TargetAttributes = {
 					E907FE911BB1ED4000857D14 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 6EL5V5QVB4;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -328,34 +329,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		DDCBA59A3CFEAAB6CF7D774D /* Copy Pods Resources */ = {
+		6F610BB6249524A56C79525C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KSPCompanion/Pods-KSPCompanion-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KSPCompanion/Pods-KSPCompanion-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DDD94091C621CBBF63EE0AAE /* Check Pods Manifest.lock */ = {
+		84411F1E187C894F33562C1D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E9C36B9E1BC7DCD400373BD0 /* Fabric integration */ = {
@@ -372,19 +373,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" ${FABRIC_API_KEY} ${FABRIC_BUILD_SECRET}";
 		};
-		ED5D16447DA3660B04AF935D /* Embed Pods Frameworks */ = {
+		EB8D58F0735B655C2083E8FB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KSPCompanion/Pods-KSPCompanion-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KSPCompanion/Pods-KSPCompanion-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -463,6 +464,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -472,8 +474,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -508,6 +512,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -517,8 +522,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -537,6 +544,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -546,6 +554,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9C36BA21BC7E7A300373BD0 /* KSP.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -555,6 +564,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.Dean.KSPCompanion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -562,6 +572,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9C36BA01BC7E75700373BD0 /* KSP.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -571,6 +582,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.Dean.KSPCompanion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

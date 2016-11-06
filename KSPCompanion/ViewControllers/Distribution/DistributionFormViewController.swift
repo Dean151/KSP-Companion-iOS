@@ -12,20 +12,20 @@ import Eureka
 import TSMessages
 
 enum DistributionError {
-    case NotHighEnough, NotLowEnough, NotEnoughSats
+    case notHighEnough, notLowEnough, notEnoughSats
     
-    func showMessage(showMessage: Bool) {
+    func showMessage(_ showMessage: Bool) {
         if !showMessage {
             return
         }
         
         switch self {
-        case .NotHighEnough:
-            TSMessage.showNotificationWithTitle(NSLocalizedString("TOO_LOW_NOTIF", comment: ""), subtitle: NSLocalizedString("TOO_LOW_NOTIF_DESC", comment: ""), type: .Error)
-        case .NotLowEnough:
-            TSMessage.showNotificationWithTitle(NSLocalizedString("TOO_HIGH_NOTIF", comment: ""), subtitle: NSLocalizedString("TOO_HIGH_NOTIF_DESC", comment: ""), type: .Error)
-        case .NotEnoughSats:
-            TSMessage.showNotificationWithTitle(NSLocalizedString("NOT_ENOUGH_NOTIF", comment: ""), subtitle: NSLocalizedString("NOT_ENOUGH_NOTIF_DESC", comment: ""), type: .Error)
+        case .notHighEnough:
+            TSMessage.showNotification(withTitle: NSLocalizedString("TOO_LOW_NOTIF", comment: ""), subtitle: NSLocalizedString("TOO_LOW_NOTIF_DESC", comment: ""), type: .error)
+        case .notLowEnough:
+            TSMessage.showNotification(withTitle: NSLocalizedString("TOO_HIGH_NOTIF", comment: ""), subtitle: NSLocalizedString("TOO_HIGH_NOTIF_DESC", comment: ""), type: .error)
+        case .notEnoughSats:
+            TSMessage.showNotification(withTitle: NSLocalizedString("NOT_ENOUGH_NOTIF", comment: ""), subtitle: NSLocalizedString("NOT_ENOUGH_NOTIF_DESC", comment: ""), type: .error)
         }
     }
 }
@@ -53,35 +53,35 @@ class DistributionFormViewController: FormViewController {
         
         loadCelestials()
         
-        if (UI_USER_INTERFACE_IDIOM() == .Phone) {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("CALCULATE", comment: ""), style: .Plain, target: self, action: #selector(DistributionFormViewController.submit(_:)))
+        if (UI_USER_INTERFACE_IDIOM() == .phone) {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("CALCULATE", comment: ""), style: .plain, target: self, action: #selector(DistributionFormViewController.submit(_:)))
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // refreshing data
         loadCelestials()
     }
     
-    func doTheMaths(showMessage: Bool) -> (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int, deltaV: Double)? {
+    func doTheMaths(_ showMessage: Bool) -> (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int, deltaV: Double)? {
         let results = self.form.values()
         
         guard Settings.sharedInstance.canDoCalculation else {
-            let alert = UIAlertController(title: NSLocalizedString("ONLY_X_CALCULATION", comment: ""), message: NSLocalizedString("COMPLETE_VERSION_FOOTER", comment: ""), preferredStyle: .Alert)
+            let alert = UIAlertController(title: NSLocalizedString("ONLY_X_CALCULATION", comment: ""), message: NSLocalizedString("COMPLETE_VERSION_FOOTER", comment: ""), preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: NSLocalizedString("BUY_IN_SETTINGS", comment: ""), style: .Default, handler: { action in
-                let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
-                appDelegate?.handleQuickAction(.Settings)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("BUY_IN_SETTINGS", comment: ""), style: .default, handler: { action in
+                let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                _ = appDelegate?.handleQuickAction(.Settings)
             }))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .cancel, handler: nil))
             
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
             return nil
         }
         
-        guard let nbsat = results["number"] as? Int, cel = results["celestial"] as? Celestial, typeOrbit = results["orbittype"] as? String else { return nil }
+        guard let nbsat = results["number"] as? Int, let cel = results["celestial"] as? Celestial, let typeOrbit = results["orbittype"] as? String else { return nil }
         var targetAltitude: Double = 0
         
         if typeOrbit == orbitOptions[0] {
@@ -98,20 +98,20 @@ class DistributionFormViewController: FormViewController {
             // Check for atmosphere
             if let atmo = cel.atmosphere {
                 if targetAltitude < atmo.limitAltitude {
-                    DistributionError.NotHighEnough.showMessage(showMessage)
+                    DistributionError.notHighEnough.showMessage(showMessage)
                     return nil
                 }
             }
             
             // Check for sphere of influence
             if targetAltitude > cel.sphereOfInfluence {
-                DistributionError.NotLowEnough.showMessage(showMessage)
+                DistributionError.notLowEnough.showMessage(showMessage)
                 return nil
             }
             
             // Check for satellite numbers
             if nbsat < 2 {
-                DistributionError.NotEnoughSats.showMessage(showMessage)
+                DistributionError.notEnoughSats.showMessage(showMessage)
                 return nil
             }
             
@@ -122,33 +122,33 @@ class DistributionFormViewController: FormViewController {
                 let targetOrbit = Orbit(orbitAround: cel, apoapsis: targetAltitude+cel.radius, periapsis: targetAltitude+cel.radius)
                 let deltaV = abs(targetOrbit.apoapsisVelocity - transferOrbit.apoapsisVelocity )
                 
-                Answers.logCustomEventWithName("DistributionCalculation", customAttributes: ["around": cel.name, "satNb": nbsat, "alt": targetAltitude])
+                Answers.logCustomEvent(withName: "DistributionCalculation", customAttributes: ["around": cel.name, "satNb": nbsat, "alt": targetAltitude])
                 Settings.sharedInstance.numberOfCalculations += 1
                 return (targetOrbit, transferOrbit, nbsat, deltaV)
             }
         } else {
-            DistributionError.NotHighEnough.showMessage(false)
+            DistributionError.notHighEnough.showMessage(false)
         }
         
         return nil
     }
     
-    func submit(sender: AnyObject!) {
+    func submit(_ sender: AnyObject!) {
         if let indexPath = tableView!.indexPathForSelectedRow {
-            tableView!.deselectRowAtIndexPath(indexPath, animated: true)
+            tableView!.deselectRow(at: indexPath, animated: true)
         }
         
         guard let calcul = self.doTheMaths(true) else { return }
         self.results = calcul
         
-        performSegueWithIdentifier("calculateSegue", sender: self)
+        performSegue(withIdentifier: "calculateSegue", sender: self)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.view.endEditing(true)
         
         if segue.identifier == "calculateSegue" {
-            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DistributionResultTableViewController
+            let controller = (segue.destination as! UINavigationController).topViewController as! DistributionResultTableViewController
             if let r = self.results {
                 controller.prepare(r)
             }
@@ -164,14 +164,14 @@ class DistributionFormViewController: FormViewController {
             <<< PushRow<Celestial>("celestial") {
                 $0.title = NSLocalizedString("ORBIT_AROUND", comment: "")
                 $0.options = self.celestials
-                $0.value = Settings.sharedInstance.solarSystem == .KerbolPlus ? self.celestials[5] : self.celestials[4] // Kerbin
+                $0.value = Settings.sharedInstance.solarSystem == .kerbolPlus ? self.celestials[5] : self.celestials[4] // Kerbin
             }.onChange(self.formChanged)
             
             <<< IntRow("number") {
                 $0.title = NSLocalizedString("NUMBER_OF_SATELLITES", comment: "")
                 $0.value = 3
                 $0.placeholder = NSLocalizedString("NUMBER_OF_SATELLITES_PLACEHOLDER", comment: "")
-                $0.placeholderColor = UIColor.grayColor()
+                $0.placeholderColor = UIColor.gray
             }
             
             <<< SegmentedRow<String>("orbittype") {
@@ -182,18 +182,18 @@ class DistributionFormViewController: FormViewController {
             
             <<< IntRow("altitude") {
                 $0.title = NSLocalizedString("TARGETED_ALTITUDE", comment: "")
-                $0.hidden = .Function(["orbittype"], { form in
-                    if let r1 : SegmentedRow<String> = form.rowByTag("orbittype") {
+                $0.hidden = .function(["orbittype"], { form in
+                    if let r1 : SegmentedRow<String> = form.rowBy(tag: "orbittype") {
                         return r1.value != self.orbitOptions[2]
                     }
                     return true
                 })
                 $0.placeholder = NSLocalizedString("TARGETED_ALTITUDE_PLACEHOLDER", comment: "")
-                $0.placeholderColor = UIColor.grayColor()
+                $0.placeholderColor = UIColor.gray
             }
         
-        if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-            form +++= ButtonRow("calculate") {
+        if (UI_USER_INTERFACE_IDIOM() == .pad) {
+            form +++ ButtonRow("calculate") {
                 $0.title = NSLocalizedString("CALCULATE", comment: "")
                 $0.cell.tintColor = UIColor.appGreenColor
             }.onCellSelection { (cell, row) in
@@ -202,8 +202,8 @@ class DistributionFormViewController: FormViewController {
         }
     }
     
-    func formChanged(row: BaseRow) {
-        if !self.splitViewController!.collapsed {
+    func formChanged(_ row: BaseRow) {
+        if !self.splitViewController!.isCollapsed {
             self.tableView?.reloadData()
             self.submit(self)
         }

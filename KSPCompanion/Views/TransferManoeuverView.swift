@@ -13,7 +13,7 @@ import UIKit
     let π = CGFloat(M_PI)
     
     @IBInspectable var fromName: String = "Test"
-    @IBInspectable var fromColor: UIColor = UIColor.blueColor()
+    @IBInspectable var fromColor: UIColor = UIColor.blue
     
     @IBInspectable var angle: CGFloat = 90
     @IBInspectable var toPrograde: Bool = true
@@ -28,7 +28,7 @@ import UIKit
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let center = CGPoint(x:bounds.width/2, y: bounds.height/2)
         let size = min(bounds.width, bounds.height)
         
@@ -40,11 +40,11 @@ import UIKit
         
         // Parking orbit
         let orbitPath = UIBezierPath(arcCenter: center, radius: orbitSize, startAngle: 0, endAngle: 2*π, clockwise: true)
-        UIColor.grayColor().setStroke()
+        UIColor.gray.setStroke()
         orbitPath.stroke()
         
         // Celestial orbit
-        let fromOrbitPath = UIBezierPath(arcCenter: CGPointMake(center.x - fromOrbitSize, center.y), radius: fromOrbitSize, startAngle: -π/4, endAngle: π/4, clockwise: true)
+        let fromOrbitPath = UIBezierPath(arcCenter: CGPoint(x: center.x - fromOrbitSize, y: center.y), radius: fromOrbitSize, startAngle: -π/4, endAngle: π/4, clockwise: true)
         fromOrbitPath.lineWidth = 2
         fromColor.setStroke()
         fromOrbitPath.stroke()
@@ -53,32 +53,32 @@ import UIKit
         let fromAngle: CGFloat = toPrograde ? -90 : 90
         let toAngle: CGFloat = fromAngle + angle
         
-        let fromPosition = CGPointMake( center.x, (toPrograde ? 0 : bounds.height))
-        let toPosition = CGPointMake( center.x + size * cos( toAngle * 2 * π / 360 ), center.y + size * sin( toAngle * 2 * π / 360 ) )
+        let fromPosition = CGPoint( x: center.x, y: (toPrograde ? 0 : bounds.height))
+        let toPosition = CGPoint( x: center.x + size * cos( toAngle * 2 * π / 360 ), y: center.y + size * sin( toAngle * 2 * π / 360 ) )
         
         let angleLines = UIBezierPath()
-        angleLines.moveToPoint(center)
-        angleLines.addLineToPoint(fromPosition)
-        angleLines.moveToPoint(center)
-        angleLines.addLineToPoint(toPosition)
+        angleLines.move(to: center)
+        angleLines.addLine(to: fromPosition)
+        angleLines.move(to: center)
+        angleLines.addLine(to: toPosition)
         angleLines.lineWidth = 2
-        UIColor.redColor().setStroke()
+        UIColor.red.setStroke()
         angleLines.stroke()
         
         // Reference Label
         let refText = "\(fromName) " + (toPrograde ? "Prograde" : "Retrograde")
-        refText.drawAtPoint(CGPointMake( center.x + 10, fromPosition.y + (toPrograde ? 1 : -1) * 20 ), withAttributes: [NSForegroundColorAttributeName: fromColor])
+        refText.draw(at: CGPoint( x: center.x + 10, y: fromPosition.y + (toPrograde ? 1 : -1) * 20 ), withAttributes: [NSForegroundColorAttributeName: fromColor])
         
         // Angle Curve
         let angleCurve = UIBezierPath(arcCenter: center, radius: angleSize, startAngle: fromAngle * 2 * π / 360, endAngle: toAngle * 2 * π / 360, clockwise: true)
-        UIColor.redColor().setStroke()
+        UIColor.red.setStroke()
         angleCurve.stroke()
         
         let textRadius = angleSize + 20
         let textAngle = π * ( toAngle + fromAngle ) / 360
-        "\(round(angle*100)/100)°".drawAtPoint(
-            CGPoint(x: center.x + textRadius*cos(textAngle) - 10, y: center.y + textRadius*sin(textAngle) - 6),
-            withAttributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+        "\(round(angle*100)/100)°".draw(
+            at: CGPoint(x: center.x + textRadius*cos(textAngle) - 10, y: center.y + textRadius*sin(textAngle) - 6),
+            withAttributes: [NSForegroundColorAttributeName: UIColor.red])
         
         // Celestial shape
         var fromPath = UIBezierPath(arcCenter: center, radius: fromSize, startAngle: π/2, endAngle: 3*π/2, clockwise: true)
@@ -89,18 +89,18 @@ import UIKit
         fromPath.fill()
         
         // Vessel triangle
-        let vesselPosition = CGPointMake(
-            center.x + orbitSize * cos(2 * π * toAngle / 360),
-            center.y + orbitSize * sin(2 * π * toAngle / 360)
+        let vesselPosition = CGPoint(
+            x: center.x + orbitSize * cos(2 * π * toAngle / 360),
+            y: center.y + orbitSize * sin(2 * π * toAngle / 360)
         )
         
         let vessel = UIBezierPath(equilateralTriangleWithSize: 20, center: vesselPosition)
-        UIColor.whiteColor().setFill()
+        UIColor.white.setFill()
         vessel.fill()
         
         // Manoeuver informations
         let mInfo = "∆v= \(round(deltaV*10)/10) m/s"
-        mInfo.drawAtPoint(CGPointMake(vesselPosition.x - 35, vesselPosition.y + 10), withAttributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+        mInfo.draw(at: CGPoint(x: vesselPosition.x - 35, y: vesselPosition.y + 10), withAttributes: [NSForegroundColorAttributeName: UIColor.white])
     }
 }
 
@@ -111,10 +111,10 @@ extension UIBezierPath {
         let altitude = CGFloat(sqrt(3.0) / 2.0 * equilateralTriangleWithSize)
         let heightToCenter = altitude / 3
         
-        moveToPoint(CGPoint(x:center.x, y:center.y - heightToCenter*2))
-        addLineToPoint(CGPoint(x:center.x + equilateralTriangleWithSize/2, y:center.y + heightToCenter))
-        addLineToPoint(CGPoint(x:center.x - equilateralTriangleWithSize/2, y:center.y + heightToCenter))
-        closePath()
+        move(to: CGPoint(x:center.x, y:center.y - heightToCenter*2))
+        addLine(to: CGPoint(x:center.x + equilateralTriangleWithSize/2, y:center.y + heightToCenter))
+        addLine(to: CGPoint(x:center.x - equilateralTriangleWithSize/2, y:center.y + heightToCenter))
+        close()
     }
 }
 

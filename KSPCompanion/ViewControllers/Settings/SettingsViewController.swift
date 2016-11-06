@@ -26,7 +26,7 @@ class SettingsViewController: FormViewController {
         setupForm()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if !Settings.sharedInstance.completeVersionPurchased && !iapFetched {
@@ -36,20 +36,20 @@ class SettingsViewController: FormViewController {
     
     func deselectButtons() {
         if let index = tableView!.indexPathForSelectedRow {
-            tableView!.deselectRowAtIndexPath(index, animated: true)
+            tableView!.deselectRow(at: index, animated: true)
         }
     }
     
     func setupIAP() {
         iapcontroller.fetchProducts()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsViewController.didFetchedProducts(_:)), name: IAPControllerFetchedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsViewController.didPurchasedProduct(_:)), name: IAPControllerPurchasedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsViewController.didFailedToPurchaseProduct(_:)), name: IAPControllerFailedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.didFetchedProducts(_:)), name: NSNotification.Name(rawValue: IAPControllerFetchedNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.didPurchasedProduct(_:)), name: NSNotification.Name(rawValue: IAPControllerPurchasedNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SettingsViewController.didFailedToPurchaseProduct(_:)), name: NSNotification.Name(rawValue: IAPControllerFailedNotification), object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func setupForm() {
@@ -64,7 +64,7 @@ class SettingsViewController: FormViewController {
                 $0.value = self.tempOptions[Settings.sharedInstance.temperatureUnit.rawValue]
             }.onChange { row in
                 guard let tempString = row.value else { return }
-                guard let temp = TemperatureUnit(rawValue: self.tempOptions.indexOf(tempString)!) else { return }
+                guard let temp = TemperatureUnit(rawValue: self.tempOptions.index(of: tempString)!) else { return }
                 Settings.sharedInstance.temperatureUnit = temp
             }
             
@@ -82,10 +82,10 @@ class SettingsViewController: FormViewController {
             <<<  ButtonRow("remove") {
                 $0.title = NSLocalizedString("BUY_COMPLETE_VERSION", comment: "")
                 $0.cell.tintColor = UIColor.appGreenColor
-                $0.hidden = Condition.Function([], { form in
+                $0.hidden = Condition.function([], { form in
                     return Settings.sharedInstance.completeVersionPurchased
                 })
-                $0.disabled = Condition.Function([], { form in
+                $0.disabled = Condition.function([], { form in
                     return !self.iapFetched
                 })
             }.onCellSelection { (cell, row) in
@@ -102,10 +102,10 @@ class SettingsViewController: FormViewController {
             <<< ButtonRow("restore") {
                 $0.title = NSLocalizedString("RESTORE_COMPLETE_VERSION", comment: "")
                 $0.cell.tintColor = UIColor.appGreenColor
-                $0.hidden = Condition.Function([], { form in
+                $0.hidden = Condition.function([], { form in
                     return Settings.sharedInstance.completeVersionPurchased
                 })
-                $0.disabled = Condition.Function([], { form in
+                $0.disabled = Condition.function([], { form in
                     return !self.iapFetched
                 })
             }.onCellSelection { (cell, row) in
@@ -119,7 +119,7 @@ class SettingsViewController: FormViewController {
                 $0.title = NSLocalizedString("THANKS_FOR_BUYING", comment: "")
                 $0.cell.tintColor = UIColor.appGreenColor
                 $0.disabled = true
-                $0.hidden = Condition.Function([], { form in
+                $0.hidden = Condition.function([], { form in
                     return !Settings.sharedInstance.completeVersionPurchased
                 })
             }
@@ -143,12 +143,12 @@ class SettingsViewController: FormViewController {
     
     // MARK: Purchases
     
-    func didFetchedProducts(sender: AnyObject) {
+    func didFetchedProducts(_ sender: AnyObject) {
         iapFetched = true
         self.updateForm()
     }
     
-    func didPurchasedProduct(sender: AnyObject) {
+    func didPurchasedProduct(_ sender: AnyObject) {
         iapFetched = false
         self.updateForm()
         Settings.sharedInstance.completeVersionPurchased = true
@@ -157,7 +157,7 @@ class SettingsViewController: FormViewController {
         alert.show()
     }
     
-    func didFailedToPurchaseProduct(sender: AnyObject) {
+    func didFailedToPurchaseProduct(_ sender: AnyObject) {
         let alert = UIAlertView(title: NSLocalizedString("IAP_FAIL", comment: ""), message: NSLocalizedString("IAP_FAILURE_DESC", comment: ""), delegate: nil, cancelButtonTitle: NSLocalizedString("DISMISS", comment: ""))
         alert.show()
     }

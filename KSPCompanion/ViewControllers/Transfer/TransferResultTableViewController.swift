@@ -14,7 +14,7 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
     
     var results: (parent: Celestial, from: Celestial, to: Celestial, phaseAngle: Double, ejectionAngle: Double, ejectionSpeed: Double, deltaV: Double)?
     var inclinationAlertHavePoped = false
-    func prepare(results: (parent: Celestial, from: Celestial, to: Celestial, phaseAngle: Double, ejectionAngle: Double, ejectionSpeed: Double, deltaV: Double)) {
+    func prepare(_ results: (parent: Celestial, from: Celestial, to: Celestial, phaseAngle: Double, ejectionAngle: Double, ejectionSpeed: Double, deltaV: Double)) {
         self.results = results
     }
     
@@ -27,7 +27,7 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
         self.tableView.tableFooterView = UIView()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if let r = results {
@@ -37,7 +37,7 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
             
             if r.from.orbit!.inclination != r.to.orbit!.inclination || r.from.orbit!.ascendingNodeLongitude != r.to.orbit!.ascendingNodeLongitude {
                 if !inclinationAlertHavePoped {
-                    TSMessage.showNotificationWithTitle(NSLocalizedString("INCLINATION_NOTIF", comment: ""), subtitle: NSLocalizedString("INCLINATION_NOTIF_DESC", comment: ""), type: .Warning)
+                    TSMessage.showNotification(withTitle: NSLocalizedString("INCLINATION_NOTIF", comment: ""), subtitle: NSLocalizedString("INCLINATION_NOTIF_DESC", comment: ""), type: .warning)
                     inclinationAlertHavePoped = true
                 }
             }
@@ -46,14 +46,14 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
     
     // MARK: TableView
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         if results == nil {
             return 0
         }
         return 2
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
@@ -64,7 +64,7 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
         }
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
             return NSLocalizedString("PHASE_ANGLE_HEADER", comment: "")
@@ -75,7 +75,7 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
         }
     }
     
-    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 0:
             return NSLocalizedString("PHASE_ANGLE_FOOTER", comment: "")
@@ -86,18 +86,18 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TransfertResultCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TransfertResultCell", for: indexPath)
         
         switch indexPath.section {
         case 0:
-            cell.accessoryType = .DetailButton
+            cell.accessoryType = .detailButton
             cell.textLabel!.text = NSLocalizedString("PHASE_ANGLE", comment: "")
             cell.detailTextLabel!.text = "\(self.results!.phaseAngle.format(2))°"
         case 1:
             switch indexPath.row {
             case 0:
-                cell.accessoryType = .DetailButton
+                cell.accessoryType = .detailButton
                 cell.textLabel!.text = NSLocalizedString("ANGLE", comment: "")
                 cell.detailTextLabel!.text = "\(self.results!.ejectionAngle.format(2))°"
             case 1:
@@ -118,7 +118,7 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
         return cell
     }
     
-    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         var modalViewController: TransferResultModalController?
         
         switch indexPath.section {
@@ -130,35 +130,35 @@ class TransferResultTableViewController: UITableViewController, DZNEmptyDataSetS
             break
         }
         
-        if let mvc = modalViewController, results = self.results {
+        if let mvc = modalViewController, let results = self.results {
             mvc.results = results
             
             let navController = UINavigationController(rootViewController: mvc)
-            navController.modalPresentationStyle = .FormSheet
+            navController.modalPresentationStyle = .formSheet
             
-            self.presentViewController(navController, animated: true, completion: nil)
+            self.present(navController, animated: true, completion: nil)
         }
     }
     
     // MARK: DZNEmptyDataSetSource
     
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = NSLocalizedString("DO_A_CALCUL", comment: "")
         
-        let attributes = [NSFontAttributeName: UIFont.boldSystemFontOfSize(18), NSForegroundColorAttributeName: UIColor.darkGrayColor()]
+        let attributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18), NSForegroundColorAttributeName: UIColor.darkGray]
         
         return NSAttributedString(string: text, attributes: attributes)
     }
     
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = NSLocalizedString("DO_A_CALCUL_DESC", comment: "")
         
         let paragraph = NSMutableParagraphStyle()
-        paragraph.lineBreakMode = .ByWordWrapping
-        paragraph.alignment = .Center
+        paragraph.lineBreakMode = .byWordWrapping
+        paragraph.alignment = .center
         
-        let attributes = [NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+        let attributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14),
+            NSForegroundColorAttributeName: UIColor.lightGray,
             NSParagraphStyleAttributeName: paragraph]
         
         return NSAttributedString(string: text, attributes: attributes)

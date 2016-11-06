@@ -26,7 +26,7 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
         
         self.navigationController?.topViewController!.title = NSLocalizedString("CELESTIALS", comment: "")
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings"), style: .Plain, target: self, action: #selector(CelestialsTableViewController.openSolarSystemSelector(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(CelestialsTableViewController.openSolarSystemSelector(_:)))
         
         // Research
         searchController = UISearchController(searchResultsController: nil)
@@ -39,14 +39,14 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
         definesPresentationContext = true
         
         // Searchbar customization
-        searchController.searchBar.barTintColor = UIColor.blackColor()
+        searchController.searchBar.barTintColor = UIColor.black
         searchController.searchBar.backgroundImage = UIImage()
         
         
         // Peek and Pop
         if #available(iOS 9.0, *) {
-            if traitCollection.forceTouchCapability == .Available {
-                registerForPreviewingWithDelegate(self, sourceView: view)
+            if traitCollection.forceTouchCapability == .available {
+                registerForPreviewing(with: self, sourceView: view)
             }
         }
     }
@@ -57,14 +57,14 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
             searchResults = []
             celestials = newData
             self.tableView.beginUpdates()
-            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+            self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
             self.tableView.endUpdates()
             
             self.userActivity?.needsSave = true
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         rz_smoothlyDeselectRows(tableView: self.tableView)
@@ -73,11 +73,11 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
         loadCelestials()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewCelestialDetails" {
             //stopUserActivity()
             
-            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CelestialViewController
+            let controller = (segue.destination as! UINavigationController).topViewController as! CelestialViewController
             
             if let indexPath = tableView.indexPathForSelectedRow {
                 let celestial = getCelestialAtIndexPath(indexPath)
@@ -90,60 +90,60 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
     
     var isResearching: Bool {
         guard let searchText = searchController.searchBar.text else { return false }
-        return searchController.active && !searchText.isEmpty
+        return searchController.isActive && !searchText.isEmpty
     }
     
-    func filterContentForSearchText(searchText: String) {
+    func filterContentForSearchText(_ searchText: String) {
         searchResults = self.celestials.filter({ ( cel: Celestial) -> Bool in
-            let nameMatch = cel.name.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            let nameMatch = cel.name.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
             return nameMatch != nil
             })
     }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
         filterContentForSearchText(searchText)
         tableView.reloadData()
     }
     
-    func willPresentSearchController(searchController: UISearchController) {
-        self.navigationItem.rightBarButtonItem?.enabled = false
+    func willPresentSearchController(_ searchController: UISearchController) {
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
-    func willDismissSearchController(searchController: UISearchController) {
-        self.navigationItem.rightBarButtonItem?.enabled = true
+    func willDismissSearchController(_ searchController: UISearchController) {
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
     }
     
     // MARK: Other solar systems
     
-    func openSolarSystemSelector(sender: UIBarButtonItem) {
+    func openSolarSystemSelector(_ sender: UIBarButtonItem) {
         let viewController = SolarSystemSelector()
         
-        guard !searchController.active else { return }
+        guard !searchController.isActive else { return }
         
         viewController.parentController = self
         let navController = UINavigationController(rootViewController: viewController)
         
-        if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+        if (UI_USER_INTERFACE_IDIOM() == .pad) {
             let popover = UIPopoverController(contentViewController: navController)
-            popover.presentPopoverFromBarButtonItem(sender, permittedArrowDirections: .Any, animated: true)
+            popover.present(from: sender, permittedArrowDirections: .any, animated: true)
         } else {
-            self.presentViewController(navController, animated: true, completion: nil)
+            self.present(navController, animated: true, completion: nil)
         }
     }
     
     // MARK: TableView DataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.isResearching ? searchResults.count :celestials.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reusableCellIdentifier, forIndexPath: indexPath) 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reusableCellIdentifier, for: indexPath) 
         
         let celestial = getCelestialAtIndexPath(indexPath)
         
@@ -152,48 +152,48 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
         return cell
     }
     
-    func getCelestialAtIndexPath(indexPath: NSIndexPath) -> Celestial {
+    func getCelestialAtIndexPath(_ indexPath: IndexPath) -> Celestial {
         return self.isResearching ? searchResults[indexPath.row] : celestials[indexPath.row]
     }
     
-    func configureCell(cell: UITableViewCell, celestial: Celestial) {
+    func configureCell(_ cell: UITableViewCell, celestial: Celestial) {
         cell.textLabel?.text = celestial.name
         
         // Setting colors
-        cell.backgroundColor = UIColor.clearColor()
+        cell.backgroundColor = UIColor.clear
         cell.textLabel?.textColor = celestial.color
         cell.imageView?.tintColor = celestial.color
-        cell.textLabel?.highlightedTextColor = UIColor.blackColor();
+        cell.textLabel?.highlightedTextColor = UIColor.black;
         
-        cell.accessoryType = self.splitViewController!.collapsed ? .DisclosureIndicator : .None;
+        cell.accessoryType = self.splitViewController!.isCollapsed ? .disclosureIndicator : .none;
         
         //cell.indentationLevel = celestial.indentation
         
         if let img = celestial.type.image {
-            cell.imageView?.image = img.imageWithRenderingMode(.AlwaysTemplate)
-            cell.imageView?.highlightedImage = img.imageWithRenderingMode(.AlwaysOriginal)
+            cell.imageView?.image = img.withRenderingMode(.alwaysTemplate)
+            cell.imageView?.highlightedImage = img.withRenderingMode(.alwaysOriginal)
         } else {
             cell.imageView?.image = nil
         }
     }
     
     // MARK: TableView custom actions
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let celestial = getCelestialAtIndexPath(indexPath)
         guard let orbit = celestial.orbit else { return false }
         return orbit.eccentricity < 0.3
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         // From action
-        let fromAction = UITableViewRowAction(style: .Default, title: NSLocalizedString("LEAVE", comment: "") , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+        let fromAction = UITableViewRowAction(style: .default, title: NSLocalizedString("LEAVE", comment: "") , handler: { (action:UITableViewRowAction!, indexPath:IndexPath!) -> Void in
             self.setFromAtIndexPath(indexPath)
         })
         // To action
-        let toAction = UITableViewRowAction(style: .Default, title: NSLocalizedString("GO_TO", comment: "") , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+        let toAction = UITableViewRowAction(style: .default, title: NSLocalizedString("GO_TO", comment: "") , handler: { (action:UITableViewRowAction!, indexPath:IndexPath!) -> Void in
             self.setToAtIndexPath(indexPath)
         })
         
@@ -204,16 +204,16 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
         return [toAction,fromAction]
     }
     
-    func setFromAtIndexPath(indexPath: NSIndexPath) {
+    func setFromAtIndexPath(_ indexPath: IndexPath) {
         self.setFromOrTo(true, atIndexPath: indexPath)
     }
     
-    func setToAtIndexPath(indexPath: NSIndexPath) {
+    func setToAtIndexPath(_ indexPath: IndexPath) {
         self.setFromOrTo(false, atIndexPath: indexPath)
     }
     
-    func setFromOrTo(from: Bool, atIndexPath indexPath: NSIndexPath) {
-        self.performSelector(#selector(CelestialsTableViewController.closeEditActions), withObject: nil, afterDelay: 0.1)
+    func setFromOrTo(_ from: Bool, atIndexPath indexPath: IndexPath) {
+        self.perform(#selector(CelestialsTableViewController.closeEditActions), with: nil, afterDelay: 0.1)
         // Looking for the right controller
         guard let tabBarController = self.tabBarController as? KSPTabBarController else { print("No Tab Bar"); return }
         guard let splitVC = tabBarController.viewControllers?[1] as? KSPSplitViewController else { print("No Split view controller"); return }
@@ -247,12 +247,12 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
 
 @available(iOS 9.0, *)
 extension CelestialsTableViewController: UIViewControllerPreviewingDelegate {
-    func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         // Getting celestial
-        guard let indexPath = self.tableView.indexPathForRowAtPoint(location), cell = tableView.cellForRowAtIndexPath(indexPath) else { return nil }
+        guard let indexPath = self.tableView.indexPathForRow(at: location), let cell = tableView.cellForRow(at: indexPath) else { return nil }
         
         // Creating viewController
-        guard let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("CelestialViewController") as? CelestialViewController else { return nil }
+        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "CelestialViewController") as? CelestialViewController else { return nil }
         
         // Param controller
         viewController.preferredContentSize = CGSize(width: 0, height: 0)
@@ -263,8 +263,8 @@ extension CelestialsTableViewController: UIViewControllerPreviewingDelegate {
         
         return viewController
     }
-    func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
-        showViewController(viewControllerToCommit, sender: self)
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: self)
     }
 }
 
@@ -276,25 +276,25 @@ extension UIViewController {
     ///  controller's `viewWillAppear(_:)` method.
     ///
     ///  - parameter tableView: The table view in which to perform deselection/reselection.
-    func rz_smoothlyDeselectRows(tableView tableView: UITableView?) {
+    func rz_smoothlyDeselectRows(tableView: UITableView?) {
         let selectedIndexPaths = tableView?.indexPathsForSelectedRows ?? []
         
-        if let coordinator = transitionCoordinator() {
-            coordinator.animateAlongsideTransitionInView(parentViewController?.view, animation: { context in
+        if let coordinator = transitionCoordinator {
+            coordinator.animateAlongsideTransition(in: parent?.view, animation: { context in
                 selectedIndexPaths.forEach {
-                    tableView?.deselectRowAtIndexPath($0, animated: context.isAnimated())
+                    tableView?.deselectRow(at: $0, animated: context.isAnimated)
                 }
                 }, completion: { context in
-                    if context.isCancelled() {
+                    if context.isCancelled {
                         selectedIndexPaths.forEach {
-                            tableView?.selectRowAtIndexPath($0, animated: false, scrollPosition: .None)
+                            tableView?.selectRow(at: $0, animated: false, scrollPosition: .none)
                         }
                     }
             })
         }
         else {
             selectedIndexPaths.forEach {
-                tableView?.deselectRowAtIndexPath($0, animated: false)
+                tableView?.deselectRow(at: $0, animated: false)
             }
         }
     }

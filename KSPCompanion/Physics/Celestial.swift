@@ -9,25 +9,49 @@
 import Foundation
 import UIKit
 import Darwin
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 enum CelestialType: Int, CustomStringConvertible {
-    case Star=0, Planet, RingPlanet, DwarfPlanet, Satellite, Comet, Barycenter, Other
+    case star=0, planet, ringPlanet, dwarfPlanet, satellite, comet, barycenter, other
     
     var image: UIImage? {
         switch self {
-        case .Star:
+        case .star:
             return UIImage(named: "star")
-        case .Planet:
+        case .planet:
             return UIImage(named: "planet")
-        case .RingPlanet:
+        case .ringPlanet:
             return UIImage(named: "ringplanet")
-        case .DwarfPlanet:
+        case .dwarfPlanet:
             return UIImage(named: "dwarfplanet")
-        case .Satellite:
+        case .satellite:
             return UIImage(named: "satellite")
-        case .Comet:
+        case .comet:
             return UIImage(named: "comet")
-        case .Barycenter:
+        case .barycenter:
             return UIImage(named: "barycenter")
         default:
             return nil
@@ -36,15 +60,15 @@ enum CelestialType: Int, CustomStringConvertible {
     
     var localisedDescription: String {
         switch self {
-        case .Star:
+        case .star:
             return NSLocalizedString("STAR", comment: "")
-        case .Planet, .RingPlanet:
+        case .planet, .ringPlanet:
             return NSLocalizedString("PLANET", comment: "")
-        case .DwarfPlanet:
+        case .dwarfPlanet:
             return NSLocalizedString("DWARF_PLANET", comment: "")
-        case .Satellite:
+        case .satellite:
             return NSLocalizedString("SATELLITE", comment: "")
-        case .Comet:
+        case .comet:
             return NSLocalizedString("COMET", comment: "")
         default:
             return ""
@@ -53,43 +77,43 @@ enum CelestialType: Int, CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .Star:
+        case .star:
             return "Star"
-        case .Planet:
+        case .planet:
             return "Planet"
-        case .RingPlanet:
+        case .ringPlanet:
             return "Ring Planet"
-        case .DwarfPlanet:
+        case .dwarfPlanet:
             return "Dwarf Planet"
-        case .Satellite:
+        case .satellite:
             return "Natural satellite"
-        case .Comet:
+        case .comet:
             return "Comet"
-        case .Barycenter:
+        case .barycenter:
             return "Barycenter"
         default:
             return "Other"
         }
     }
     
-    static func fromString(type: String) -> CelestialType {
+    static func fromString(_ type: String) -> CelestialType {
         switch type {
         case "star":
-            return .Star
+            return .star
         case "satellite":
-            return .Satellite
+            return .satellite
         case "planet":
-            return .Planet
+            return .planet
         case "ringplanet":
-            return .RingPlanet
+            return .ringPlanet
         case "dwarfplanet":
-            return .DwarfPlanet
+            return .dwarfPlanet
         case "comet":
-            return .Comet
+            return .comet
         case "barycenter":
-            return .Barycenter
+            return .barycenter
         default:
-            return .Other
+            return .other
         }
     }
 }
@@ -109,7 +133,7 @@ class Celestial: Equatable, CustomStringConvertible {
     
     init(name: String, type: CelestialType, mass: Double, radius: Double, rotationPeriod: Double, orbit: Orbit?, atmosphere: Atmosphere?) {
         self.name = name
-        self.color = UIColor.whiteColor()
+        self.color = UIColor.white
         self.type = type
         self.mass = mass
         self.radius = radius
@@ -137,7 +161,7 @@ class Celestial: Equatable, CustomStringConvertible {
     }
     
     // Color comes in "255,255,180" format
-    func assignColor(rgb: String) {
+    func assignColor(_ rgb: String) {
         
         var colors = rgb.characters.split {$0 == ","}.map { String($0) }
         
@@ -188,27 +212,27 @@ class Celestial: Equatable, CustomStringConvertible {
         }
     }
     
-    func gravityAtRadius(radius: Double) -> Double {
+    func gravityAtRadius(_ radius: Double) -> Double {
         return stdGravitationalParameter / pow(radius, 2)
     }
     
-    func gravityAtAltitude(altitude: Double) -> Double {
+    func gravityAtAltitude(_ altitude: Double) -> Double {
         return gravityAtRadius(radius + altitude)
     }
     
-    func escapeVelocityAtRadius(radius: Double) -> Double {
+    func escapeVelocityAtRadius(_ radius: Double) -> Double {
         return sqrt(2 * stdGravitationalParameter / radius)
     }
     
-    func escapeVelocityAtAltitude(altitude: Double) -> Double {
+    func escapeVelocityAtAltitude(_ altitude: Double) -> Double {
         return escapeVelocityAtRadius(altitude + radius)
     }
     
-    func orbitVelocityAtRadius(radius: Double) -> Double {
+    func orbitVelocityAtRadius(_ radius: Double) -> Double {
         return sqrt(stdGravitationalParameter / radius)
     }
     
-    func orbitVelocityAtAltitude(altitude: Double) -> Double {
+    func orbitVelocityAtAltitude(_ altitude: Double) -> Double {
         return orbitVelocityAtRadius(radius + altitude)
     }
     
@@ -237,16 +261,16 @@ class Celestial: Equatable, CustomStringConvertible {
     }
     
     // Should be called from origin object
-    func transfertTo(destination: Celestial, withAltitude: Double) -> (parent: Celestial, from: Celestial, to: Celestial, phaseAngle: Double, ejectionAngle: Double, ejectionSpeed: Double, deltaV: Double)? {
+    func transfertTo(_ destination: Celestial, withAltitude: Double) -> (parent: Celestial, from: Celestial, to: Celestial, phaseAngle: Double, ejectionAngle: Double, ejectionSpeed: Double, deltaV: Double)? {
         return transfertTo(destination, withRadius: self.radius + withAltitude)
     }
     
-    func transfertTo(destination: Celestial, withRadius: Double) -> (parent: Celestial, from: Celestial, to: Celestial, phaseAngle: Double, ejectionAngle: Double, ejectionSpeed: Double, deltaV: Double)? {
+    func transfertTo(_ destination: Celestial, withRadius: Double) -> (parent: Celestial, from: Celestial, to: Celestial, phaseAngle: Double, ejectionAngle: Double, ejectionSpeed: Double, deltaV: Double)? {
         
         if (self.orbit!.orbitAroundCelestial == destination.orbit!.orbitAroundCelestial && self != destination) {
             
             // Phase angle
-            let phaseAngle = 180 * (1 - sqrt( 1/8 * pow( 1 + self.orbit!.a / destination.orbit!.a , 3) ) ) % 360
+            let phaseAngle = (180 * (1 - sqrt( 1/8 * pow( 1 + self.orbit!.a / destination.orbit!.a , 3) ) )).truncatingRemainder(dividingBy: 360)
             
             let soi = self.sphereOfInfluence
             let µ = self.stdGravitationalParameter
@@ -272,9 +296,9 @@ class Celestial: Equatable, CustomStringConvertible {
                 let nu = acos( (l - soi) / (e * soi) )
                 let phi = atan2((e * sin(nu)), (1 + e * cos(nu)))
                 
-                ejectionAngle = (90 - (phi * 180 / M_PI) + (nu * 180/M_PI)) % 360;
+                ejectionAngle = (90 - (phi * 180 / M_PI) + (nu * 180/M_PI)).truncatingRemainder(dividingBy: 360);
             } else {
-                ejectionAngle = (180 - (acos(1 / e) * (180 / M_PI))) % 360;
+                ejectionAngle = (180 - (acos(1 / e) * (180 / M_PI))).truncatingRemainder(dividingBy: 360);
             }
             
             return (destination.orbit!.orbitAroundCelestial, self, destination, phaseAngle, ejectionAngle, ejectionSpeed, deltaV)
@@ -283,11 +307,11 @@ class Celestial: Equatable, CustomStringConvertible {
         return nil
     }
     
-    func distributeSatellitesAtRadius(radius: Double, f: Double) -> Double? {
+    func distributeSatellitesAtRadius(_ radius: Double, f: Double) -> Double? {
         return (2 * pow(f, 2/3) - 1) * radius - self.radius
     }
     
-    func distributeSatellitesAtRadius(radius: Double, numberOfSatellites: Int) -> Double? {
+    func distributeSatellitesAtRadius(_ radius: Double, numberOfSatellites: Int) -> Double? {
         if (numberOfSatellites > 1) {
             var f:Double = (Double(numberOfSatellites)-1) / Double(numberOfSatellites)
             let per = distributeSatellitesAtRadius(radius, f: f)
@@ -312,7 +336,7 @@ class Celestial: Equatable, CustomStringConvertible {
         }
     }
     
-    func distributeSatellitesAtAltitude(altitude: Double, numberOfSatellites: Int) -> Double? {
+    func distributeSatellitesAtAltitude(_ altitude: Double, numberOfSatellites: Int) -> Double? {
         return distributeSatellitesAtRadius(altitude + radius, numberOfSatellites: numberOfSatellites)
     }
 }

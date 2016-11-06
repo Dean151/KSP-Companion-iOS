@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class TransferPhaseAngleViewController: TransferResultModalController {
     
@@ -30,11 +29,6 @@ class TransferPhaseAngleViewController: TransferResultModalController {
             
             self.subview = interplanetaryView
             self.view.addSubview(interplanetaryView)
-            
-            // Constraints
-            interplanetaryView.snp_makeConstraints(closure: { (make) -> Void in
-                make.edges.equalTo(self.view).inset(UIEdgeInsetsMake(0, 0, 0, 0))
-            })
         }
     }
 }

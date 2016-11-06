@@ -31,13 +31,13 @@ class KSPTabBarController: UITabBarController {
         self.setIndex(shouldShow)
     }
     
-    func setIndex(index: Int) {
+    func setIndex(_ index: Int) {
         guard index < self.viewControllers!.count else { return }
         self.selectedIndex = index
         self.selectedItem = self.viewControllers![index].tabBarItem
     }
     
-    override func restoreUserActivityState(activity: NSUserActivity) {
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
         self.viewControllers?.forEach({
             $0.restoreUserActivityState(activity)
         })
@@ -45,7 +45,7 @@ class KSPTabBarController: UITabBarController {
     }
     
     // MARK: UITabBarControllerDelegate
-    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if self.selectedItem == item {
             // Here we tapped again a selected item
             // So we should go back on one step

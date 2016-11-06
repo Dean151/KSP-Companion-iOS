@@ -12,7 +12,7 @@ import DZNEmptyDataSet
 class DistributionResultTableViewController: UITableViewController, DZNEmptyDataSetSource {
     var results: (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int, deltaV: Double)?
     
-    func prepare(results: (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int, deltaV: Double)) {
+    func prepare(_ results: (targetOrbit: Orbit, transferOrbit: Orbit, nSat: Int, deltaV: Double)) {
         self.results = results
         
         tableView.reloadData()
@@ -31,14 +31,14 @@ class DistributionResultTableViewController: UITableViewController, DZNEmptyData
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
     }
     
     // MARK: TableView
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         if results != nil {
             return 3
         } else {
@@ -46,7 +46,7 @@ class DistributionResultTableViewController: UITableViewController, DZNEmptyData
         }
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
             return NSLocalizedString("TARGET_ORBIT", comment: "")
@@ -59,7 +59,7 @@ class DistributionResultTableViewController: UITableViewController, DZNEmptyData
         }
     }
     
-    override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 0:
             return NSLocalizedString("TARGET_ORBIT_FOOTER", comment: "")
@@ -72,7 +72,7 @@ class DistributionResultTableViewController: UITableViewController, DZNEmptyData
         }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 2
@@ -85,8 +85,8 @@ class DistributionResultTableViewController: UITableViewController, DZNEmptyData
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("DistributionResultCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DistributionResultCell", for: indexPath)
         
         switch indexPath.section {
         case 0:
@@ -137,23 +137,23 @@ class DistributionResultTableViewController: UITableViewController, DZNEmptyData
     
     // MARK: DZNEmptyDataSetSource
     
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = NSLocalizedString("DISTRIBUTE_SATELLITES", comment: "")
         
-        let attributes = [NSFontAttributeName: UIFont.boldSystemFontOfSize(18), NSForegroundColorAttributeName: UIColor.darkGrayColor()]
+        let attributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18), NSForegroundColorAttributeName: UIColor.darkGray]
         
         return NSAttributedString(string: text, attributes: attributes)
     }
     
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = NSLocalizedString("DISTRIBUTE_SATELLITES_DESC", comment: "")
         
         let paragraph = NSMutableParagraphStyle()
-        paragraph.lineBreakMode = .ByWordWrapping
-        paragraph.alignment = .Center
+        paragraph.lineBreakMode = .byWordWrapping
+        paragraph.alignment = .center
         
-        let attributes = [NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+        let attributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14),
+            NSForegroundColorAttributeName: UIColor.lightGray,
             NSParagraphStyleAttributeName: paragraph]
         
         return NSAttributedString(string: text, attributes: attributes)

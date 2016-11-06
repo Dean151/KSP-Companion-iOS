@@ -10,26 +10,26 @@ import Foundation
 import SwiftyJSON
 
 enum SolarSystem: Int, CustomStringConvertible {
-    case Kerbolian=0, OuterPlanets, KerbolPlus
+    case kerbolian=0, outerPlanets, kerbolPlus
     
     var fileName: String {
         switch self {
-        case .Kerbolian:
+        case .kerbolian:
             return "System"
-        case .OuterPlanets:
+        case .outerPlanets:
             return "OuterPlanets"
-        case .KerbolPlus:
+        case .kerbolPlus:
             return "KerbolPlus"
         }
     }
     
     var description: String {
         switch self {
-        case .Kerbolian:
+        case .kerbolian:
             return NSLocalizedString("KERBAL_SYSTEM", comment: "")
-        case .OuterPlanets:
+        case .outerPlanets:
             return NSLocalizedString("OUTERPLANET_SYSTEM", comment: "")
-        case .KerbolPlus:
+        case .kerbolPlus:
             return NSLocalizedString("KERBOL_PLUS_SYSTEM", comment: "")
         }
     }
@@ -44,10 +44,10 @@ class DataManager {
     /*
         Fetching JSON and returning NSData
     */
-    static func getJsonData(file file: String) -> NSData? {
-        if let path = NSBundle.mainBundle().pathForResource(file, ofType: "json") {
+    static func getJsonData(file: String) -> Data? {
+        if let path = Bundle.main.path(forResource: file, ofType: "json") {
             do {
-                let data: NSData = try NSData(contentsOfFile: path, options: NSDataReadingOptions())
+                let data: Data = try Data(contentsOf: URL(fileURLWithPath: path), options: NSData.ReadingOptions())
                 return data
             } catch let error as NSError {
                 print("Could not read \(file) json file with error \(error)")
@@ -69,7 +69,7 @@ class DataManager {
         // Fetching and populating celestials from json
         if let data = DataManager.getJsonData(file: Settings.sharedInstance.solarSystem.fileName) {
             var error: NSError?
-            let json = JSON(data: data, options: NSJSONReadingOptions(), error: &error)
+            let json = JSON(data: data, options: JSONSerialization.ReadingOptions(), error: &error)
             
             celestials = getCelestials(json)
         }
@@ -80,11 +80,11 @@ class DataManager {
     /*
         Browsing in the tree to fetch all celestials
     */
-    static func getCelestials(json: JSON) -> [Celestial] {
+    static func getCelestials(_ json: JSON) -> [Celestial] {
         return getCelestials(json, parent: nil, out: [Celestial]())
     }
     
-    static func getCelestials(json: JSON, parent: Celestial?, out: [Celestial]) -> [Celestial] {
+    static func getCelestials(_ json: JSON, parent: Celestial?, out: [Celestial]) -> [Celestial] {
         var celestials = out
         
         for (_, subjson): (String, JSON) in json {
@@ -102,7 +102,7 @@ class DataManager {
     /*
         Getting specific celestial (leaf)
     */
-    static func getCelestial(subjson: JSON, parent: Celestial?) -> Celestial? {
+    static func getCelestial(_ subjson: JSON, parent: Celestial?) -> Celestial? {
         var celestial: Celestial?
         var orbit: Orbit?
         var atmosphere: Atmosphere?

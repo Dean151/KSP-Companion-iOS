@@ -18,7 +18,7 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
     
     var celestial: Celestial?
     
-    func prepare(celestial celestial: Celestial) {
+    func prepare(celestial: Celestial) {
         self.celestial = celestial
     }
     
@@ -31,7 +31,7 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         self.tableView.tableFooterView = UIView()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Adding sections
@@ -41,7 +41,7 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         //beginUserActivity()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         //stopUserActivity()
@@ -57,9 +57,9 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
             navController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: celestial.color]
         }
         
-        celestialProperties.removeAll(keepCapacity: false)
-        orbitProperties.removeAll(keepCapacity: false)
-        atmosphereProperties.removeAll(keepCapacity: false)
+        celestialProperties.removeAll(keepingCapacity: false)
+        orbitProperties.removeAll(keepingCapacity: false)
+        atmosphereProperties.removeAll(keepingCapacity: false)
         
         // Celestial properties
         celestialProperties.append([NSLocalizedString("EQUATORIAL_RADIUS", comment: ""),
@@ -167,7 +167,7 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         }
     }
     
-    func getValuesAtIndexPath(indexPath: NSIndexPath) -> (title: String, detail: String, value: String) {
+    func getValuesAtIndexPath(_ indexPath: IndexPath) -> (title: String, detail: String, value: String) {
         let row = indexPath.row
         
         switch indexPath.section {
@@ -184,12 +184,12 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
     
     
     // MARK: TableView
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         guard let celestial = self.celestial else { return 0 }
         return (celestial.orbit != nil && celestial.atmosphere != nil) ? 3 : (celestial.orbit != nil) ? 2 : 1
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let celestial = self.celestial else { return "" }
         switch section {
         case 0:
@@ -203,7 +203,7 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let celestial = self.celestial else { return 0 }
         
         switch section {
@@ -218,8 +218,8 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reusableCellIdentifier, forIndexPath: indexPath) 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reusableCellIdentifier, for: indexPath) 
         
         let values = self.getValuesAtIndexPath(indexPath)
         
@@ -230,11 +230,11 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
     }
     
     // MARK: Actions feature in tableview
-    override func tableView(tableView: UITableView, shouldShowMenuForRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    override func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
+    override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         
         if action == #selector(copy(_:)) {
             return true
@@ -243,18 +243,18 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         return false
     }
     
-    override func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
+    override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
         if action == #selector(copy(_:)) {
-            let pasteboard = UIPasteboard.generalPasteboard()
+            let pasteboard = UIPasteboard.general
             pasteboard.string = self.getValuesAtIndexPath(indexPath).value
         }
     }
     
     // MARK: TableView custom actions
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         guard let celestial = self.celestial else { return false }
         
         if indexPath.section != 0 || (indexPath.row != 6 && indexPath.row != 7) {
@@ -268,9 +268,9 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         return true
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         // Distribute action
-        let distributeAction = UITableViewRowAction(style: .Default, title: NSLocalizedString("DISTRIBUTE", comment: "") , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+        let distributeAction = UITableViewRowAction(style: .default, title: NSLocalizedString("DISTRIBUTE", comment: "") , handler: { (action:UITableViewRowAction!, indexPath:IndexPath!) -> Void in
             self.setDistributionAtIndexPath(indexPath)
         })
         
@@ -280,8 +280,8 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         return [distributeAction]
     }
     
-    func setDistributionAtIndexPath(indexPath: NSIndexPath) {
-        self.performSelector(#selector(CelestialViewController.closeEditActions), withObject: nil, afterDelay: 0.1)
+    func setDistributionAtIndexPath(_ indexPath: IndexPath) {
+        self.perform(#selector(CelestialViewController.closeEditActions), with: nil, afterDelay: 0.1)
         
         guard let celestial = self.celestial else { return }
         
@@ -319,23 +319,23 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
     
     // MARK: DZNEmptyDataSetSource
     
-    func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = NSLocalizedString("NO_PLANET", comment: "")
         
-        let attributes = [NSFontAttributeName: UIFont.boldSystemFontOfSize(18), NSForegroundColorAttributeName: UIColor.darkGrayColor()]
+        let attributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 18), NSForegroundColorAttributeName: UIColor.darkGray]
         
         return NSAttributedString(string: text, attributes: attributes)
     }
     
-    func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let text = NSLocalizedString("CHOOSE_A_PLANET", comment: "")
         
         let paragraph = NSMutableParagraphStyle()
-        paragraph.lineBreakMode = .ByWordWrapping
-        paragraph.alignment = .Center
+        paragraph.lineBreakMode = .byWordWrapping
+        paragraph.alignment = .center
         
-        let attributes = [NSFontAttributeName: UIFont.boldSystemFontOfSize(14),
-            NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+        let attributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14),
+            NSForegroundColorAttributeName: UIColor.lightGray,
             NSParagraphStyleAttributeName: paragraph]
         
         return NSAttributedString(string: text, attributes: attributes)

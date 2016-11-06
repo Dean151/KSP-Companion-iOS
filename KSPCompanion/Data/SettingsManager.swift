@@ -14,20 +14,20 @@ class Settings {
     let calculationLimit = 20
     
     // Names of the settings
-    private let hideAdsString = "hideAds"
-    private let lastCounterReinitDateString = "lastCounterReinitDate"
-    private let counterString = "counter"
-    private let solarSystemString = "solarSystem"
-    private let temperatureUnitString = "temperatureUnit"
-    private let earthTimeString = "useEarthTime"
+    fileprivate let hideAdsString = "hideAds"
+    fileprivate let lastCounterReinitDateString = "lastCounterReinitDate"
+    fileprivate let counterString = "counter"
+    fileprivate let solarSystemString = "solarSystem"
+    fileprivate let temperatureUnitString = "temperatureUnit"
+    fileprivate let earthTimeString = "useEarthTime"
     
     // Singleton
     static let sharedInstance = Settings()
     
-    let settings = NSUserDefaults.standardUserDefaults()
+    let settings = UserDefaults.standard
     
     init() {
-        guard let key = NSBundle.mainBundle().objectForInfoDictionaryKey("SecureNSUserDefaultKey") as? String else {
+        guard let key = Bundle.main.object(forInfoDictionaryKey: "SecureNSUserDefaultKey") as? String else {
             fatalError("Could access encryption key")
         }
         
@@ -39,14 +39,14 @@ class Settings {
             return true
         }
         
-        let calendar = NSCalendar.currentCalendar()
-        let flags: NSCalendarUnit = [.Hour, .Day, .Month, .Year]
-        let comp1 = calendar.components(flags, fromDate: lastResetCounterDate)
-        let comp2 = calendar.components(flags, fromDate: NSDate())
+        let calendar = Calendar.current
+        let flags: NSCalendar.Unit = [.hour, .day, .month, .year]
+        let comp1 = (calendar as NSCalendar).components(flags, from: lastResetCounterDate)
+        let comp2 = (calendar as NSCalendar).components(flags, from: Date())
         
         if !(comp1.day == comp2.day && comp1.month == comp2.month && comp1.year == comp2.year) {
             numberOfCalculations = 0
-            lastResetCounterDate = NSDate()
+            lastResetCounterDate = Date()
             return true
         }
         
@@ -55,7 +55,7 @@ class Settings {
     
     var completeVersionPurchased: Bool {
         get {
-            return settings.secretBoolForKey(hideAdsString)
+            return settings.secretBool(forKey: hideAdsString)
         }
         set {
             settings.setSecretBool(newValue, forKey: hideAdsString)
@@ -64,16 +64,16 @@ class Settings {
     
     var numberOfCalculations: Int {
         get {
-            return settings.secretIntegerForKey(counterString)
+            return settings.secretInteger(forKey: counterString)
         }
         set {
             settings.setSecretInteger(newValue, forKey: counterString)
         }
     }
     
-    private var lastResetCounterDate: NSDate {
+    fileprivate var lastResetCounterDate: Date {
         get {
-            return NSDate(timeIntervalSince1970: settings.secretDoubleForKey(lastCounterReinitDateString))
+            return Date(timeIntervalSince1970: settings.secretDouble(forKey: lastCounterReinitDateString))
         }
         set {
             settings.setSecretDouble(newValue.timeIntervalSince1970, forKey: lastCounterReinitDateString)
@@ -83,39 +83,39 @@ class Settings {
     var solarSystem: SolarSystem {
         get {
             guard completeVersionPurchased == true else {
-                return SolarSystem.Kerbolian
+                return SolarSystem.kerbolian
             }
             
-            if let solarsystem = SolarSystem(rawValue: settings.integerForKey(solarSystemString)) {
+            if let solarsystem = SolarSystem(rawValue: settings.integer(forKey: solarSystemString)) {
                 return solarsystem
             } else {
-                return SolarSystem.Kerbolian
+                return SolarSystem.kerbolian
             }
         }
         set {
-            settings.setInteger(newValue.rawValue, forKey: solarSystemString)
+            settings.set(newValue.rawValue, forKey: solarSystemString)
         }
     }
     
     var temperatureUnit: TemperatureUnit {
         get {
-            if let temp = TemperatureUnit(rawValue: settings.integerForKey(temperatureUnitString)) {
+            if let temp = TemperatureUnit(rawValue: settings.integer(forKey: temperatureUnitString)) {
                 return temp
             } else {
-                return TemperatureUnit.Celsius
+                return TemperatureUnit.celsius
             }
         }
         set {
-            settings.setInteger(newValue.rawValue, forKey: temperatureUnitString)
+            settings.set(newValue.rawValue, forKey: temperatureUnitString)
         }
     }
     
     var useEarthTime: Bool {
         get {
-            return settings.boolForKey(earthTimeString)
+            return settings.bool(forKey: earthTimeString)
         }
         set {
-            settings.setBool(newValue, forKey: earthTimeString)
+            settings.set(newValue, forKey: earthTimeString)
         }
     }
     

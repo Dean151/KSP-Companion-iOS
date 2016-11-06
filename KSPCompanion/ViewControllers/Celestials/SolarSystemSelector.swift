@@ -16,7 +16,7 @@ class SolarSystemSelector: UIViewController, UITableViewDataSource, UITableViewD
     override func loadView() {
         super.loadView()
         
-        self.view = UITableView(frame: CGRectZero, style: .Grouped)
+        self.view = UITableView(frame: CGRect.zero, style: .grouped)
         self.tableView = self.view as! UITableView
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -29,60 +29,60 @@ class SolarSystemSelector: UIViewController, UITableViewDataSource, UITableViewD
         self.navigationItem.title = NSLocalizedString("SYSTEMS", comment: "")
         
         // Constraint for popover view
-        self.preferredContentSize = CGSizeMake(320, 130 + 44*CGFloat(SolarSystem.count))
+        self.preferredContentSize = CGSize(width: 320, height: 130 + 44*CGFloat(SolarSystem.count))
         
         // Adding button to dismiss view
-        let dismissButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(SolarSystemSelector.dismiss(_:)))
+        let dismissButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(SolarSystemSelector.dismiss(_:)))
         self.navigationItem.rightBarButtonItem = dismissButton;
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         if let parent = self.parentController {
             parent.loadCelestials()
         }
     }
     
-    func dismiss(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func dismiss(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // Mark: TableView
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SolarSystem.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         
         if let solarSystem = SolarSystem(rawValue: indexPath.row) {
             cell.textLabel?.text = "\(solarSystem)"
             if solarSystem == Settings.sharedInstance.solarSystem {
-                cell.accessoryType = .Checkmark
+                cell.accessoryType = .checkmark
             } else {
-                cell.accessoryType = .None
+                cell.accessoryType = .none
             }
         }
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         
         guard Settings.sharedInstance.completeVersionPurchased || indexPath.row == 0 else {
             // We can't change
-            let alert = UIAlertController(title: NSLocalizedString("COMPLETE_VERSION_FEATURE", comment: ""), message: NSLocalizedString("COMPLETE_VERSION_FOOTER", comment: ""), preferredStyle: .Alert)
+            let alert = UIAlertController(title: NSLocalizedString("COMPLETE_VERSION_FEATURE", comment: ""), message: NSLocalizedString("COMPLETE_VERSION_FOOTER", comment: ""), preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: NSLocalizedString("BUY_IN_SETTINGS", comment: ""), style: .Default, handler: { action in
-                self.dismissViewControllerAnimated(true, completion: {
-                    let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
-                    appDelegate?.handleQuickAction(.Settings)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("BUY_IN_SETTINGS", comment: ""), style: .default, handler: { action in
+                self.dismiss(animated: true, completion: {
+                    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    _ = appDelegate?.handleQuickAction(.Settings)
                 })
             }))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("CANCEL", comment: ""), style: .cancel, handler: nil))
             
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
             return
         }
         
@@ -92,7 +92,7 @@ class SolarSystemSelector: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
-    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return NSLocalizedString("SYSTEM_SELECTION_DESCRIPTION", comment: "")
     }
 }

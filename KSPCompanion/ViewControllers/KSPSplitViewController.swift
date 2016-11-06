@@ -14,12 +14,12 @@ class KSPSplitViewController: UISplitViewController, UISplitViewControllerDelega
         super.viewDidLoad()
         
         self.delegate = self
-        self.preferredDisplayMode = .AllVisible
+        self.preferredDisplayMode = .allVisible
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(KSPSplitViewController.sizeChanged(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(KSPSplitViewController.sizeChanged(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.viewControllers.forEach { vc in
             vc.viewWillAppear(animated)
         }
@@ -27,30 +27,30 @@ class KSPSplitViewController: UISplitViewController, UISplitViewControllerDelega
         super.viewWillAppear(animated)
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         self.sizeChanged(self)
     }
     
-    func splitViewController(splitViewController: UISplitViewController,
-        collapseSecondaryViewController secondaryViewController: UIViewController,
-        ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
+    func splitViewController(_ splitViewController: UISplitViewController,
+        collapseSecondary secondaryViewController: UIViewController,
+        onto primaryViewController: UIViewController) -> Bool {
         return true
     }
     
-    func sizeChanged(sender: AnyObject) {
+    func sizeChanged(_ sender: AnyObject) {
         guard let navVC = self.viewControllers.first as? UINavigationController else { return }
         guard let masterVC = navVC.topViewController as? CelestialsTableViewController else { return }
         masterVC.tableView.reloadData()
     }
     
     func rollBack() {
-        if self.collapsed {
+        if self.isCollapsed {
             guard let navVC = self.viewControllers.last as? UINavigationController else { return }
-            navVC.popToRootViewControllerAnimated(true)
+            navVC.popToRootViewController(animated: true)
         }
     }
     
-    override func restoreUserActivityState(activity: NSUserActivity) {
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
         self.viewControllers.forEach({
             $0.restoreUserActivityState(activity)
         })
@@ -59,7 +59,7 @@ class KSPSplitViewController: UISplitViewController, UISplitViewControllerDelega
 }
 
 extension UINavigationController {
-    override public func viewWillAppear(animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         self.viewControllers.forEach { vc in
             vc.viewWillAppear(animated)
         }
@@ -67,7 +67,7 @@ extension UINavigationController {
         super.viewWillAppear(animated)
     }
     
-    override public func restoreUserActivityState(activity: NSUserActivity) {
+    override open func restoreUserActivityState(_ activity: NSUserActivity) {
         self.viewControllers.forEach({
             $0.restoreUserActivityState(activity)
         })
