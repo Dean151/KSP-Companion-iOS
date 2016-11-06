@@ -9,30 +9,6 @@
 import Foundation
 import UIKit
 import Darwin
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
 
 enum CelestialType: Int, CustomStringConvertible {
     case star=0, planet, ringPlanet, dwarfPlanet, satellite, comet, barycenter, other
@@ -307,7 +283,7 @@ class Celestial: Equatable, CustomStringConvertible {
         return nil
     }
     
-    func distributeSatellitesAtRadius(_ radius: Double, f: Double) -> Double? {
+    func distributeSatellitesAtRadius(_ radius: Double, f: Double) -> Double {
         return (2 * pow(f, 2/3) - 1) * radius - self.radius
     }
     
