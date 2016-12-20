@@ -25,7 +25,7 @@ Created by localio.
 "COMET" = "Comète";
 "COMPLETE_VERSION" = "Version complète";
 "COMPLETE_VERSION_FEATURE" = "Fonctionnalité non disponible";
-"COMPLETE_VERSION_FOOTER" = "Si vous aimez l'application, ou que vous l'utilisez beaucoup, vous pouvez acheter la version complete pour une bouchée de pain !\nAvec la version complete, il n'y a pas de restrictuion sur le quantité de calculs, et vous pourrez choisir des systèmes planétaires alternatifs";
+"COMPLETE_VERSION_FOOTER" = "Si vous aimez l'application, ou que vous l'utilisez beaucoup, vous pouvez acheter la version complete pour une bouchée de pain !\nAvec la version complete, il n'y a pas de restriction sur la quantité de calculs, et vous pourrez choisir des systèmes planétaires alternatifs";
 "COULD_NOT_CALCUL_NOTIF" = "Le transfert n'a pas été calculé";
 "CUSTOM" = "Autre";
 "DAY_DETAIL" = "1 jour (6h)";

@@ -69,6 +69,8 @@ class CelestialsTableViewController: UITableViewController, UISearchControllerDe
         
         rz_smoothlyDeselectRows(tableView: self.tableView)
         
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        
         // refreshing data
         loadCelestials()
     }

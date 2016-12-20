@@ -37,14 +37,6 @@ class CelestialViewController: UITableViewController, DZNEmptyDataSetSource {
         // Adding sections
         prepareCelestial()
         self.tableView.reloadData()
-        
-        //beginUserActivity()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        //stopUserActivity()
     }
     
     func prepareCelestial() {
